@@ -1,0 +1,788 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>DSSM &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/双塔模型优化思路';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontent/双塔模型优化思路.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/双塔模型优化思路.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>DSSM</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">DSSM</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gatenn">GateNN + 多物料向量</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#senet">SENET双塔模型</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">并联双塔</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#google">Google采样修正的双塔模型</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">简介</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">模型整体结构</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">主要的优化点</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">其他细节（可跳过该章节）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-softmax-optimization">损失函数 &amp; batch softmax optimization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">模型训练流程</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming-frequency-estimation">streaming frequency estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-and-temperature">Normalization and Temperature</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">阿里实践（粗排）</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">粗排的技术发展历史</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">向量内积模型的优点和问题</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">针对向量内积模型的改进方案</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">新一代粗排架构</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#item-loss">对比学习：双塔模型 item 侧引入对比学习辅助 loss</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">解决长尾问题</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">如何构建负例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">实例</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#DSSM" data-toc-modified-id="DSSM-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>DSSM</a></span></li><li><span><a href="#GateNN-+-多物料向量" data-toc-modified-id="GateNN-+-多物料向量-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>GateNN + 多物料向量</a></span></li><li><span><a href="#SENET双塔模型" data-toc-modified-id="SENET双塔模型-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>SENET双塔模型</a></span></li><li><span><a href="#并联双塔" data-toc-modified-id="并联双塔-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>并联双塔</a></span></li><li><span><a href="#Google采样修正的双塔模型" data-toc-modified-id="Google采样修正的双塔模型-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Google采样修正的双塔模型</a></span><ul class="toc-item"><li><span><a href="#简介" data-toc-modified-id="简介-5.1"><span class="toc-item-num">5.1&nbsp;&nbsp;</span>简介</a></span><ul class="toc-item"><li><span><a href="#模型整体结构" data-toc-modified-id="模型整体结构-5.1.1"><span class="toc-item-num">5.1.1&nbsp;&nbsp;</span>模型整体结构</a></span></li><li><span><a href="#主要的优化点" data-toc-modified-id="主要的优化点-5.1.2"><span class="toc-item-num">5.1.2&nbsp;&nbsp;</span>主要的优化点</a></span></li></ul></li><li><span><a href="#其他细节（可跳过该章节）" data-toc-modified-id="其他细节（可跳过该章节）-5.2"><span class="toc-item-num">5.2&nbsp;&nbsp;</span>其他细节（可跳过该章节）</a></span><ul class="toc-item"><li><span><a href="#损失函数-&amp;-batch-softmax-optimization" data-toc-modified-id="损失函数-&amp;-batch-softmax-optimization-5.2.1"><span class="toc-item-num">5.2.1&nbsp;&nbsp;</span>损失函数 &amp; batch softmax optimization</a></span></li><li><span><a href="#模型训练流程" data-toc-modified-id="模型训练流程-5.2.2"><span class="toc-item-num">5.2.2&nbsp;&nbsp;</span>模型训练流程</a></span></li><li><span><a href="#streaming-frequency-estimation" data-toc-modified-id="streaming-frequency-estimation-5.2.3"><span class="toc-item-num">5.2.3&nbsp;&nbsp;</span>streaming frequency estimation</a></span></li><li><span><a href="#Normalization-and-Temperature" data-toc-modified-id="Normalization-and-Temperature-5.2.4"><span class="toc-item-num">5.2.4&nbsp;&nbsp;</span>Normalization and Temperature</a></span></li></ul></li></ul></li><li><span><a href="#阿里实践（粗排）" data-toc-modified-id="阿里实践（粗排）-6"><span class="toc-item-num">6&nbsp;&nbsp;</span>阿里实践（粗排）</a></span><ul class="toc-item"><li><span><a href="#粗排的技术发展历史" data-toc-modified-id="粗排的技术发展历史-6.1"><span class="toc-item-num">6.1&nbsp;&nbsp;</span>粗排的技术发展历史</a></span></li><li><span><a href="#向量内积模型的优点和问题" data-toc-modified-id="向量内积模型的优点和问题-6.2"><span class="toc-item-num">6.2&nbsp;&nbsp;</span>向量内积模型的优点和问题</a></span></li><li><span><a href="#针对向量内积模型的改进方案" data-toc-modified-id="针对向量内积模型的改进方案-6.3"><span class="toc-item-num">6.3&nbsp;&nbsp;</span>针对向量内积模型的改进方案</a></span></li><li><span><a href="#新一代粗排架构" data-toc-modified-id="新一代粗排架构-6.4"><span class="toc-item-num">6.4&nbsp;&nbsp;</span>新一代粗排架构</a></span></li></ul></li><li><span><a href="#对比学习：双塔模型-item-侧引入对比学习辅助-loss" data-toc-modified-id="对比学习：双塔模型-item-侧引入对比学习辅助-loss-7"><span class="toc-item-num">7&nbsp;&nbsp;</span>对比学习：双塔模型 item 侧引入对比学习辅助 loss</a></span><ul class="toc-item"><li><span><a href="#解决长尾问题" data-toc-modified-id="解决长尾问题-7.1"><span class="toc-item-num">7.1&nbsp;&nbsp;</span>解决长尾问题</a></span></li><li><span><a href="#如何构建负例" data-toc-modified-id="如何构建负例-7.2"><span class="toc-item-num">7.2&nbsp;&nbsp;</span>如何构建负例</a></span></li><li><span><a href="#实例" data-toc-modified-id="实例-7.3"><span class="toc-item-num">7.3&nbsp;&nbsp;</span>实例</a></span></li></ul></li></ul></div><section id="dssm">
+<h1>DSSM<a class="headerlink" href="#dssm" title="Link to this heading">#</a></h1>
+<p>DSSM双塔模型，因为效果不错并且对工业界十分友好，被各大厂广泛应用于推荐系统中，DSSM双塔模型是推荐领域中不得不会的重要模型。</p>
+<p>DSSM(Deep Structured Semantic Models)也叫深度语义匹配模型，最早是微软发表的一篇应用于NLP领域中计算语义相似度任务的文章。模型原理很简单：获取搜索引擎中的用户搜索query和doc的海量曝光和点击日志数据，训练阶段分别用复杂的深度学习网络构建<strong>query侧特征的query embedding</strong>和<strong>doc侧特征的doc embedding</strong>，线上infer时通过计算两个语义向量的cos距离来表示语义相似度，最终获得语义相似模型。这个模型既可以获得语句的低维语义向量表达sentence embedding，还可以预测两句话的语义相似度。</p>
+<p>具体模型结构如下图所示：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/c66bc2ef-f686-4623-9545-ac8cd4329d16.png" style="zoom:50%;" />
+<p>原始DSSM模型是针对英文的，做数据转换的时候使用了一个<strong>Word Hashing</strong>的小技巧，Word Hashing基于n-gram，比如一个单词good，使用Word Hashing技术进行拆分，首先在其两端补充标记符“#”，假设n=3，则“#good#”可以表示为：#go、goo、ood、od#。然后使用“#go、goo、ood、od#”来表示单词good，这样的话有2个好处：首先是压缩空间，500k个词的one-hot向量空间可以压缩为一个30k的向量空间，其次是增强泛化能力。之后使用BOW把所有词的30k向量加起来，表示Q或者D。然后加上几层DNN网络，最终变成一个128维的向量。最后计算128维向量之间的相似度（cosine距离），就表示Q和D的相似度。</p>
+</section>
+<section id="gatenn">
+<h1>GateNN + 多物料向量<a class="headerlink" href="#gatenn" title="Link to this heading">#</a></h1>
+<p>物料侧特征粒度较粗的情况下，再叠加上头部效应的影响，物料侧生成适合所有人群的向量，存在一定局限性，可以将物料侧升级为多塔模型，用户侧生成门控（类似MMoE），不同人群选择不同物料向量，线上计算：</p>
+<ol class="arabic simple">
+<li><p>物料侧向量更新和现在基线一致，多个向量直接拼接成一个向量</p></li>
+<li><p>用户侧+交叉层：统一封装到用户侧模型，交叉时通过reshape把物料向量恢复到多个，分别与用户向量交叉计算</p></li>
+</ol>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240307124910241-0065205.png" alt="image-20240307124910241" style="zoom: 50%;" /></section>
+<section id="senet">
+<h1>SENET双塔模型<a class="headerlink" href="#senet" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/358779957">SENet双塔模型：在推荐领域召回粗排的应用及其它</a></p></li>
+</ol>
+</div></blockquote>
+<p>在特征Embedding层上，各自加入一个SENet模块。两个SENet各自对User侧和Item侧的特征，进行动态权重调整，<strong>强化重要特征，弱化甚至清除掉不重要特征</strong>。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/v2-8766fee1b442ed17111d5822033f960f_1440w-0256310.webp" alt="img" style="zoom: 33%;" /></section>
+<section id="id1">
+<h1>并联双塔<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://mp.weixin.qq.com/s?__biz=MzI0MzI4Nzg1OQ==&amp;amp;mid=2247494790&amp;amp;idx=1&amp;amp;sn=2e17465f8372339f59011c94190fa820&amp;amp;scene=21#wechat_redirect">“并联”双塔模型 | 你还不知道怎么玩吗！</a></p></li>
+</ol>
+</div></blockquote>
+<p><strong>输入层</strong>：将 user 和 item 特征映射成 feature embedding，方便在表示层进行网络构建，小说场景下的 user 特征包括用户 id、用户画像（年龄、性别、城市）、行为序列（点击、阅读、收藏）、外部行为（浏览器资讯、腾讯视频等）。item 特征包括小说内容特征（小说 id、分类、标签等）、统计类特征等。所有特征都经过离散化后再映射成embedding。</p>
+<p><strong>表示层</strong>：并联各种深度神经网络模块（MLP、DCN、FM、CIN 等）从多个角度学习输入层 feature 的融合和交互，生成并联的 user、item 向量用于匹配层计算。这里user-user 和 item-item 的特征交互直接在塔内的网络结构可以做到，而 user-item的特征交互只能通过顶层的内积操作实现，所以这里网络结构的设计重点是提升双塔结构的 user-item 的特征交互能力。</p>
+<p><strong>匹配层</strong>：<strong>将表示层得到的并联 user 和 item 向量进行 hadamard 积（相当于多个双塔拼接），再经过一个 LR 进行结果融合</strong>，在线 serving 阶段 LR 的每一维的权重可预先融合到 user embedding 里，从而保持在线打分仍然是内积操作。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/640-0289700.png" alt="图片" style="zoom:50%;" />
+<p>在 QQ 浏览器小说推荐 CTR 预估上看训练效果，分别训练了各双塔结构的效果，然后再尝试“并联”多个双塔在一起的效果，如下表：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/640-20240313083000744.png" alt="图片" style="zoom:50%;" /></section>
+<section id="google">
+<h1>Google采样修正的双塔模型<a class="headerlink" href="#google" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p>《Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations》</p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/464416095">推荐系统（四）谷歌双塔召回模型学习笔记</a></p></li>
+</ol>
+</div></blockquote>
+<section id="id2">
+<h2>简介<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/v2-3b7845d5dd901a8932536f213a39be8c_1440w-1573257-0255573.webp" alt="img" style="zoom:50%;" />
+<section id="id3">
+<h3>模型整体结构<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>两个塔共用一个embedding层</p></li>
+<li><p>用户侧特征主要基于用户的历史行为进行提取</p></li>
+<li><p>物品侧特征既有类别特征，又有连续值特征，其中类别特征又分为单值特征和多值特征，对于多值特征，通常采用加权平均的方式计算得到最终的向量表示</p></li>
+<li><p>label并不是点击即为1，未点击为0。当一个视频被完整看完时，label是1，当一个视频被点击但是观看时长非常短时，label是0</p></li>
+<li><p>模型天级更新</p></li>
+</ol>
+</section>
+<section id="id4">
+<h3>主要的优化点<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>负采样最常见的方式之一是batch内采样，这种采样方式的缺点就是会因随机采样偏差导致模型效果不好。简单来说热门物品被采样到的概率非常高，热门物品有更大的概率成为负样本，热门物品会被过度惩罚，论文采取<strong>streaming frequency estimation</strong>的方式对用户和物品的匹配度的计算结果进行修正，<span class="math notranslate nohighlight">\(s^c(x_i, y_i) = s(x_i, y_i) - log(p_j)\)</span>，其中<span class="math notranslate nohighlight">\(p_j\)</span>表示物品j被采样到的概率，streaming frequency estimation的计算方式为：</p>
+<ul class="simple">
+<li><p>定义词典A记录物品y上一次被采样到的训练时刻</p></li>
+<li><p>定义词典B记录物品y的采样频率，B[y] = (1 - α) * B[y] + α(t - A[y])</p></li>
+</ul>
+</li>
+<li><p>Normalization: 对两侧embedding进行L2标准化</p></li>
+<li><p>Temperature: 对内积计算结果，除以一个固定的超参</p></li>
+</ol>
+</section>
+</section>
+<section id="id5">
+<h2>其他细节（可跳过该章节）<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="batch-softmax-optimization">
+<h3>损失函数 &amp; batch softmax optimization<a class="headerlink" href="#batch-softmax-optimization" title="Link to this heading">#</a></h3>
+<p>假设训练集包含T条样本，物品数量为M：</p>
+<div class="math notranslate nohighlight">
+\[
+\tau := {(x_i, y_i, r_i)}_{i=1} ^ T
+\]</div>
+<p>其中x表示用户特征，y表示物品特征，r表示lable，x和y经过双塔模型分别得到对应的用户向量<span class="math notranslate nohighlight">\(u(x, \theta)\)</span>和物品向量<span class="math notranslate nohighlight">\(v(y, \theta)\)</span>，通过计算用户向量和物品向量的内积表示用户和物品的匹配度：</p>
+<div class="math notranslate nohighlight">
+\[
+s(x, y) = &lt; u(x, \theta), v(y, \theta) &gt;
+\]</div>
+<p>模型将召回看做一个多分类问题，给定一个用户，可以通过以下softmax函数从M个物品中选出合适的物品：</p>
+<div class="math notranslate nohighlight">
+\[
+P(y|x;\theta) = \frac{e^{s(x, y)}}{\sum_{j\in[M]}e^{s(x, y_j)}}
+\]</div>
+<p>损失函数如下：</p>
+<div class="math notranslate nohighlight">
+\[
+L_T(\theta) := -\frac{1}{T} \sum_{i \in [T]} r_i \cdot log(P(y_i|x_i; \theta))
+\]</div>
+<p>上述损失函数存在的缺点就是当物品数量M非常巨大时，softmax函数计算量会非常大，常采用mini-batch的方式进行优化：</p>
+<div class="math notranslate nohighlight">
+\[
+P_B(y_i|x_i;\theta) = \frac{e^{s(x_i, y_i)}}{\sum_{j\in[B]}e^{s(x_i, y_j)}}
+\]</div>
+<p>通过mini-batch的方式优化损失函数相当于把一个batch内的其他物品当做负样本，这种做法的缺点就是会因随机采样偏差导致模型效果不好。简单来说热门物品被采样到的概率非常高，热门物品有更大的概率成为负样本，热门物品会被过度惩罚，文章对用户和物品的匹配度的计算结果进行修正：</p>
+<div class="math notranslate nohighlight">
+\[
+s^c(x_i, y_j) = s(x_i, y_j) - log(p_j)
+\]</div>
+<p>其中<span class="math notranslate nohighlight">\(p_j\)</span>表示物品j被采样到的概率，修正后的softmax函数如下：</p>
+<div class="math notranslate nohighlight">
+\[
+P_B^c(y_i|x_i;\theta) = \frac{e^{s^c(x_i, y_i)}}{e^{s^c(x_i,y_i)} + \sum_{j\in[B],j\neq i}e^{s(x_i, y_j)}}
+\]</div>
+<p>修正后的损失函数如下：</p>
+<div class="math notranslate nohighlight">
+\[
+L_B(\theta) := -\frac{1}{B} \sum_{i \in [B]} r_i \cdot log(P_B^c(y_i|x_i; \theta))
+\]</div>
+</section>
+<section id="id6">
+<h3>模型训练流程<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>模型训练流程可以简单归纳为以下几步：</p>
+<ol class="arabic simple">
+<li><p>从实时数据流中采样得到一个batch的样本</p></li>
+<li><p>计算每个物品<span class="math notranslate nohighlight">\(y_i\)</span>被采样的概率<span class="math notranslate nohighlight">\(p_i\)</span>（streaming frequency estimation）</p></li>
+<li><p>计算修正后的损失函数</p></li>
+<li><p>利用SGD更新模型参数</p></li>
+</ol>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/4a5d2c7d-fb95-4602-b369-9927a96ace24.png" alt="模型训练流程" style="zoom:50%;" />
+</section>
+<section id="streaming-frequency-estimation">
+<h3>streaming frequency estimation<a class="headerlink" href="#streaming-frequency-estimation" title="Link to this heading">#</a></h3>
+<p>由于系统中会不断的有新物品出现，使用固定长度的词表不太合适，因此采用hash的方式来对物品的采样概率进行更新。假设有一个散列地址大小为H的hash函数h，对物品ID进行映射。同时使用两个长度为H的数组A和B，通过<span class="math notranslate nohighlight">\(h(y)\)</span>来得到其在数组A和B中下标。</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A[h(y)]\)</span>记录上一次物品y被采样到的训练时刻</p></li>
+<li><p><span class="math notranslate nohighlight">\(B[h(y)]\)</span>记录物品y采样的预估频率（预估频率的意思是预估每过多少步可以被采样到一次）</p></li>
+</ul>
+<p>假设第t步物品y被采样到：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(B[h(y)] \gets (1-\alpha) \cdot B[h(y)] + \alpha \cdot (t - A[h(y)])\)</span>，其中<span class="math notranslate nohighlight">\(\alpha\)</span>为学习率</p></li>
+<li><p><span class="math notranslate nohighlight">\(A[h(y)]\)</span>更新为当前的训练步骤t</p></li>
+</ul>
+<p>预估物品y的采样概率为<span class="math notranslate nohighlight">\(1/B[h(y)]\)</span>。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/aa15916a-9b57-4381-8bec-61bf93707fc5.png" alt="streaming frequency estimation" style="zoom:50%;" />
+<p>既然是hash过程，当H&lt;&lt;M时，就会存在冲突，冲突会导致<span class="math notranslate nohighlight">\(B[h(y)]\)</span>较小，从而导致采样概率偏高。改进方案是使用multiple hashings。即使用多组hash方程和数组A和B。当训练完成时使用最大的一个<span class="math notranslate nohighlight">\(B[h(y)]\)</span>去计算采样概率。具体过程如下：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/9c316f1f-6891-4ae1-8e65-bbc85fde02e3.png" style="zoom:50%;" />
+</section>
+<section id="normalization-and-temperature">
+<h3>Normalization and Temperature<a class="headerlink" href="#normalization-and-temperature" title="Link to this heading">#</a></h3>
+<p>文中还介绍了双塔模型的另外两个优化点：</p>
+<ul class="simple">
+<li><p>对两侧输出的embedding进行L2标准化，如：</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+u(x, \theta) \gets u(x, \theta)/||u(x, \theta)||_2
+\]</div>
+<ul class="simple">
+<li><p>对于内积计算的结果，除以一个固定的超参：</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+s(x, y) = &lt; u(x, \theta), v(y, \theta)&gt;/\tau
+\]</div>
+</section>
+</section>
+</section>
+<section id="id7">
+<h1>阿里实践（粗排）<a class="headerlink" href="#id7" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://mp.weixin.qq.com/s?__biz=MjM5MzY4NzE3MA==&amp;amp;mid=2247500072&amp;amp;idx=1&amp;amp;sn=b435ef860cb2e630dd947555248c0407&amp;amp;scene=21#wechat_redirect">阿里粗排技术体系与最新进展</a></p></li>
+</ol>
+</div></blockquote>
+<section id="id8">
+<h2>粗排的技术发展历史<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p align="center">
+  <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240316103525822.png" alt="image-20240316103525822" style="zoom:50%;" />
+</p>
+</section>
+<section id="id9">
+<h2>向量内积模型的优点和问题<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p align="center">
+  <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/640-0556554.jpeg" alt="图片" style="zoom:50%;" />
+  <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/640-20240316103739735.png" alt="图片" style="zoom:50%;" />
+</p>
+</section>
+<section id="id10">
+<h2>针对向量内积模型的改进方案<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p align="center">
+  <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/640-20240316103820331.jpeg" alt="图片" style="zoom:50%;" />
+  <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/640-20240316103837256.jpeg" alt="图片" style="zoom:50%;" />
+</p>
+</section>
+<section id="id11">
+<h2>新一代粗排架构<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p align="center">
+  <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/640-20240316104438889.jpeg" alt="图片" style="zoom:50%;" />
+  <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/640-20240316104452451.jpeg" alt="图片" style="zoom:50%;" />
+  <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/640-20240316104513910.png" alt="图片" style="zoom:50%;" />
+  <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/640-20240316104541902.jpeg" alt="图片" style="zoom:50%;" />
+  <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/640-20240316104600133.jpeg" alt="图片" style="zoom:50%;" />
+  <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/640-20240316104621994.jpeg" alt="图片" style="zoom:50%;" />
+</p></section>
+</section>
+<section id="item-loss">
+<h1>对比学习：双塔模型 item 侧引入对比学习辅助 loss<a class="headerlink" href="#item-loss" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/646779275">对比学习及在召回和排序上的应用</a></p></li>
+</ol>
+</div></blockquote>
+<section id="id12">
+<h2>解决长尾问题<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>对比学习在召回和排序上的应用，主要解决的是长尾user或item如何学的更好的问题。因为长尾user和item在模型中的训练机会不多，因此通过拉近其与头部user或item向量的距离，可以让它们学的更充分。</p>
+</section>
+<section id="id13">
+<h2>如何构建负例<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p>我们一般采用batch内负采样，因为batch内包含的是所有样本，每个样本都有可能成为负例，这样负例的选择面更广、更均匀，训练后模型的uniformity会更大，因此可以防止模型的坍塌。其次，我们需要增加负采样的个数，显然负样本越多，模型的uniformity也越大。此外，batch内负采样可能引入了大量easy负样本，因此一般结合使用温度系数，可以让模型更关注hard负样本。</p>
+</section>
+<section id="id14">
+<h2>实例<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<p>在item侧，将item特征随机dropout掉一部分，或者mask掉一部分，形成两个新的item特征，且这两个特征互相作为正例，学习一个新的对比loss。其中辅助任务item网络参数和主任务item网络参数是共享的，负样本同样使用batch内负采样实现，α用来控制辅助loss的权重。同样，在user侧也可以这样做，实验表明都是有效的。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240411085045899.png" alt="image-20240411085045899" style="zoom: 67%;" /></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">DSSM</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gatenn">GateNN + 多物料向量</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#senet">SENET双塔模型</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">并联双塔</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#google">Google采样修正的双塔模型</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">简介</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">模型整体结构</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">主要的优化点</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">其他细节（可跳过该章节）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-softmax-optimization">损失函数 &amp; batch softmax optimization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">模型训练流程</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming-frequency-estimation">streaming frequency estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-and-temperature">Normalization and Temperature</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">阿里实践（粗排）</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">粗排的技术发展历史</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">向量内积模型的优点和问题</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">针对向量内积模型的改进方案</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">新一代粗排架构</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#item-loss">对比学习：双塔模型 item 侧引入对比学习辅助 loss</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">解决长尾问题</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">如何构建负例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">实例</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
