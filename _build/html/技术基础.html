@@ -448,7 +448,7 @@ document.write(`
 <section id="greedy-search">
 <h3>贪心搜索(greedy search)<a class="headerlink" href="#greedy-search" title="Link to this heading">#</a></h3>
 <p>贪心搜索最为简单，每一个时间步都取出了条件概率最大一个结果。</p>
-<p><img alt="" src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/84824679-64f7-4731-9eda-3df61e02dc87.png" /></p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/84824679-64f7-4731-9eda-3df61e02dc87.png" style="zoom: 67%; display: block; margin: auto;" />
 </section>
 <section id="id3">
 <h3>集束搜索(beam search)<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
@@ -473,7 +473,7 @@ document.write(`
 </div></blockquote>
 <p>在许多场景中，都会遇到海量数据相似度计算的问题，如：电商场景中根据商品embedding计算相似度，取出相似的topk个商品。然而，这种计算相似度需要笛卡尔积的时间复杂度，在数据量较小时，时间还可以接受，但是当数据量达到几十万甚至几百几千万时，是没有办法接受的，这个时候就需要想其他办法。本文主要介绍海量item之间相似度计算问题——局部敏感哈希(Locality-Sensitive Hashing, LSH)之SimHash算法原理。</p>
 <p>假设有3个商品，即：item1、item2和item3，每个商品用二维的embedding来表示，同时随机初始化6个超平面，即：s1、s2、s3、s4、s5和s6，每个超平面也是一个二维的embedding，这时可以在二维平面直角坐标系下表示，如下图：</p>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/v2-ace449e4d4c8a00b8d12cabbc9232ff3_1440w.webp" alt="img" style="zoom:33%;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/v2-ace449e4d4c8a00b8d12cabbc9232ff3_1440w.webp" alt="img" style="zoom:33%; display: block; margin: auto;" />
 <p>接下来，我们让每个item分别与6个超平面进行向量点积（相似度计算的一种方式），如果结果大于0，则结果为1，否则结果为0。因此会有如下结果表格：</p>
 <table class="table">
 <thead>
@@ -903,32 +903,38 @@ Loss_{fl} =-\alpha_{t}(1- p_{t})^\gamma log(p_{t})
 </section>
 <section id="id13">
 <h3>推导过程（可跳过该章节）<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
-<p>交叉熵损失函数（其中 <span class="math notranslate nohighlight">\(\hat p\)</span>为预测概率大小）：
-$<span class="math notranslate nohighlight">\(
+<p>交叉熵损失函数（其中 <span class="math notranslate nohighlight">\(\hat p\)</span>为预测概率大小）：</p>
+<div class="math notranslate nohighlight">
+\[
 Loss = L(y, \hat p) =-ylog(\hat p) - (1-y)log(1-\hat p)
-\)</span>$</p>
-<p>对于二分类问题，先简化公式：
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>对于二分类问题，先简化公式：</p>
+<div class="math notranslate nohighlight">
+\[
 Loss = L(y, \hat p) =-log(\hat p) - log(1-\hat p)
-\)</span>$</p>
-<p>对于所有样本来说，假设N为总样本量，m为正样本量，n为负样本量，当m &lt;&lt; n时，负样本就会在损失函数里占据主导地位，由于损失函数的倾斜，模型训练过程中会倾向于样本多的类别，造成模型对少样本类别的性能较差。
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>对于所有样本来说，假设N为总样本量，m为正样本量，n为负样本量，当m &lt;&lt; n时，负样本就会在损失函数里占据主导地位，由于损失函数的倾斜，模型训练过程中会倾向于样本多的类别，造成模型对少样本类别的性能较差。</p>
+<div class="math notranslate nohighlight">
+\[
 Loss =\frac{1}{N}(\sum_{y_i=1}^{m}-log(\hat p) + \sum_{y_i=o}^{n}-log(1-\hat p))
-\)</span>$</p>
-<p>focal loss具体形式：
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>focal loss具体形式：</p>
+<div class="math notranslate nohighlight">
+\[
 Loss =\frac{1}{N}(\sum_{y_i=1}^{m}-(1-\hat p)^\gamma log(\hat p) + \sum_{y_i=o}^{n}-\hat p^{\gamma} log(1-\hat p))
-\)</span>$</p>
+\]</div>
 <p>如果我做以下定义：
 <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240312223812014.png" alt="image-20240312223812014" style="zoom:50%;" /></p>
-<p><strong>focal loss表达式：</strong>
-$<span class="math notranslate nohighlight">\(
+<p><strong>focal loss表达式：</strong></p>
+<div class="math notranslate nohighlight">
+\[
 Loss_{fl} =-(1- p_t)^\gamma log(p_t)
-\)</span>$</p>
-<p><strong>交叉熵表达式：</strong>
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p><strong>交叉熵表达式：</strong></p>
+<div class="math notranslate nohighlight">
+\[
 Loss_{ce} =-log(p_t)
-\)</span>$</p>
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
