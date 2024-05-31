@@ -421,10 +421,11 @@ x_3 = x_0 x_2^T w_2 + b_2 + x_2
 <p><strong>Deep network</strong>：常见的DNN层，表达式为：<span class="math notranslate nohighlight">\(h_{l+1} = f(W_lh_l + b_l)\)</span></p>
 <p><strong>Combination output layer</strong>：将 Cross network 和 Deep network 的输出 concat 到一起，经过一个 logits 层，对于一个二分类问题：</p>
 <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/4898d337-c1d9-424e-885a-65afc070281c-0344690.png" style="zoom: 50%;" />
-<p>其中：
-$<span class="math notranslate nohighlight">\(
+<p>其中：</p>
+<div class="math notranslate nohighlight">
+\[
 \sigma = \frac {1} {1 + e^{-x}}
-\)</span>$</p>
+\]</div>
 <p>损失函数(logloss + L2正则)：</p>
 <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/798e7b87-1724-4f25-a147-1dceb1eb10ab-0344690.png" style="zoom: 33%;" />
 <p>整体网络结构如下：</p>
@@ -457,15 +458,17 @@ $<span class="math notranslate nohighlight">\(
 </ol>
 <p>从子空间的角度可以联想到MoE（Mixture-of-Experts），在原始Cross网络中，只使用了一个expert，现在可以将其替换成多个experts，每个expert负责学习不同的子空间信息：</p>
 <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240314082923496.png" alt="image-20240314082923496" style="zoom:50%;" />
-<p>因此对应的低秩架构下的Cross层计算公式为：
-$<span class="math notranslate nohighlight">\(
+<p>因此对应的低秩架构下的Cross层计算公式为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 x_{l+1} = \sum_{i=1}^K G_i(x_l)E_i(x_l) + x_l \\
 Ei(x_l) = x_0 \odot (U_l^i(V_l^{iT}x_l)+b_l)
-\)</span><span class="math notranslate nohighlight">\(
-映射空间具有低维的特性，这里除了从维度 d' 到 d 的线性映射（d' &lt;&lt; d），额外引入了非线性变换来提取更有效的特征信息，因此映射变换后的Cross层的计算公式为：
-\)</span><span class="math notranslate nohighlight">\(
+\end{split}\]</div>
+<p>映射空间具有低维的特性，这里除了从维度 d’ 到 d 的线性映射（d’ &lt;&lt; d），额外引入了非线性变换来提取更有效的特征信息，因此映射变换后的Cross层的计算公式为：</p>
+<div class="math notranslate nohighlight">
+\[
 Ei(x_l) = x_0 \odot (U_l^i \cdot g(C_l^i \cdot g(V_l^{iT}x_l))+b_l)
-\)</span>$</p>
+\]</div>
 </section>
 <section id="fm">
 <h2>FM<a class="headerlink" href="#fm" title="Link to this heading">#</a></h2>
@@ -477,20 +480,23 @@ Ei(x_l) = x_0 \odot (U_l^i \cdot g(C_l^i \cdot g(V_l^{iT}x_l))+b_l)
 </div></blockquote>
 <section id="id2">
 <h3>从一般线性模型到FM模型<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>在一般的线性模型中，各个特征相互独立，不考虑特征与特征之间的相互关系。 一般的线性模型为：
-$<span class="math notranslate nohighlight">\(
+<p>在一般的线性模型中，各个特征相互独立，不考虑特征与特征之间的相互关系。 一般的线性模型为：</p>
+<div class="math notranslate nohighlight">
+\[
 \hat y(x) = w_0 + \sum_{i=1}^n w_i x_i
-\)</span>$</p>
-<p>但实际上，大量的特征之间是有关联的，为了表述特征间的相关性，可以采用多项式模型。为了简单起见，我们讨论二阶多项式模型：
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>但实际上，大量的特征之间是有关联的，为了表述特征间的相关性，可以采用多项式模型。为了简单起见，我们讨论二阶多项式模型：</p>
+<div class="math notranslate nohighlight">
+\[
 \hat y(x) = w_0 + \sum_{i=1}^n w_i x_i + \sum_{i=1}^n \sum_{j=i+1}^n \hat w_{i,j} x_i x_j
-\)</span>$</p>
+\]</div>
 <p>该多项式模型与线性模型相比，对每个二阶交叉特征都配备了一个超参数，特征组合部分的参数有<span class="math notranslate nohighlight">\(\frac{n(n-1)}{2}\)</span>个，泛化能力比较弱，特别是在大规模稀疏特征场景下，问题尤为突出。</p>
-<p>FM模型可以解决上述问题，FM模型表达式如下：
-$<span class="math notranslate nohighlight">\(
+<p>FM模型可以解决上述问题，FM模型表达式如下：</p>
+<div class="math notranslate nohighlight">
+\[
 \hat y(x) = w_0 + \sum_{i=1}^n w_i x_i + \sum_{i=1}^n
 \sum_{j=i+1}^n &lt; v_i, v_j&gt; x_i x_j
-\)</span>$</p>
+\]</div>
 <div class="math notranslate nohighlight">
 \[
 &lt; v_i, v_j&gt; := \sum_{f=1}^{k} v_{i,f} \cdot v_{j,f}

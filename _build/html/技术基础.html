@@ -527,14 +527,16 @@ document.write(`
 <section id="tf">
 <h3>词频 TF 计算方式<a class="headerlink" href="#tf" title="Link to this heading">#</a></h3>
 <p>词频的计算方式有多种，比较常见的为方式一，在提取文章关键词的场景下，方式一和方式二是等价的（计算每个词的TF-IDF值，方式二相对于方式一相当于都除了同一个常数，而后按照TF-IDF值倒排取TOPN个词作为文章的关键词）。</p>
-<p>方式一：
-$<span class="math notranslate nohighlight">\(
+<p>方式一：</p>
+<div class="math notranslate nohighlight">
+\[
 词频(TF) = 某个词在文章中出现的次数
-\)</span>$</p>
-<p>方式二：
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>方式二：</p>
+<div class="math notranslate nohighlight">
+\[
 词频(TF) = \frac{某个词在文章中出现的次数}{文章的总词数}
-\)</span>$</p>
+\]</div>
 </section>
 <section id="idf">
 <h3>逆文档频率 IDF 计算方式<a class="headerlink" href="#idf" title="Link to this heading">#</a></h3>
@@ -546,7 +548,9 @@ $<span class="math notranslate nohighlight">\(
 <section id="id4">
 <h3>TF-IDF 计算方式<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
-\[TF\text{-}IDF = 词频TF \times 逆文档频率IDF\]</div>
+\[
+TF\text{-}IDF = 词频TF \times 逆文档频率IDF
+\]</div>
 </section>
 <section id="id5">
 <h3>代码实现<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
@@ -712,10 +716,11 @@ $<span class="math notranslate nohighlight">\(
 </section>
 <section id="batch-normalization">
 <h2>Batch Normalization<a class="headerlink" href="#batch-normalization" title="Link to this heading">#</a></h2>
-<p>BN假设所有样本独立同分布，并且使用所有样本的共享统计量进行normalization，<span class="math notranslate nohighlight">\(E\)</span>和<span class="math notranslate nohighlight">\(Var\)</span>分别是滑动均值和方差，<span class="math notranslate nohighlight">\(\gamma\)</span>和<span class="math notranslate nohighlight">\(\beta\)</span>是可以学习的scale和bias。多场景建模时，一般为每个场景添加独立的BN层，确保每个场景的数据都能被正确归一化。
-$<span class="math notranslate nohighlight">\(
+<p>BN假设所有样本独立同分布，并且使用所有样本的共享统计量进行normalization，<span class="math notranslate nohighlight">\(E\)</span>和<span class="math notranslate nohighlight">\(Var\)</span>分别是滑动均值和方差，<span class="math notranslate nohighlight">\(\gamma\)</span>和<span class="math notranslate nohighlight">\(\beta\)</span>是可以学习的scale和bias。多场景建模时，一般为每个场景添加独立的BN层，确保每个场景的数据都能被正确归一化。</p>
+<div class="math notranslate nohighlight">
+\[
 z' = \gamma \frac{z-E}{\sqrt{Var + \epsilon}} + \beta
-\)</span>$</p>
+\]</div>
 <p>Batch Normalization（批量归一化）的主要作用可以概括为以下几点：</p>
 <ol class="arabic simple">
 <li><p>稳定训练过程：训练神经网络时，数据在每一层都会经过一系列的变化，导致分布可能会变得不稳定。Batch Normalization通过将数据重新调整为标准正态分布，使训练过程更加平稳，减少训练的不确定性。</p></li>

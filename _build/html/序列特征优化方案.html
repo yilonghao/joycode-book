@@ -476,10 +476,11 @@ document.write(`
 <h3>辅助损失函数<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/a3592fc6-81c0-4461-b6fd-e98f90109bb6.png" style="zoom:50%;" />
 <img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/44c87c81-7b82-4438-9b8c-3fddbdd69173.png" alt="辅助Loss计算示意图" style="zoom:50%;" />
-<p>其中 <span class="math notranslate nohighlight">\(\{e_{b}^{i},\hat e_{b}^{i}\} \in D_{\beta},i=1,2,3,...,N\)</span>表示N对行为embedding序列，<span class="math notranslate nohighlight">\(e_{b}^{i} \in \mathbb{R}^{T  \times n_E}\)</span>表示用户的点击行为序列，<span class="math notranslate nohighlight">\(\hat e_{b}^{i}\in \mathbb{R}^{T  \times n_E}\)</span>表示用户没有点击的行为序列。<span class="math notranslate nohighlight">\(T\)</span>表示序列中历史行为的数量，<span class="math notranslate nohighlight">\(n_E\)</span>表示embedding向量的维度。<span class="math notranslate nohighlight">\(e_{b}^{i}[t]\)</span>表示第i个用户第t次点击行为的embedding向量。其中：
-$<span class="math notranslate nohighlight">\(
+<p>其中 <span class="math notranslate nohighlight">\(\{e_{b}^{i},\hat e_{b}^{i}\} \in D_{\beta},i=1,2,3,...,N\)</span>表示N对行为embedding序列，<span class="math notranslate nohighlight">\(e_{b}^{i} \in \mathbb{R}^{T  \times n_E}\)</span>表示用户的点击行为序列，<span class="math notranslate nohighlight">\(\hat e_{b}^{i}\in \mathbb{R}^{T  \times n_E}\)</span>表示用户没有点击的行为序列。<span class="math notranslate nohighlight">\(T\)</span>表示序列中历史行为的数量，<span class="math notranslate nohighlight">\(n_E\)</span>表示embedding向量的维度。<span class="math notranslate nohighlight">\(e_{b}^{i}[t]\)</span>表示第i个用户第t次点击行为的embedding向量。其中：</p>
+<div class="math notranslate nohighlight">
+\[
 \sigma(x_1, x_2) = \frac{1}{exp(-[x_1, x_2])}
-\)</span>$</p>
+\]</div>
 <p>DIEN使用的整体损失函数是：</p>
 <div class="math notranslate nohighlight">
 \[
@@ -488,10 +489,11 @@ L = L_{target} + \alpha * L_{aux}
 </section>
 <section id="interest-evolving-layer">
 <h3>Interest Evolving Layer<a class="headerlink" href="#interest-evolving-layer" title="Link to this heading">#</a></h3>
-<p>兴趣进化层Interest Evolution Layer的主要目标是刻画用户兴趣的进化过程。兴趣进化层的数据就是兴趣提取层的输出，兴趣进化层结合了注意力机制中的局部激活能力和GRU的序列学习能力来建模。attention部分系数计算方式如下：
-$<span class="math notranslate nohighlight">\(
+<p>兴趣进化层Interest Evolution Layer的主要目标是刻画用户兴趣的进化过程。兴趣进化层的数据就是兴趣提取层的输出，兴趣进化层结合了注意力机制中的局部激活能力和GRU的序列学习能力来建模。attention部分系数计算方式如下：</p>
+<div class="math notranslate nohighlight">
+\[
 a_t = \frac{exp(h_{t}W_{e_{a}})}{\sum_{j=1}^Texp(h_{j}W_{e_{a}})}
-\)</span>$</p>
+\]</div>
 </section>
 <section id="attentiongru-augru">
 <h3>将attention机制融入GRU结构中(AUGRU)<a class="headerlink" href="#attentiongru-augru" title="Link to this heading">#</a></h3>
@@ -542,10 +544,11 @@ BE_{(k,t,c)} = w_k^K + w_t^T + w_c^C
 Q=Q+BE
 \]</div>
 <p>Multi-head Self-attention的计算逻辑为：
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/0a020f15-557f-48a9-b49f-cd177c1af371.png" style="zoom: 50%;" />
-$<span class="math notranslate nohighlight">\(
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/0a020f15-557f-48a9-b49f-cd177c1af371.png" style="zoom: 50%;" /></p>
+<div class="math notranslate nohighlight">
+\[
 I_k^Q = FFN(Concat(head_1, ..., head_H)W^O)
-\)</span>$</p>
+\]</div>
 <div class="math notranslate nohighlight">
 \[
 I_k = Avg(I_k^Q)
