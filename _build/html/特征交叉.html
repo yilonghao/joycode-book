@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>特征交叉 &#8212; JoyCode</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '特征交叉';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="大厂实践" href="%E5%A4%A7%E5%8E%82%E5%AE%9E%E8%B7%B5.html" />
+    <link rel="prev" title="序列特征优化方案" href="%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">JoyCode</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    欢迎访问JoyCode
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐&amp;广告领域常见的业务指标</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">技术基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html">双塔模型优化思路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">序列特征优化方案</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">特征交叉</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%A4%A7%E5%8E%82%E5%AE%9E%E8%B7%B5.html">大厂实践</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/yilonghao/joycode-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/yilonghao/joycode-book/issues/new?title=Issue%20on%20page%20%2F特征交叉.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/特征交叉.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>特征交叉</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dcn">DCN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dcn-v2">DCN v2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fm">FM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">从一般线性模型到FM模型</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">计算性能优化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">FM模型特点总结</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#特征交叉" data-toc-modified-id="特征交叉-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>特征交叉</a></span><ul class="toc-item"><li><span><a href="#DCN" data-toc-modified-id="DCN-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>DCN</a></span></li><li><span><a href="#DCN-v2" data-toc-modified-id="DCN-v2-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>DCN v2</a></span></li><li><span><a href="#FM" data-toc-modified-id="FM-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>FM</a></span><ul class="toc-item"><li><span><a href="#从一般线性模型到FM模型" data-toc-modified-id="从一般线性模型到FM模型-1.3.1"><span class="toc-item-num">1.3.1&nbsp;&nbsp;</span>从一般线性模型到FM模型</a></span></li><li><span><a href="#计算性能优化" data-toc-modified-id="计算性能优化-1.3.2"><span class="toc-item-num">1.3.2&nbsp;&nbsp;</span>计算性能优化</a></span></li><li><span><a href="#FM模型特点总结" data-toc-modified-id="FM模型特点总结-1.3.3"><span class="toc-item-num">1.3.3&nbsp;&nbsp;</span>FM模型特点总结</a></span></li></ul></li></ul></li></ul></div><section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>特征交叉<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="dcn">
+<h2>DCN<a class="headerlink" href="#dcn" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://blog.csdn.net/qq_35564813/article/details/88600139">DCN:Deep &amp; Cross Network for Ad Click Predictions简介</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/138358291?utm_source=wechat_session&amp;amp;utm_medium=social&amp;amp;utm_oi=1262892027274280960">[深度模型] Deep &amp; Cross Network (DCN)</a></p></li>
+<li><p>Deep &amp; Cross Network for Ad Click Predictions</p></li>
+</ol>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">DCN</span></code> 提出了<code class="docutils literal notranslate"><span class="pre">cross</span> <span class="pre">network</span></code>的网络结构 ，能够高效的进行<strong>高阶特征交叉</strong>。<code class="docutils literal notranslate"><span class="pre">DCN</span></code> 无论在模型表现和模型大小方面都具有显著优势。</p>
+<p>DCN共分为4个部分：</p>
+<p><strong>Embedding and stacking layer</strong>：网络输入层，其中特征包含稀疏特征和稠密特征，这一层是模型的输入层。我们知道输入的特征分为稀疏特征(Sparse feature)和稠密特征(Dense feature)，其中稀疏特征经过embedding层转为稠密向量(embedding vec)，最终把所有embedding vec以及稠密特征concat到一起得到模型最终输入(<span class="math notranslate nohighlight">\(x_0\)</span>)。</p>
+<p><strong>Cross network</strong>：Corss Network 部分网络层叠加的方式如下为：<span class="math notranslate nohighlight">\(x_{l+1} = x_{0} x_{l}^{T} w_{c,l} + b_{c,l} + x_{l}\)</span>​，通过控制堆叠层数，可以高效的进行高阶特征交叉，假设需要叠加3层：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x_1 = x_0 x_0^T w_0 + b_0 + x_0 \\
+x_2 = x_0 x_1^T w_1 + b_1 + x_1 \\
+x_3 = x_0 x_2^T w_2 + b_2 + x_2
+\end{split}\]</div>
+<p>一层交叉的可视化如下图所示：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/69050b53-485d-4a61-9e41-857356d2ced7-0344690.png" style="zoom:50%;" />
+<p><strong>Deep network</strong>：常见的DNN层，表达式为：<span class="math notranslate nohighlight">\(h_{l+1} = f(W_lh_l + b_l)\)</span></p>
+<p><strong>Combination output layer</strong>：将 Cross network 和 Deep network 的输出 concat 到一起，经过一个 logits 层，对于一个二分类问题：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/4898d337-c1d9-424e-885a-65afc070281c-0344690.png" style="zoom: 50%;" />
+<p>其中：
+$<span class="math notranslate nohighlight">\(
+\sigma = \frac {1} {1 + e^{-x}}
+\)</span>$</p>
+<p>损失函数(logloss + L2正则)：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/798e7b87-1724-4f25-a147-1dceb1eb10ab-0344690.png" style="zoom: 33%;" />
+<p>整体网络结构如下：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/1417dff6-a29a-49bc-bf0f-5b914f0325a4-0344691.png" style="zoom:50%;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240314001006843.png" alt="image-20240314001006843" style="zoom:67%;" /></section>
+<section id="dcn-v2">
+<h2>DCN v2<a class="headerlink" href="#dcn-v2" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/497794766">又到了最喜欢的显式交叉环节——Deep Cross Network-V2 (DCN-V2)</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/161464118">哈达玛积 Hadamard Product</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/401904819">Google深度学习CTR预估模型DCN续集：DCN-v2</a></p></li>
+</ol>
+</div></blockquote>
+<p>DCN的的问题在于交叉网络对于特征交互信息的表达能力不够，而DCN-v2在这里通过对DCN中的交叉网络的改造，以及对Cross网络和Deep网络的结合方式，包括<strong>并行连接</strong>方式和<strong>stacking</strong>的连接方式，使得模型的效果性能明显提升。</p>
+<p>DCN-v2模型相比于DCN模型的优势在于：</p>
+<ol class="arabic simple">
+<li><p>对于交互特征的表达能力更强；</p></li>
+<li><p>DCN-v2模型的结构比较简单，比较适合作为复杂模型中的一个模型算子来引入使用；</p></li>
+<li><p>在特征交互信息的学习上非常高效，尤其在与<strong>低秩矩阵架构</strong>结合使用时更加高效。</p></li>
+</ol>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240314080931682.png" alt="image-20240314080931682" style="zoom:50%;" />
+<p>在Cross网络中，第l+1层的计算公式为：<span class="math notranslate nohighlight">\(x_{l+1} = x_0 \odot (W_l x_l + b_l) + x_l\)</span>，其中<span class="math notranslate nohighlight">\(x_0\)</span>是一个d维向量，<span class="math notranslate nohighlight">\(W_l\)</span>是一个<span class="math notranslate nohighlight">\(d\)</span>维矩阵，<span class="math notranslate nohighlight">\(b_l\)</span>是一个d维向量，它们分别是cross网络要学习的权重矩阵和偏差向量。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240314080954616.png" alt="image-20240314080954616" style="zoom: 50%;" />
+<p><strong>Cost-Effective Mixture of Low-Rank DCN</strong>：在实际工业界中，模型复杂度容易被计算资源和响应延迟这些条件所限制，一般都会在计算开销和模型精度之间做trade-off。在数学上，低秩方法是用来减小矩阵计算开销的常用方法，它是将一个稠密矩阵分解成两个高瘦的矩阵，例如将 d✖️d 维的稠密矩阵M分解成两个 d✖️r 的高瘦矩阵U和V，当 r &lt;&lt; d 时，计算开销将被大大降低，当原来稠密矩阵的奇异值差别较大或快速衰减时，对于计算开销的优化将更加明显。在矩阵M上使用低秩架构的计算公式为：<span class="math notranslate nohighlight">\(x_{l+1} = x_0 \odot (U_l(V_l^T x_l) + b_l) + x_l\)</span>，对于这个计算公式有两种解释：</p>
+<ol class="arabic simple">
+<li><p>我们可以在子空间中学习特征交互；</p></li>
+<li><p>将输入特征 x 先映射到低维空间 <span class="math notranslate nohighlight">\(R^r\)</span>，再映射回高维空间 <span class="math notranslate nohighlight">\(R^d\)</span> 中。这两种解释进一步激发了对DCN-v2模型的改进。</p></li>
+</ol>
+<p>从子空间的角度可以联想到MoE（Mixture-of-Experts），在原始Cross网络中，只使用了一个expert，现在可以将其替换成多个experts，每个expert负责学习不同的子空间信息：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240314082923496.png" alt="image-20240314082923496" style="zoom:50%;" />
+<p>因此对应的低秩架构下的Cross层计算公式为：
+$<span class="math notranslate nohighlight">\(
+x_{l+1} = \sum_{i=1}^K G_i(x_l)E_i(x_l) + x_l \\
+Ei(x_l) = x_0 \odot (U_l^i(V_l^{iT}x_l)+b_l)
+\)</span><span class="math notranslate nohighlight">\(
+映射空间具有低维的特性，这里除了从维度 d' 到 d 的线性映射（d' &lt;&lt; d），额外引入了非线性变换来提取更有效的特征信息，因此映射变换后的Cross层的计算公式为：
+\)</span><span class="math notranslate nohighlight">\(
+Ei(x_l) = x_0 \odot (U_l^i \cdot g(C_l^i \cdot g(V_l^{iT}x_l))+b_l)
+\)</span>$</p>
+</section>
+<section id="fm">
+<h2>FM<a class="headerlink" href="#fm" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/130804958">不错的代码实现</a></p></li>
+</ol>
+</div></blockquote>
+<section id="id2">
+<h3>从一般线性模型到FM模型<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>在一般的线性模型中，各个特征相互独立，不考虑特征与特征之间的相互关系。 一般的线性模型为：
+$<span class="math notranslate nohighlight">\(
+\hat y(x) = w_0 + \sum_{i=1}^n w_i x_i
+\)</span>$</p>
+<p>但实际上，大量的特征之间是有关联的，为了表述特征间的相关性，可以采用多项式模型。为了简单起见，我们讨论二阶多项式模型：
+$<span class="math notranslate nohighlight">\(
+\hat y(x) = w_0 + \sum_{i=1}^n w_i x_i + \sum_{i=1}^n \sum_{j=i+1}^n \hat w_{i,j} x_i x_j
+\)</span>$</p>
+<p>该多项式模型与线性模型相比，对每个二阶交叉特征都配备了一个超参数，特征组合部分的参数有<span class="math notranslate nohighlight">\(\frac{n(n-1)}{2}\)</span>个，泛化能力比较弱，特别是在大规模稀疏特征场景下，问题尤为突出。</p>
+<p>FM模型可以解决上述问题，FM模型表达式如下：
+$<span class="math notranslate nohighlight">\(
+\hat y(x) = w_0 + \sum_{i=1}^n w_i x_i + \sum_{i=1}^n
+\sum_{j=i+1}^n &lt; v_i, v_j&gt; x_i x_j
+\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[
+&lt; v_i, v_j&gt; := \sum_{f=1}^{k} v_{i,f} \cdot v_{j,f}
+\]</div>
+<p>通过以上表达式可以看出：</p>
+<ol class="arabic simple">
+<li><p>FM存在一阶项，实际就是LR，能够记忆高频、常见模式。</p></li>
+<li><p>FM基于embedding的二阶交叉，适用于大规模稀疏特征场景，泛化能力强，即使在训练数据里两个特征并未同时在训练样本里出现过，<span class="math notranslate nohighlight">\(x_i\)</span>和<span class="math notranslate nohighlight">\(x_j\)</span>一起出现的次数为0，也可以通过内积算出这个新特征组合的权重。</p></li>
+</ol>
+</section>
+<section id="id3">
+<h3>计算性能优化<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>通过数学公式改写，把表面<span class="math notranslate nohighlight">\(O(kn^2)\)</span>的复杂度降低到<span class="math notranslate nohighlight">\(O(kn)\)</span>，其中n是特征数量，k是特征的 embedding size。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/ca2a1d91-4e26-443d-8faa-07e26bd148d5.png" alt="image" style="zoom:32%;" />
+</section>
+<section id="id4">
+<h3>FM模型特点总结<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>综上，FM模型有以下几个特点：</p>
+<ol class="arabic simple">
+<li><p>可以在非常稀疏的数据中进行合理的参数估计</p></li>
+<li><p>FM模型的时间复杂度是线性的</p></li>
+<li><p>FM是一个通用模型，它可以用于任何特征为实值的情况</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">序列特征优化方案</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="%E5%A4%A7%E5%8E%82%E5%AE%9E%E8%B7%B5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">大厂实践</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dcn">DCN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dcn-v2">DCN v2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fm">FM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">从一般线性模型到FM模型</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">计算性能优化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">FM模型特点总结</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yi Longhao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

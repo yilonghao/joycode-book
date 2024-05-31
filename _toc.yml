@@ -5,3 +5,8 @@ format: jb-book
 root: intro
 chapters:
 - file: 推荐&广告领域常见的业务指标
+- file: 技术基础
+- file: 双塔模型优化思路
+- file: 序列特征优化方案
+- file: 特征交叉
+- file: 大厂实践
