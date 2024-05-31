@@ -454,7 +454,7 @@ document.write(`
 <h3>集束搜索(beam search)<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>而beam search是对贪心策略一个改进。思路也很简单，就是稍微放宽一些考察的范围。在每一个时间步，不再只保留当前分数最高的1个输出，而是保留num_beams个。当num_beams=1时集束搜索就退化成了贪心搜索。</p>
 <p>下图是一个实际的例子，每个时间步有A、B、C、D、E共5种可能的输出，图中的num_beams=2，也就是说每个时间步都会保留到当前步为止条件概率最优的2个序列。</p>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/fa985ef1-40bc-4745-9e8b-fd6b4976f796.png" style="zoom: 67%;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/fa985ef1-40bc-4745-9e8b-fd6b4976f796.png" style="zoom: 67%; display: block; margin: auto;" />
 <ul class="simple">
 <li><p>第 1 个时间步，A和C是最优的两个序列，因此得到了两个结果<code class="docutils literal notranslate"><span class="pre">[A],[C]</span></code>，其他三个就被丢弃了；</p></li>
 <li><p>第 2 个时间步，得到10个候选<code class="docutils literal notranslate"><span class="pre">[AA],[AB],[AC],[AD],[AE],[CA],[CB],[CC],[CD],[CE]</span></code>，对这10个序列进行统一排名，再保留最优的两个序列，即<code class="docutils literal notranslate"><span class="pre">[AB]</span></code>和<code class="docutils literal notranslate"><span class="pre">[CE]</span></code>；</p></li>
@@ -518,9 +518,9 @@ document.write(`
 </tbody>
 </table>
 <p>通过上面的表格，item1、item2和超平面s1、s2、s3的相似度（向量点积）大于0，对应表格中的值1；与s4、s5、s6的相似度小于0，对应表格中的值0。同理，item3和超平面s1、s2、s3的相似度小于0，对应表格中的值0；与s4、s5、s6的相似度大于0，对应表格中的值1。这时，把每个超平面叫做哈希函数，SimHash值是每个item与各个超平面向量点积后的二进制结果。我们发现item1与item2的SimHash值是一样的，而与item3的SimHash值不同。这时把SimHash值相同的放在一个桶里面，如下图：</p>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/v2-9de151911806b2032c081b2ce88dbb9d_1440w.jpeg" alt="img" style="zoom: 67%;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/v2-9de151911806b2032c081b2ce88dbb9d_1440w.jpeg" alt="img" style="zoom: 67%; display: block; margin: auto;" />
 <p>如果有几十万这样的item，SimHash算法计算后，每个桶都会有一定数量的item。这时计算item的topk个相似item时，只需要将此item与对应桶中其他item进行相似度计算，然后找到其topk个相似的item。下面是SimHash算法伪代码：</p>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20221027082521020.png" alt="image-20221027082521020" style="zoom:50%;" /></section>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20221027082521020.png" alt="image-20221027082521020" style="zoom:50%; display: block; margin: auto;" /></section>
 <section id="tf-idf">
 <h2>TF-IDF<a class="headerlink" href="#tf-idf" title="Link to this heading">#</a></h2>
 <p>TF-IDF算法通常用于提取一篇文章的关键词，算法的核心思想比较简单，我们也可以加以拓展应用到推荐系统中。</p>
@@ -661,7 +661,7 @@ TF\text{-}IDF = 词频TF \times 逆文档频率IDF
 <section id="id7">
 <h3>GRU结构简介<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <p>GRU 引入了 <strong>reset gate</strong> 和 <strong>update gate</strong>。其结构图如下，其中 <span class="math notranslate nohighlight">\(*\)</span> 表示按位乘。</p>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/6ee03222-480d-457c-9509-a6270d8a4223-20221007224201070.png" style="zoom: 33%;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/6ee03222-480d-457c-9509-a6270d8a4223-20221007224201070.png" style="zoom: 33%; display: block; margin: auto;" />
 <section id="reset-gate-r-t-update-gate-z-t">
 <h4>reset gate <span class="math notranslate nohighlight">\(r_t\)</span> 和 update gate <span class="math notranslate nohighlight">\(z_t\)</span><a class="headerlink" href="#reset-gate-r-t-update-gate-z-t" title="Link to this heading">#</a></h4>
 <p>reset gate 用来控制计算当前时刻的新信息时，保留多少之前的记忆。举个例子来说明一下，假设每个时刻输入的是一个词的话，那么如果 <span class="math notranslate nohighlight">\(r_t\)</span> 为 0，那么 <span class="math notranslate nohighlight">\(\widetilde{h}_t\)</span> 中就会只包含当前词的信息。</p>
@@ -689,7 +689,7 @@ TF\text{-}IDF = 词频TF \times 逆文档频率IDF
 <section id="l-2-norm">
 <h2>L-2 Norm<a class="headerlink" href="#l-2-norm" title="Link to this heading">#</a></h2>
 <p><strong>L-2 Norm的作用是把embedding的长度都归一化为1，也就是说把它们都映射到一个长度为1的单位超球面上去。如果把它投影到单位超平面上，会增加训练稳定性和投影空间的线性可分性</strong>。增加线性可分性，意思也就是说你用简单算法也能得到比较好的效果。试想一下，一个单位超球面和一个不规则球面的向量空间，是不是前者更容易做到线性可分呢？这是目前图像领域里面得出的结论。</p>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240313085555643.png" alt="image-20240313085555643" style="zoom: 67%;" /><div class="cell docutils container">
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240313085555643.png" alt="image-20240313085555643" style="zoom: 67%; display: block; margin: auto;" /><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -924,7 +924,7 @@ Loss =\frac{1}{N}(\sum_{y_i=1}^{m}-log(\hat p) + \sum_{y_i=o}^{n}-log(1-\hat p))
 Loss =\frac{1}{N}(\sum_{y_i=1}^{m}-(1-\hat p)^\gamma log(\hat p) + \sum_{y_i=o}^{n}-\hat p^{\gamma} log(1-\hat p))
 \]</div>
 <p>如果我做以下定义：
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240312223812014.png" alt="image-20240312223812014" style="zoom:50%;" /></p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240312223812014.png" alt="image-20240312223812014" style="zoom:50%; display: block; margin: auto;" /></p>
 <p><strong>focal loss表达式：</strong></p>
 <div class="math notranslate nohighlight">
 \[
@@ -994,7 +994,7 @@ Loss_{ce} =-log(p_t)
 <li><p>其他不相关因素：模型参数量、激活函数、batch size、weight decay、dropout</p></li>
 </ul>
 <p>多Epoch探究：<strong>每一轮训练都重置embedding，更新embedding和mlp</strong>，避免embedding层过拟合，并让mlp层学的更充分。</p>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/v2-4a751d00853416d18182ef4d97f2f5b4_1440w-0067336.webp" alt="img" style="zoom:50%;" /></section>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/v2-4a751d00853416d18182ef4d97f2f5b4_1440w-0067336.webp" alt="img" style="zoom:50%; display: block; margin: auto;" /></section>
 <section id="id14">
 <h2>温度系数<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
 <p>温度系数常应用在召回/粗排等双塔模型结构中，点乘之后除以一个固定的系数（温度系数），τ是温度系数，一般来说加一个温度系数是有效的。原因是温度系数可以让模型更聚焦于hard负例，且τ越小越聚焦，也就不用花费大力气挖掘hard负例。</p>
