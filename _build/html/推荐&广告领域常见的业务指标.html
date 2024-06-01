@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '推荐&广告领域常见的业务指标';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="技术基础" href="%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html" />
     <link rel="prev" title="欢迎访问JoyCode" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -173,6 +174,11 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">推荐&amp;广告领域常见的业务指标</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">技术基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">序列特征优化方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">特征交叉</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%A4%A7%E5%8E%82%E5%AE%9E%E8%B7%B5.html">大厂实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python%E4%B9%8B%E5%88%83.html">Python之刃</a></li>
 </ul>
 
     </div>
@@ -425,13 +431,17 @@ ROI = \frac{（总收入-成本投入）}{成本投入} * 100\%
 <h3>点击率（CTR）<a class="headerlink" href="#ctr" title="Link to this heading">#</a></h3>
 <p>广告点击率，是指广告曝光期间，广告的点击比例。</p>
 <div class="math notranslate nohighlight">
-\[CTR=\frac{广告点击次数}{广告展现次数}*100\%\]</div>
+\[
+CTR=\frac{广告点击次数}{广告展现次数}*100\%
+\]</div>
 </section>
 <section id="cvr">
 <h3>转化率（CVR）<a class="headerlink" href="#cvr" title="Link to this heading">#</a></h3>
 <p>转化率是指广告点击后，订单成交的成功率，广告转化是否良好，能够直接看出一则广告的成效如何。</p>
 <div class="math notranslate nohighlight">
-\[CVR＝\frac{广告转化次数}{广告点击次数}*100\%\]</div>
+\[
+CVR＝\frac{广告转化次数}{广告点击次数}*100\%
+\]</div>
 </section>
 </section>
 <section id="id3">
@@ -444,7 +454,9 @@ ROI = \frac{（总收入-成本投入）}{成本投入} * 100\%
 <h3>CPC<a class="headerlink" href="#cpc" title="Link to this heading">#</a></h3>
 <p>CPC（Cost Per Click）按照每次点击广告的价格付费。如果一个广告单次点击价格为0.1元，则CPC=0.5</p>
 <div class="math notranslate nohighlight">
-\[CPC总广告费=竞价 * 点击次数\]</div>
+\[
+CPC总广告费=竞价 * 点击次数
+\]</div>
 <p>假设你设置广告竞价为0.1元（用户每次点击付费0.3元），广告展现了500次，点击了100次，那么你只需要为这100次点击付费，应该支付的费用为0.1*100=10元</p>
 <p>CPC收费模式的好处与弊端：</p>
 <ul class="simple">
@@ -498,23 +510,27 @@ LTn &amp;= 1+R2+...Rn(Rn表示第n天的留存率) \\
 \end{split}\]</div>
 <p>例如：</p>
 <div class="math notranslate nohighlight">
-\[LT30 = 1 + 次留 + 3留 + ... + 30留\]</div>
+\[
+LT30 = 1 + 次留 + 3留 + ... + 30留
+\]</div>
 </section>
 <section id="arpu">
 <h3>ARPU的计算方式<a class="headerlink" href="#arpu" title="Link to this heading">#</a></h3>
 <p>ARPU计算公式：</p>
 <div class="math notranslate nohighlight">
-\[ARPU = 收入 / DAU\]</div>
+\[
+ARPU = 收入 / DAU
+\]</div>
 </section>
 <section id="id5">
 <h3>计算用户生命周期价值实战案例<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>目标：以2021.12.01 ~ 2021.12.07之间的七天留存率来预估14日留存、30日留存等。</p>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/ce2ccfe415d64df0bd1aa412943a8214-0290052.jpg" alt="如何做好用户生命周期价值分析（LTV）" style="zoom:67%;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/ce2ccfe415d64df0bd1aa412943a8214-0290052.jpg" alt="如何做好用户生命周期价值分析（LTV）" style="zoom:67%; display: block; margin: auto;" />
 <p>先将黄色部分的七天的留存率取均值，得到图上最下方的留存平均值。</p>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/b39675895c3442388b0b6fc87c0dc4a7-0290052.jpg" alt="如何做好用户生命周期价值分析（LTV）" style="zoom:67%;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/b39675895c3442388b0b6fc87c0dc4a7-0290052.jpg" alt="如何做好用户生命周期价值分析（LTV）" style="zoom:67%; display: block; margin: auto;" />
 <p>然后按照留存率的均值做拟合，拟合后的结果如下图所示。</p>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/0701ba3eaf8a469696c26a260cbb20a2-0290052.jpg" alt="如何做好用户生命周期价值分析（LTV）" style="zoom:50%;" />
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/289c48a389d04ac9b34560269c771288-0290052.jpg" alt="如何做好用户生命周期价值分析（LTV）" style="zoom: 67%;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/0701ba3eaf8a469696c26a260cbb20a2-0290052.jpg" alt="如何做好用户生命周期价值分析（LTV）" style="zoom:50%; display: block; margin: auto;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/289c48a389d04ac9b34560269c771288-0290052.jpg" alt="如何做好用户生命周期价值分析（LTV）" style="zoom: 67%; display: block; margin: auto;" />
 <p>首先计算LT14：LT14=100%+51%+53%+37%+32%+29%+29%+25%+23%+22%+20%+19%+18%+17% = 4.75天，下一步就是计算ARPU了。ARPU值直接取日均值就可以了，假如ARPU日均值是￥60，则LTV14=4.75*60=285。</p>
 </section>
 </section>
@@ -532,25 +548,26 @@ LTn &amp;= 1+R2+...Rn(Rn表示第n天的留存率) \\
 <li><p>横轴：假正率（False Positive Rate），表示负样本被预测为正样本的比例</p></li>
 <li><p>纵轴：真正率（True Positive Rate），表示正样本被预测为正样本的比例</p></li>
 </ul>
-<p><img alt="img" src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/format,webp-0066497.png" /></p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/format,webp-0066497.png" alt="img" style="display: block; margin: auto;" />
 <p>绘制ROC曲线（遍历过程）：</p>
 <ul class="simple">
 <li><p>将所有样本按照模型打分的score进行降序排列</p></li>
 <li><p>遍历所有阈值，并计算该阈值下的TP和FP，从而得到原始ROC曲线上的一个点</p></li>
 <li><p>最后坐标轴归一化至[0,1]</p></li>
 </ul>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/format,webp-20231130080633357-0066497.png" alt="img" style="zoom:36%;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/format,webp-20231130080633357-0066497.png" alt="img" style="zoom:36%; display: block; margin: auto;" />
 <ul class="simple">
 <li><p>对原始ROC曲线进行坐标轴进行归一化，得到ROC曲线，以及AUC：</p></li>
 </ul>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/format,webp-20231130080710974-0066497.png" alt="img" style="zoom:50%;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/format,webp-20231130080710974-0066497.png" alt="img" style="zoom:50%; display: block; margin: auto;" />
 <ul class="simple">
-<li><p>AUC即归一化后ROC曲线下的面积：
-$<span class="math notranslate nohighlight">\(
+<li><p>AUC即归一化后ROC曲线下的面积：</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 AUC = \frac{ROC曲线下的面积}{坐标轴覆盖的区域面积} = \frac{3 + 3 + 3 + 4 + 4 + 4}{6 \times 4} = 0.875 \\
 AUC = \frac{每个负样本中排在其前面的正样本个数}{正样本数 \times 负样本数}
-\)</span>$</p></li>
-</ul>
+\end{split}\]</div>
 <p>大厂海量数据实现方式如下：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -610,7 +627,7 @@ AUC = \frac{每个负样本中排在其前面的正样本个数}{正样本数 \t
 </section>
 <section id="gauc">
 <h2>GAUC<a class="headerlink" href="#gauc" title="Link to this heading">#</a></h2>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/format,webp-20231130081854526-20240310184042612.png" alt="img" style="zoom:50%;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/format,webp-20231130081854526-20240310184042612.png" alt="img" style="zoom:50%; display: block; margin: auto;" />
 <p>其中，<code class="docutils literal notranslate"><span class="pre">u1</span></code>和<code class="docutils literal notranslate"><span class="pre">u2</span></code>表示两个用户，<code class="docutils literal notranslate"><span class="pre">+和-</span></code>分别表示正、负样本。按照上一小节的公式计算两个模型AUC如下：</p>
 <ul class="simple">
 <li><p>模型1：0.50</p></li>
@@ -618,7 +635,7 @@ AUC = \frac{每个负样本中排在其前面的正样本个数}{正样本数 \t
 </ul>
 <p>从AUC来看，模型2要优于模型1。但当针对单个用户来看时，发现模型2和模型1的排序结果是一样的。因此，模型的全局AUC提升，并不能带来单个用户的Item排序的提升。2017年，阿里妈妈精准定向检索及基础算法团队在Deep Interest Network（DIN）中提出了Group AUC（GAUC），用于评估模型对不同用户之间的item排序的效果。</p>
 <p>GAUC的思想可以简单理解为：将样本进行分组（Group），然后在采用AUC来评估各组内的排序，最后对各组的AUC进行加权，得到GAUC：</p>
-<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20231130082053162-0067242.png" alt="image-20231130082053162" style="zoom:50%;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20231130082053162-0067242.png" alt="image-20231130082053162" style="zoom:50%; display: block; margin: auto;" />
 <p>其中<span class="math notranslate nohighlight">\(g_i\)</span>表示第i个样本组，<span class="math notranslate nohighlight">\(w_{g_i}\)</span>表示第i个样本组的权重，<span class="math notranslate nohighlight">\(AUC_{g_i}\)</span>表示第i个样本组的AUC，各用户组的权重可以是曝光、点击、观看时长等，需根据实际业务做调整。</p>
 </section>
 </section>
@@ -661,6 +678,15 @@ AUC = \frac{每个负样本中排在其前面的正样本个数}{正样本数 \t
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">欢迎访问JoyCode</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">技术基础</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
