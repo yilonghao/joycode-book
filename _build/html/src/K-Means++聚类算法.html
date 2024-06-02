@@ -1,0 +1,884 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>K-Means++聚类算法 &#8212; JoyCode</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'src/K-Means++聚类算法';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">JoyCode</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    欢迎访问JoyCode
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐&amp;广告领域常见的业务指标</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">技术基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html">双塔模型优化思路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">序列特征优化方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">特征交叉</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E5%A4%A7%E5%8E%82%E5%AE%9E%E8%B7%B5.html">大厂实践</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Python%E4%B9%8B%E5%88%83.html">Python之刃</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html">算法实现</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/yilonghao/joycode-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/yilonghao/joycode-book/issues/new?title=Issue%20on%20page%20%2Fsrc/K-Means++聚类算法.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/src/K-Means++聚类算法.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>K-Means++聚类算法</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare">数据prepare</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">随机初始化中心点</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">K-Means算法实现</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">K-Means++ 算法流程</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-batch-k-means">Mini-Batch K-Means 聚类算法</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#K-Means++聚类算法" data-toc-modified-id="K-Means++聚类算法-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>K-Means++聚类算法</a></span><ul class="toc-item"><li><span><a href="#数据prepare" data-toc-modified-id="数据prepare-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>数据prepare</a></span></li><li><span><a href="#随机初始化中心点" data-toc-modified-id="随机初始化中心点-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>随机初始化中心点</a></span></li><li><span><a href="#K-Means算法实现" data-toc-modified-id="K-Means算法实现-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>K-Means算法实现</a></span></li><li><span><a href="#K-Means++-算法流程" data-toc-modified-id="K-Means++-算法流程-1.4"><span class="toc-item-num">1.4&nbsp;&nbsp;</span>K-Means++ 算法流程</a></span><ul class="toc-item"><li><span><a href="#Mini-Batch-K-Means-聚类算法" data-toc-modified-id="Mini-Batch-K-Means-聚类算法-1.4.1"><span class="toc-item-num">1.4.1&nbsp;&nbsp;</span>Mini-Batch K-Means 聚类算法</a></span></li></ul></li></ul></li></ul></div><section class="tex2jax_ignore mathjax_ignore" id="k-means">
+<h1>K-Means++聚类算法<a class="headerlink" href="#k-means" title="Link to this heading">#</a></h1>
+<section id="prepare">
+<h2>数据prepare<a class="headerlink" href="#prepare" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># 构造示例数据</span>
+<span class="n">blobs_plus</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>  <span class="c1"># 生成数据</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># 将数据可视化展示</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x127f7f490&gt;
+</pre></div>
+</div>
+<img alt="../_images/9f0b1c0f0568247cdfe5a65bc704a86fbede9df7f57bf481ea81222f1622652c.png" src="../_images/9f0b1c0f0568247cdfe5a65bc704a86fbede9df7f57bf481ea81222f1622652c.png" />
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>随机初始化中心点<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">random_k</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;随机选择k个中心点&quot;&quot;&quot;</span>
+    <span class="c1"># 初始化中心点</span>
+    <span class="n">prng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span>
+    <span class="n">num_feature</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="c1"># 用于生成服从标准正态分布（均值为0，标准差为1）的随机数，为了更加贴近数据集这里乘了一个 5</span>
+    <span class="n">init_centers</span> <span class="o">=</span> <span class="n">prng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span>
+    
+    <span class="k">return</span> <span class="n">init_centers</span>
+
+
+<span class="n">km_init_center</span> <span class="o">=</span> <span class="n">random_k</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">blobs_plus</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">km_init_center</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">km_init_center</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x103265730&gt;
+</pre></div>
+</div>
+<img alt="../_images/371be1402986e850a2f1a1bd3c84a72e036f3bdea27ae3da644c3ba84d255692.png" src="../_images/371be1402986e850a2f1a1bd3c84a72e036f3bdea27ae3da644c3ba84d255692.png" />
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>K-Means算法实现<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">d_euc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;计算样本与中心点的距离：欧式距离&quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">d</span>
+
+
+<span class="k">def</span> <span class="nf">update_center</span><span class="p">(</span><span class="n">clusters</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">centers</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;更新中心点</span>
+<span class="sd">    参数:</span>
+<span class="sd">    clusters -- 每一点分好的类别，数据格式：[1, 0, 0, 2, 1, 0, ...]</span>
+<span class="sd">    data -- 数据集</span>
+<span class="sd">    centers -- 中心点集合</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">    new_centers.reshape(num_centers,num_features) -- 新中心点集合</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># num_centers: 中心点的个数</span>
+    <span class="c1"># num_features: 每一个中心点的特征数</span>
+    <span class="n">num_centers</span><span class="p">,</span> <span class="n">num_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">centers</span><span class="p">)</span>
+    
+    <span class="c1"># 首先创建一个容器将相同类别数据存放到一起</span>
+    <span class="n">container</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_centers</span><span class="p">):</span>
+        <span class="n">each_container</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">container</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">each_container</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clusters</span><span class="p">):</span>
+        <span class="n">container</span><span class="p">[</span><span class="n">cluster</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="c1"># 创建一个容器，存放中心点的坐标</span>
+    <span class="n">new_centers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+    
+    <span class="c1"># 计算每一子集中数据均值作为中心点</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">container</span><span class="p">)):</span>
+        <span class="n">each_center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">container</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">new_centers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_centers</span><span class="p">,</span> <span class="n">each_center</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_centers</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">num_centers</span><span class="p">,</span> <span class="n">num_features</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">kmeans_cluster</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">init_centers</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    参数:</span>
+<span class="sd">    data -- 数据集</span>
+<span class="sd">    init_centers -- 初始化中心点集合</span>
+<span class="sd">    k -- 中心点个数</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">    centers_container -- 每一次更新中心点的集合</span>
+<span class="sd">    cluster_container -- 每一次更新类别的集合</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">max_step</span> <span class="o">=</span> <span class="mi">50</span>    <span class="c1"># 最大迭代次数</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.001</span>  <span class="c1"># 定义一个足够小的数，通过中心点变化的距离是否小于该数，判断中心点是否变化</span>
+
+    <span class="n">old_centers</span> <span class="o">=</span> <span class="n">init_centers</span>
+
+    <span class="n">centers_container</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 建立一个中心点容器，存放每一次变化后的中心点，以便后面的绘图</span>
+    <span class="n">cluster_container</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 建立一个分类容器，存放每一次中心点变化后数据的类别</span>
+    <span class="n">centers_container</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">old_centers</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_step</span><span class="p">):</span>
+        <span class="n">cluster</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="c1"># 遍历数据集</span>
+        <span class="k">for</span> <span class="n">each_data</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+            <span class="c1"># 遍历中心点</span>
+            <span class="k">for</span> <span class="n">each_center</span> <span class="ow">in</span> <span class="n">old_centers</span><span class="p">:</span>
+                <span class="c1"># 计算样本和中心点的欧式距离</span>
+                <span class="n">temp_distance</span> <span class="o">=</span> <span class="n">d_euc</span><span class="p">(</span><span class="n">each_data</span><span class="p">,</span> <span class="n">each_center</span><span class="p">)</span>
+                <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">temp_distance</span><span class="p">)</span>
+            <span class="c1"># 返回距离最近中心点的索引，即按照最近中心点分类</span>
+            <span class="n">lab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+            <span class="n">cluster</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster</span><span class="p">,</span> <span class="n">lab</span><span class="p">)</span>
+        <span class="n">cluster_container</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
+        
+        <span class="c1"># 根据子集分类更新中心点</span>
+        <span class="n">new_centers</span> <span class="o">=</span> <span class="n">update_center</span><span class="p">(</span><span class="n">cluster</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">old_centers</span><span class="p">)</span>
+
+        <span class="c1"># 计算每个中心点更新前后之间的欧式距离</span>
+        <span class="n">difference</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">each_old_center</span><span class="p">,</span> <span class="n">each_new_center</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">old_centers</span><span class="p">,</span> <span class="n">new_centers</span><span class="p">):</span>
+            <span class="n">difference</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d_euc</span><span class="p">(</span><span class="n">each_old_center</span><span class="p">,</span> <span class="n">each_new_center</span><span class="p">))</span>
+        
+        <span class="c1"># 判断每个中心点移动是否均小于 epsilon =&gt; 提前结束</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">centers_container</span><span class="p">,</span> <span class="n">cluster_container</span>
+
+        <span class="n">centers_container</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_centers</span><span class="p">)</span>
+        <span class="n">old_centers</span> <span class="o">=</span> <span class="n">new_centers</span>
+
+    <span class="k">return</span> <span class="n">centers_container</span><span class="p">,</span> <span class="n">cluster_container</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">km_centers</span><span class="p">,</span> <span class="n">km_clusters</span> <span class="o">=</span> <span class="n">kmeans_cluster</span><span class="p">(</span><span class="n">blobs_plus</span><span class="p">,</span> <span class="n">km_init_center</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">km_final_center</span> <span class="o">=</span> <span class="n">km_centers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">km_final_cluster</span> <span class="o">=</span> <span class="n">km_clusters</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">km_final_cluster</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">km_final_center</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">km_final_center</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x137457610&gt;
+</pre></div>
+</div>
+<img alt="../_images/45cc4cd9575768d2ae5c2d9fc4c06b923a0fdfdbc595013b491fb636424e0bb3.png" src="../_images/45cc4cd9575768d2ae5c2d9fc4c06b923a0fdfdbc595013b491fb636424e0bb3.png" />
+</div>
+</div>
+<p>通过传统 K-Means 算法聚类后，你会发现聚类效果和我们预想不同，我们预想的结果应该是下面这样的：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1371fdfd0&gt;
+</pre></div>
+</div>
+<img alt="../_images/b1fd656a04bd94137f1f107b984b2c6726b4871eb4824a9d341f42047420865a.png" src="../_images/b1fd656a04bd94137f1f107b984b2c6726b4871eb4824a9d341f42047420865a.png" />
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>K-Means++ 算法流程<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>K-Means++ 相较于 K-Means 在初始化中心点上做了改进，在其他方面和 K-Means 相同。</p>
+<ol class="arabic simple">
+<li><p>在数据集中随机选择一个样本点作为第一个初始化的聚类中心。</p></li>
+<li><p>计算样本中的非中心点与最近中心点之间的距离<span class="math notranslate nohighlight">\(D(x)\)</span>并保存于一个数组里，将数组中的这些距离加起来得到<span class="math notranslate nohighlight">\(sum(D(x))\)</span> 。</p></li>
+<li><p>取一个落在<span class="math notranslate nohighlight">\(sum(D(x))\)</span>范围中的随机值<span class="math notranslate nohighlight">\(R\)</span>，重复计算<span class="math notranslate nohighlight">\(R=R-D(x)\)</span>，直至得到<span class="math notranslate nohighlight">\(R\leq0\)</span>，选取此时的点作为下一个中心点。</p></li>
+<li><p>重复 2,3 步骤，直到<span class="math notranslate nohighlight">\(K\)</span>个聚类中心都被确定。</p></li>
+<li><p>对<span class="math notranslate nohighlight">\(K\)</span>个初始化的聚类中心，利用 K-Means 算法计算最终的聚类中心。</p></li>
+</ol>
+<p>看完整个算法流程，可能会出现一个疑问：为避免初始点距离太近，直接选取距离最远的点不就好了，为什么要引入一个随机值<span class="math notranslate nohighlight">\(R\)</span>呢？</p>
+<p>其实当采用直接选取距离最远的点作为初始点的方法，会容易受到数据集中离群点的干扰。采用引入随机值<span class="math notranslate nohighlight">\(R\)</span>的方法避免数据集中所包含的离群点对算法思想中要选择相距最远的中心点的目标干扰。</p>
+<p>相对于正常的数据点，离群点所计算得出的<span class="math notranslate nohighlight">\(D(x)\)</span>距离相对比较大，这样在选取的过程中，它被选中的概率也就相对较大，但是离群点在整个数据集中只占一小部分，大部分依然是正常的点，这样离群点由于距离大而造成的概率大，就被正常点的数量大给平衡掉。从而保证了整个算法的平衡性。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_sum_dis</span><span class="p">(</span><span class="n">centers</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    参数:</span>
+<span class="sd">    centers -- 中心点集合</span>
+<span class="sd">    data -- 数据集</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">    np.sum(dis_container) -- 样本距离最近中心点的距离之和</span>
+<span class="sd">    dis_container -- 样本距离最近中心点的距离集合</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dis_container</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+    <span class="k">for</span> <span class="n">each_data</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+        <span class="c1"># 遍历所有的中心点</span>
+        <span class="k">for</span> <span class="n">each_center</span> <span class="ow">in</span> <span class="n">centers</span><span class="p">:</span>
+            <span class="c1"># 计算当前样本到所有中心点的欧式距离</span>
+            <span class="n">temp_distance</span> <span class="o">=</span> <span class="n">d_euc</span><span class="p">(</span><span class="n">each_data</span><span class="p">,</span> <span class="n">each_center</span><span class="p">)</span>
+            <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">temp_distance</span><span class="p">)</span>
+        <span class="n">lab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+        <span class="n">dis_container</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dis_container</span><span class="p">,</span> <span class="n">lab</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dis_container</span><span class="p">),</span> <span class="n">dis_container</span>
+
+
+<span class="k">def</span> <span class="nf">get_init_center</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    参数:</span>
+<span class="sd">    data -- 数据集</span>
+<span class="sd">    k -- 中心点个数</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">    np.array(center_container) -- 初始化中心点集合</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># K-Means++ 初始化中心点</span>
+    <span class="n">seed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">seed</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="n">first_center</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+
+    <span class="n">center_container</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">center_container</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">first_center</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">sum_dis</span><span class="p">,</span> <span class="n">dis_con</span> <span class="o">=</span> <span class="n">get_sum_dis</span><span class="p">(</span><span class="n">center_container</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sum_dis</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dis_con</span><span class="p">)):</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">dis_con</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">center_container</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">center_container</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plus_init_center</span> <span class="o">=</span> <span class="n">get_init_center</span><span class="p">(</span><span class="n">blobs_plus</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plus_init_center</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 4.1661903 ,  0.81807492],
+       [ 7.01753047, -6.73971837],
+       [ 3.25698787, 11.58772082],
+       [ 8.12871436,  4.09756888],
+       [ 3.75152755, -0.10078052]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">plus_init_center</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">plus_init_center</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">plus_init_center</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;first center&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">plus_init_center</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                    <span class="n">plus_init_center</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;step</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">plus_init_center</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+                 <span class="n">plus_init_center</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;final center&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;final center&#39;)
+</pre></div>
+</div>
+<img alt="../_images/786cf13b87274704e22cc6e2dc76f422625319928514ac136d8952b672f2fada.png" src="../_images/786cf13b87274704e22cc6e2dc76f422625319928514ac136d8952b672f2fada.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plus_centers</span><span class="p">,</span> <span class="n">plus_clusters</span> <span class="o">=</span> <span class="n">kmeans_cluster</span><span class="p">(</span><span class="n">blobs_plus</span><span class="p">,</span> <span class="n">plus_init_center</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plus_final_center</span> <span class="o">=</span> <span class="n">plus_centers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">plus_final_cluster</span> <span class="o">=</span> <span class="n">plus_clusters</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">blobs_plus</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">plus_final_cluster</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">plus_final_center</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">plus_final_center</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x146b783d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/0c6d7f25944d417e1d2750ea365fa876dafc72404ee0856dc98e41a4044fccce.png" src="../_images/0c6d7f25944d417e1d2750ea365fa876dafc72404ee0856dc98e41a4044fccce.png" />
+</div>
+</div>
+<section id="mini-batch-k-means">
+<h3>Mini-Batch K-Means 聚类算法<a class="headerlink" href="#mini-batch-k-means" title="Link to this heading">#</a></h3>
+<p>在「大数据」如此火的时代，K-Means 算法是否还能一如既往优秀的处理大数据呢？现在我们重新回顾下 K-Means 的算法原理：首先，计算每一个样本同所有中心点的距离，通过比较找到最近的中心点，将距离最近中心点的距离进行存储并归类。然后通过相同类别样本的特征值，更新中心点的位置。至此完成一次迭代，经过多次迭代后最终进行聚类。</p>
+<p>通过上面的表述，你是否感觉到不断计算距离的过程，涉及到的计算量有多大呢？那么，设想一下数据量达到十万，百万，千万级别，且如果每一条数据有上百个特征，这将会消耗大量的计算资源。</p>
+<p>为了解决大规模数据的聚类问题，我们就可以使用 K-Means 的另外一个变种 Mini Batch K-Means 来完成。</p>
+<p>其算法原理也十分简单：在每一次迭代过程中，从数据集中随机抽取一部分数据形成小批量数据集，用该部分数据集进行距离计算和中心点的更新。由于每一次都是随机抽取，所以每一次抽取的数据能很好的表现原本数据集的特性。</p>
+<p>下面，我们生成一组测试数据，并测试 K-Means 算法和 Mini Batch K-Means 在同一组数据上聚类时间和 SSE 上的差异。由于 scikit-learn 中 <code class="docutils literal notranslate"><span class="pre">MiniBatchKMeans()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">KMeans()</span></code> 方法的参数几乎一致，这里就不再赘述了。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">MiniBatchKMeans</span><span class="p">,</span> <span class="n">KMeans</span>
+
+
+<span class="n">test_data</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="mi">20000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cluster_std</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">mini_km</span> <span class="o">=</span> <span class="n">MiniBatchKMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">km</span><span class="p">,</span> <span class="n">mini_km</span><span class="p">]):</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span>
+    <span class="n">sse</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">inertia_</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">test_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">labels_</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time: </span><span class="si">{:.4f}</span><span class="s2"> s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;SSE: </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sse</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;K-Means&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Mini Batch K-Means&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Mini Batch K-Means&#39;)
+</pre></div>
+</div>
+<img alt="../_images/870efce726aac718c000fe2402359cdd4860765c09fb0a2beeb9e706bbaf4ddc.png" src="../_images/870efce726aac718c000fe2402359cdd4860765c09fb0a2beeb9e706bbaf4ddc.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./src"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare">数据prepare</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">随机初始化中心点</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">K-Means算法实现</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">K-Means++ 算法流程</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-batch-k-means">Mini-Batch K-Means 聚类算法</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yi Longhao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
