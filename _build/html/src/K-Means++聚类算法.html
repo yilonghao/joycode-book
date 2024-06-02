@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'src/K-Means++聚类算法';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="算法实现" href="../%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -172,15 +171,16 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐&amp;广告领域常见的业务指标</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">技术基础</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html">双塔模型优化思路</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">序列特征优化方案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">特征交叉</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../%E5%A4%A7%E5%8E%82%E5%AE%9E%E8%B7%B5.html">大厂实践</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Python%E4%B9%8B%E5%88%83.html">Python之刃</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html">算法实现</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Python%E4%B9%8B%E5%88%83.html">Python之刃</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html">算法实现</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">K-Means++聚类算法</a></li>
 </ul>
 </li>
 </ul>
@@ -414,7 +414,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x127f7f490&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x13c1bf490&gt;
 </pre></div>
 </div>
 <img alt="../_images/9f0b1c0f0568247cdfe5a65bc704a86fbede9df7f57bf481ea81222f1622652c.png" src="../_images/9f0b1c0f0568247cdfe5a65bc704a86fbede9df7f57bf481ea81222f1622652c.png" />
@@ -449,7 +449,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x103265730&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x13c2eb8e0&gt;
 </pre></div>
 </div>
 <img alt="../_images/371be1402986e850a2f1a1bd3c84a72e036f3bdea27ae3da644c3ba84d255692.png" src="../_images/371be1402986e850a2f1a1bd3c84a72e036f3bdea27ae3da644c3ba84d255692.png" />
@@ -570,7 +570,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x137457610&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x13c3967c0&gt;
 </pre></div>
 </div>
 <img alt="../_images/45cc4cd9575768d2ae5c2d9fc4c06b923a0fdfdbc595013b491fb636424e0bb3.png" src="../_images/45cc4cd9575768d2ae5c2d9fc4c06b923a0fdfdbc595013b491fb636424e0bb3.png" />
@@ -584,7 +584,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1371fdfd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x13c407cd0&gt;
 </pre></div>
 </div>
 <img alt="../_images/b1fd656a04bd94137f1f107b984b2c6726b4871eb4824a9d341f42047420865a.png" src="../_images/b1fd656a04bd94137f1f107b984b2c6726b4871eb4824a9d341f42047420865a.png" />
@@ -671,10 +671,10 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 4.1661903 ,  0.81807492],
-       [ 7.01753047, -6.73971837],
-       [ 3.25698787, 11.58772082],
-       [ 8.12871436,  4.09756888],
-       [ 3.75152755, -0.10078052]])
+       [-5.10880848, -8.85817556],
+       [ 6.69344097,  7.18159333],
+       [ 2.60470417,  8.28069428],
+       [ 6.13067563, -6.69146644]])
 </pre></div>
 </div>
 </div>
@@ -706,7 +706,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;final center&#39;)
 </pre></div>
 </div>
-<img alt="../_images/786cf13b87274704e22cc6e2dc76f422625319928514ac136d8952b672f2fada.png" src="../_images/786cf13b87274704e22cc6e2dc76f422625319928514ac136d8952b672f2fada.png" />
+<img alt="../_images/19640e49a82132e154a5750192e35543d17a326c8adecbe2ddbf4f6ef822a2bf.png" src="../_images/19640e49a82132e154a5750192e35543d17a326c8adecbe2ddbf4f6ef822a2bf.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -722,10 +722,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x146b783d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x13c6b43d0&gt;
 </pre></div>
 </div>
-<img alt="../_images/0c6d7f25944d417e1d2750ea365fa876dafc72404ee0856dc98e41a4044fccce.png" src="../_images/0c6d7f25944d417e1d2750ea365fa876dafc72404ee0856dc98e41a4044fccce.png" />
+<img alt="../_images/44515cc42e73c6b4132d2a38b555149bbce10c3adfd55815f6ec95d930174314.png" src="../_images/44515cc42e73c6b4132d2a38b555149bbce10c3adfd55815f6ec95d930174314.png" />
 </div>
 </div>
 <section id="mini-batch-k-means">
@@ -767,7 +767,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Mini Batch K-Means&#39;)
 </pre></div>
 </div>
-<img alt="../_images/870efce726aac718c000fe2402359cdd4860765c09fb0a2beeb9e706bbaf4ddc.png" src="../_images/870efce726aac718c000fe2402359cdd4860765c09fb0a2beeb9e706bbaf4ddc.png" />
+<img alt="../_images/91c5911e4121421969cab895c825fc73ffec6f9005015fb6ad6ee0030ad7c0ac.png" src="../_images/91c5911e4121421969cab895c825fc73ffec6f9005015fb6ad6ee0030ad7c0ac.png" />
 </div>
 </div>
 </section>
@@ -804,6 +804,15 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">算法实现</p>
+      </div>
+    </a>
 </div>
                 </footer>
               

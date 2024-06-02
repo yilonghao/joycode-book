@@ -11,5 +11,6 @@ chapters:
  - file: 特征交叉
  - file: 大厂实践
  - file: Python之刃
+ - file: 算法实现
    sections:
-    - file: 算法实现
+   - file: src/K-Means++聚类算法
