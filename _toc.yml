@@ -14,9 +14,9 @@ chapters:
  - file: 算法实现
    sections:
    - file: src/K-Means++聚类算法
- - file: Pandas
+ - file: Pandas学习笔记
    sections:
-   - file: src/Pandas学习笔记
+   - file: Pandas学习笔记/Pandas学习笔记
  - file: Linux命令&Shell编程
    sections:
    - file: Linux命令&Shell编程/JQ命令.md
