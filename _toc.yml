@@ -17,6 +17,6 @@ chapters:
  - file: Pandas
    sections:
    - file: src/Pandas学习笔记
- - file: 工具
+ - file: Linux命令&Shell编程
    sections:
-   - file: tools/JQ命令.md
+   - file: Linux命令&Shell编程/JQ命令.md
