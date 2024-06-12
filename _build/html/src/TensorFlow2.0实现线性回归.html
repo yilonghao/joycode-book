@@ -177,8 +177,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">序列特征优化方案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">特征交叉</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../%E5%A4%A7%E5%8E%82%E5%AE%9E%E8%B7%B5.html">大厂实践</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Python%E4%B9%8B%E5%88%83.html">Python之刃</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html">算法实现</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Python%E4%B9%8B%E5%88%83.html">Python之刃</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html">算法实现</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">K-Means++聚类算法</a></li>
 </ul>
 </li>
 </ul>
@@ -388,7 +389,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
+  <h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"></ul></div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
@@ -412,10 +414,10 @@ document.write(`
   warnings.warn(
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x177f98fd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x177faaf70&gt;
 </pre></div>
 </div>
-<img alt="../_images/831e7540ecb6209a719610edb110db5889994297081c0af9b4e38dde950e775d.png" src="../_images/831e7540ecb6209a719610edb110db5889994297081c0af9b4e38dde950e775d.png" />
+<img alt="../_images/3db8de36a119eb19dc7134317e49c28f62506680556f38c182f92efc04c882c0.png" src="../_images/3db8de36a119eb19dc7134317e49c28f62506680556f38c182f92efc04c882c0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -441,10 +443,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x17bad9640&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x28a3a4820&gt;]
 </pre></div>
 </div>
-<img alt="../_images/0722e5f88b2cad625b550bdd9fe552a7a1f1e9812770046d8bc4c787a699c880.png" src="../_images/0722e5f88b2cad625b550bdd9fe552a7a1f1e9812770046d8bc4c787a699c880.png" />
+<img alt="../_images/7a6a9a103709204a902c280159f898637879aa56d73a92cb4a5aab5c97dbe58b.png" src="../_images/7a6a9a103709204a902c280159f898637879aa56d73a92cb4a5aab5c97dbe58b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -475,16 +477,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [0/10], loss [13.849], W/b [1.071/0.657]
-Epoch [1/10], loss [8.230], W/b [1.548/1.022]
-Epoch [2/10], loss [5.068], W/b [1.907/1.295]
-Epoch [3/10], loss [3.289], W/b [2.177/1.498]
-Epoch [4/10], loss [2.288], W/b [2.381/1.649]
-Epoch [5/10], loss [1.725], W/b [2.535/1.762]
-Epoch [6/10], loss [1.407], W/b [2.650/1.845]
-Epoch [7/10], loss [1.229], W/b [2.738/1.907]
-Epoch [8/10], loss [1.128], W/b [2.804/1.953]
-Epoch [9/10], loss [1.072], W/b [2.854/1.987]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [0/10], loss [9.718], W/b [0.830/0.925]
+Epoch [1/10], loss [6.680], W/b [1.278/1.043]
+Epoch [2/10], loss [4.748], W/b [1.632/1.153]
+Epoch [3/10], loss [3.511], W/b [1.912/1.252]
+Epoch [4/10], loss [2.714], W/b [2.135/1.341]
+Epoch [5/10], loss [2.196], W/b [2.311/1.420]
+Epoch [6/10], loss [1.859], W/b [2.452/1.488]
+Epoch [7/10], loss [1.637], W/b [2.564/1.548]
+Epoch [8/10], loss [1.491], W/b [2.653/1.599]
+Epoch [9/10], loss [1.394], W/b [2.725/1.643]
 </pre></div>
 </div>
 </div>
@@ -497,10 +499,10 @@ Epoch [9/10], loss [1.072], W/b [2.854/1.987]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10544bb80&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x28a3f0f10&gt;]
 </pre></div>
 </div>
-<img alt="../_images/5cc060a36572d13fdc43fdb68bc916c1e364d3746d694b4179f1839315770e23.png" src="../_images/5cc060a36572d13fdc43fdb68bc916c1e364d3746d694b4179f1839315770e23.png" />
+<img alt="../_images/d8837b9cf31324ca5edfea3aee642ab0ad1f3650feb20d64b87c90e4e5214f08.png" src="../_images/d8837b9cf31324ca5edfea3aee642ab0ad1f3650feb20d64b87c90e4e5214f08.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -512,10 +514,10 @@ Epoch [9/10], loss [1.072], W/b [2.854/1.987]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x17bc8e3d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x28a555760&gt;]
 </pre></div>
 </div>
-<img alt="../_images/5990086e0e40c6fb5434fdde4acb4c8480735b458872b055180602309c28d554.png" src="../_images/5990086e0e40c6fb5434fdde4acb4c8480735b458872b055180602309c28d554.png" />
+<img alt="../_images/38e9d9aedae760e6f2eacc07c41d19037d75dba7b8401c570fc0c1e74cad5f63.png" src="../_images/38e9d9aedae760e6f2eacc07c41d19037d75dba7b8401c570fc0c1e74cad5f63.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -560,16 +562,16 @@ Epoch [9/10], loss [1.072], W/b [2.854/1.987]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [0/10], loss [27.075]
-Epoch [1/10], loss [15.785]
-Epoch [2/10], loss [9.399]
-Epoch [3/10], loss [5.781]
-Epoch [4/10], loss [3.729]
-Epoch [5/10], loss [2.563]
-Epoch [6/10], loss [1.898]
-Epoch [7/10], loss [1.518]
-Epoch [8/10], loss [1.301]
-Epoch [9/10], loss [1.175]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [0/10], loss [12.661]
+Epoch [1/10], loss [8.796]
+Epoch [2/10], loss [6.253]
+Epoch [3/10], loss [4.572]
+Epoch [4/10], loss [3.457]
+Epoch [5/10], loss [2.714]
+Epoch [6/10], loss [2.218]
+Epoch [7/10], loss [1.886]
+Epoch [8/10], loss [1.662]
+Epoch [9/10], loss [1.512]
 </pre></div>
 </div>
 </div>
@@ -582,10 +584,10 @@ Epoch [9/10], loss [1.175]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x17bcdc8e0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x106bd9c10&gt;]
 </pre></div>
 </div>
-<img alt="../_images/6773f6d8bcaae41ad28f52e8d7a879d1d4460056233f583bdeee009262529ae7.png" src="../_images/6773f6d8bcaae41ad28f52e8d7a879d1d4460056233f583bdeee009262529ae7.png" />
+<img alt="../_images/0eeabafce18eefb7fcaaa81e29cfd7544a53780167fb8946737d56030a72773c.png" src="../_images/0eeabafce18eefb7fcaaa81e29cfd7544a53780167fb8946737d56030a72773c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -638,20 +640,20 @@ Epoch [9/10], loss [1.175]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">   1/1000</span> <span class=" -Color -Color-White">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">49s</span> 50ms/step - loss: 6.9578
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">   1/1000</span> <span class=" -Color -Color-White">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1:05</span> 66ms/step - loss: 3.6701
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-<span class=" -Color -Color-Bold">1000/1000</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 30us/step - loss: 6.1157 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<span class=" -Color -Color-Bold">1000/1000</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 42us/step - loss: 5.4184  
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-06-03 00:19:02.886660: W tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-06-13 00:50:34.141375: W tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
 	 [[{{node IteratorGetNext}}]]
 /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/contextlib.py:135: UserWarning: Your input ran out of data; interrupting training. Make sure that your dataset or generator can generate at least `steps_per_epoch * epochs` batches. You may need to use the `.repeat()` function when building your dataset.
   self.gen.throw(type, value, traceback)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;keras.src.callbacks.history.History at 0x17be15af0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;keras.src.callbacks.history.History at 0x28a814dc0&gt;
 </pre></div>
 </div>
 </div>
@@ -664,10 +666,10 @@ Epoch [9/10], loss [1.175]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x17bda0070&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x28a71ff70&gt;]
 </pre></div>
 </div>
-<img alt="../_images/08572b8c7c3de4600e01c8e39bc0bf0e64fa0228e11b1d66cce39537e0a3ebd3.png" src="../_images/08572b8c7c3de4600e01c8e39bc0bf0e64fa0228e11b1d66cce39537e0a3ebd3.png" />
+<img alt="../_images/917bc25ff457f55f55bee9d2ca02801b81cd317fa24f2d7e55bcd5cbd4ccc30e.png" src="../_images/917bc25ff457f55f55bee9d2ca02801b81cd317fa24f2d7e55bcd5cbd4ccc30e.png" />
 </div>
 </div>
 

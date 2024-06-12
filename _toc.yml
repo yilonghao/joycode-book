@@ -14,3 +14,6 @@ chapters:
  - file: 算法实现
    sections:
    - file: src/K-Means++聚类算法
+ - file: Pandas
+   sections:
+   - file: src/Pandas学习笔记
