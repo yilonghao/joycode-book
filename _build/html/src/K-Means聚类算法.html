@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -179,8 +179,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">序列特征优化方案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">特征交叉</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../%E5%A4%A7%E5%8E%82%E5%AE%9E%E8%B7%B5.html">大厂实践</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Python%E4%B9%8B%E5%88%83.html">Python之刃</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html">算法实现</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Python%E4%B9%8B%E5%88%83.html">Python之刃</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html">算法实现</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">K-Means++聚类算法</a></li>
 </ul>
 </li>
 </ul>
@@ -516,7 +517,7 @@ J(c, \mu) = \sum_{i=1}^m \lVert x^{(i)} - \mu_{c^{(i)}} \rVert ^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x15751b250&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x176e1b250&gt;
 </pre></div>
 </div>
 <img alt="../_images/bc59a065997dab640d4988dc1e51dca25f02b0b745b3cbcb9e06a41539ee0513.png" src="../_images/bc59a065997dab640d4988dc1e51dca25f02b0b745b3cbcb9e06a41539ee0513.png" />
@@ -564,7 +565,7 @@ J(c, \mu) = \sum_{i=1}^m \lVert x^{(i)} - \mu_{c^{(i)}} \rVert ^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x157600b80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x176f00c10&gt;
 </pre></div>
 </div>
 <img alt="../_images/b421fafa31da7bdd54acf151c6a3a4ddc2dae7c704ee907348d5fd14de2d5435.png" src="../_images/b421fafa31da7bdd54acf151c6a3a4ddc2dae7c704ee907348d5fd14de2d5435.png" />
@@ -766,7 +767,7 @@ clusters_info: [1 1 0 0 2 1 2 0 1 1 1 1 2 2 2 2 0 1 2 1 2 1 1 1 0 1 1 1 0 0 1 1 
  0 2 2 0 1 1 0 0 0 1 1 1 1 2 2]
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x168f00640&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x175d58790&gt;
 </pre></div>
 </div>
 <img alt="../_images/f16173b6c83fed05f83e54cebd42538edd504c03d9646e3cc35ce6e2afcb666c.png" src="../_images/f16173b6c83fed05f83e54cebd42538edd504c03d9646e3cc35ce6e2afcb666c.png" />
@@ -794,13 +795,13 @@ clusters_info: [1 1 0 0 2 1 2 0 1 1 1 1 2 2 2 2 0 1 2 1 2 1 1 1 0 1 1 1 0 0 1 1 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inertia: [5528.75650809076, 1614.226718479276, 418.26184344823554, 377.858628415272, 318.39387775887906, 291.6935901829428]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inertia: [5528.75650809076, 1614.226718479276, 418.26184344823554, 380.7579445341359, 319.8829958634424, 292.0317643265752]
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x16af7c9d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x17fa82af0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/96510d49ce7a7e92c1efb7dbf0691159b08494dd88be72ec4a980e0ab13d5f61.png" src="../_images/96510d49ce7a7e92c1efb7dbf0691159b08494dd88be72ec4a980e0ab13d5f61.png" />
+<img alt="../_images/3c80afb76c0dd0b9a45ccc2b3f981b8b525e1a8da3a820780a19c2b60de7257d.png" src="../_images/3c80afb76c0dd0b9a45ccc2b3f981b8b525e1a8da3a820780a19c2b60de7257d.png" />
 </div>
 </div>
 </section>
