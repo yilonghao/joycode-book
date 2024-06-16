@@ -20,3 +20,6 @@ chapters:
  - file: Linux命令&Shell编程
    sections:
    - file: Linux命令&Shell编程/JQ命令.md
+ - file: 刷题
+   sections:
+   - file: 刷题/刷题.ipynb
