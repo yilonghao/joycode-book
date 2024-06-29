@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>机器学习&amp;深度学习05-分类模型评估方法 &#8212; JoyCode</title>
+    <title>机器学习05-分类模型评估方法 &#8212; JoyCode</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '01-机器学习&深度学习/机器学习05-分类模型评估方法';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="推荐系统01-推荐&amp;广告领域常见的业务指标" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F01-%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html" />
-    <link rel="prev" title="机器学习&amp;深度学习04-K-Means++聚类算法" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A004-K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html" />
+    <link rel="next" title="推荐系统01-常见的业务指标" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F01-%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html" />
+    <link rel="prev" title="机器学习04-K-Means++聚类算法" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A004-K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,11 +174,11 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A001-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95.html">机器学习01-逻辑回归算法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A002-K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习02-K近邻算法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习03-K-Means聚类算法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A004-K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习04-K-Means++聚类算法</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">机器学习&amp;深度学习05-分类模型评估方法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F01-%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐系统01-推荐&amp;广告领域常见的业务指标</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A002-K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95.html">机器学习02-K近邻算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">机器学习03-K-Means聚类算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A004-K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">机器学习04-K-Means++聚类算法</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">机器学习05-分类模型评估方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F01-%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐系统01-常见的业务指标</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F02-%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">推荐系统02-技术基础</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F03-%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html">推荐系统03-双塔模型优化思路</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F04-%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">推荐系统04-序列特征优化方案</a></li>
@@ -371,7 +371,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>机器学习&深度学习05-分类模型评估方法</h1>
+    <h1>机器学习05-分类模型评估方法</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -403,7 +403,7 @@ document.write(`
                   
   <h1>Table of Contents<span class="tocSkip"></span></h1>
 <div class="toc"><ul class="toc-item"><li><span><a href="#数据prepare" data-toc-modified-id="数据prepare-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>数据prepare</a></span></li><li><span><a href="#逻辑回归算法实现" data-toc-modified-id="逻辑回归算法实现-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>逻辑回归算法实现</a></span></li><li><span><a href="#混淆矩阵" data-toc-modified-id="混淆矩阵-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>混淆矩阵</a></span></li><li><span><a href="#准确率（Accuracy）" data-toc-modified-id="准确率（Accuracy）-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>准确率（Accuracy）</a></span></li><li><span><a href="#精确率（Precison）" data-toc-modified-id="精确率（Precison）-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>精确率（Precison）</a></span></li><li><span><a href="#召回率（Recall）" data-toc-modified-id="召回率（Recall）-6"><span class="toc-item-num">6&nbsp;&nbsp;</span>召回率（Recall）</a></span></li><li><span><a href="#F1值" data-toc-modified-id="F1值-7"><span class="toc-item-num">7&nbsp;&nbsp;</span>F1值</a></span></li><li><span><a href="#ROC曲线" data-toc-modified-id="ROC曲线-8"><span class="toc-item-num">8&nbsp;&nbsp;</span>ROC曲线</a></span></li><li><span><a href="#AUC计算" data-toc-modified-id="AUC计算-9"><span class="toc-item-num">9&nbsp;&nbsp;</span>AUC计算</a></span></li></ul></div><section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>机器学习&amp;深度学习05-分类模型评估方法<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>机器学习05-分类模型评估方法<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="prepare">
 <h2>数据prepare<a class="headerlink" href="#prepare" title="Link to this heading">#</a></h2>
 <p>数据集包含 10 列特征，以及一列类别标签。其中：</p>
@@ -1228,7 +1228,7 @@ TPR = \frac{TP}{TP+FN}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x16bede760&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x13c89e580&gt;
 </pre></div>
 </div>
 <img alt="../_images/0a78437689dcdfd60d13f5f7ed1e08d77914f531b495d568945bc8bb9ddddb35.png" src="../_images/0a78437689dcdfd60d13f5f7ed1e08d77914f531b495d568945bc8bb9ddddb35.png" />
@@ -1320,7 +1320,7 @@ TPR = \frac{TP}{TP+FN}
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">机器学习&amp;深度学习04-K-Means++聚类算法</p>
+        <p class="prev-next-title">机器学习04-K-Means++聚类算法</p>
       </div>
     </a>
     <a class="right-next"
@@ -1328,7 +1328,7 @@ TPR = \frac{TP}{TP+FN}
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">推荐系统01-推荐&amp;广告领域常见的业务指标</p>
+        <p class="prev-next-title">推荐系统01-常见的业务指标</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
