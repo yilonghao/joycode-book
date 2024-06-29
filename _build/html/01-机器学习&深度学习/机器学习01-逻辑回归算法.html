@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>机器学习&amp;深度学习01-逻辑回归算法 &#8212; JoyCode</title>
+    <title>机器学习01-逻辑回归算法 &#8212; JoyCode</title>
   
   
   
@@ -173,7 +173,7 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">机器学习&amp;深度学习01-逻辑回归算法</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">机器学习01-逻辑回归算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A002-K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习02-K近邻算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习03-K-Means聚类算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A004-K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习04-K-Means++聚类算法</a></li>
@@ -371,7 +371,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>机器学习&深度学习01-逻辑回归算法</h1>
+    <h1>机器学习01-逻辑回归算法</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -408,7 +408,7 @@ document.write(`
                   
   <h1>Table of Contents<span class="tocSkip"></span></h1>
 <div class="toc"><ul class="toc-item"><li><span><a href="#算法简介" data-toc-modified-id="算法简介-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>算法简介</a></span></li><li><span><a href="#推导过程" data-toc-modified-id="推导过程-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>推导过程</a></span></li><li><span><a href="#Python-实现" data-toc-modified-id="Python-实现-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Python 实现</a></span><ul class="toc-item"><li><span><a href="#数据prepare" data-toc-modified-id="数据prepare-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>数据prepare</a></span></li><li><span><a href="#算法实现" data-toc-modified-id="算法实现-3.2"><span class="toc-item-num">3.2&nbsp;&nbsp;</span>算法实现</a></span></li><li><span><a href="#结果展示" data-toc-modified-id="结果展示-3.3"><span class="toc-item-num">3.3&nbsp;&nbsp;</span>结果展示</a></span></li></ul></li><li><span><a href="#scikit-learn实现" data-toc-modified-id="scikit-learn实现-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>scikit-learn实现</a></span><ul class="toc-item"><li><span><a href="#prepare数据" data-toc-modified-id="prepare数据-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>prepare数据</a></span></li><li><span><a href="#算法实现" data-toc-modified-id="算法实现-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>算法实现</a></span></li><li><span><a href="#结果展示" data-toc-modified-id="结果展示-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>结果展示</a></span></li></ul></li></ul></div><section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>机器学习&amp;深度学习01-逻辑回归算法<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>机器学习01-逻辑回归算法<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id2">
 <h2>算法简介<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>逻辑回归（Logistic Regression），是机器学习中一种十分基础的分类方法，由于算法简单而高效，在实际场景中得到了广泛的应用。假设要解决的问题是一个二分类问题，目标值为 <span class="math notranslate nohighlight">\(\{0, 1\}\)</span>，以线性回归为基础，通过sigmoid函数将模型输出映射到 <span class="math notranslate nohighlight">\([0, 1]\)</span> 之间。z=0时，函数值为0.5，以0.5为分界点，将大于0.5和小于0.5的值分为两类，解决0-1二分类问题。sigmoid函数的表达式如下：</p>
@@ -569,7 +569,7 @@ L(\theta) = y^{(i)}logh_\theta(x^{(i)})+(1-y^{(i)})log(l-h_\theta(x^{(i)}))
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x120d87ac0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x11b907ac0&gt;
 </pre></div>
 </div>
 <img alt="../_images/dd4faf2733056e917d82e8186b4097d664c0e838a9bfa1a9cf7534d7984df582.png" src="../_images/dd4faf2733056e917d82e8186b4097d664c0e838a9bfa1a9cf7534d7984df582.png" />
@@ -664,7 +664,7 @@ L(\theta) = y^{(i)}logh_\theta(x^{(i)})+(1-y^{(i)})log(l-h_\theta(x^{(i)}))
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x102c8f880&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x11ba17550&gt;
 </pre></div>
 </div>
 <img alt="../_images/26bc2c0f8036b03f9077fc5735c91ae84944e059216675e93c52c36866c2ba30.png" src="../_images/26bc2c0f8036b03f9077fc5735c91ae84944e059216675e93c52c36866c2ba30.png" />
@@ -742,7 +742,7 @@ L(\theta) = y^{(i)}logh_\theta(x^{(i)})+(1-y^{(i)})log(l-h_\theta(x^{(i)}))
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x120ecb040&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x11b8629d0&gt;
 </pre></div>
 </div>
 <img alt="../_images/2210a9bd0fb083d383a5e4518b0d4721f1ded788befb9ee3974eaa1515b0f640.png" src="../_images/2210a9bd0fb083d383a5e4518b0d4721f1ded788befb9ee3974eaa1515b0f640.png" />
