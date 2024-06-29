@@ -1,0 +1,977 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>图模型总结 &#8212; JoyCode</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02-推荐系统/推荐系统08-图神经网络';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="刷题" href="../03-%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/%E5%88%B7%E9%A2%98.html" />
+    <link rel="prev" title="特征交叉" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F06-%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">JoyCode</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    欢迎访问JoyCode
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A001-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95.html">算法简介</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A002-K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95.html">K近邻算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">算法简介</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A004-K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">K-Means++聚类算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A005-%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95.html">数据prepare</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F01-%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐&amp;广告领域常见的业务指标</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F02-%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">技术基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F03-%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html">双塔模型优化思路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F04-%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">序列特征优化方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F05-%E5%A4%9A%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%A4%9A%E5%9C%BA%E6%99%AF%E5%BB%BA%E6%A8%A1.html">多场景&amp;多目标建模</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F06-%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">特征交叉</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">图模型总结</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../03-%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/%E5%88%B7%E9%A2%98.html">刷题</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/yilonghao/joycode-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/yilonghao/joycode-book/issues/new?title=Issue%20on%20page%20%2F02-推荐系统/推荐系统08-图神经网络.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/02-推荐系统/推荐系统08-图神经网络.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>图模型总结</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">图模型总结</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cf">常见应用场景：基于图神经网络的CF召回</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deepwalk">DeepWalk</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gcn">GCN</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">公式中各项的计算方式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">公式含义说明</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">两层的 GCN 网络示意图</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eges">阿里EGES</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">基于用户历史行为构图</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bge">BGE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ges">GES</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">EGES</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">实验数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">数据稀疏度</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auc">离线AUC评估</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ctr">线上CTR对比</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphsage-transductive-learning-inductive-learning">GraphSAGE（Transductive Learning-&gt;Inductive Learning）</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">整体流程</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-generation">Embedding generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">采样</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">聚合函数</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-aggregator">mean aggregator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-aggergator">convolutional aggergator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lstm-aggregator">LSTM aggregator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pooling-aggregator">pooling aggregator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">模型训练</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-batch">mini batch 版本</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">实验结论</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gat">GAT</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#图模型总结" data-toc-modified-id="图模型总结-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>图模型总结</a></span></li><li><span><a href="#常见应用场景：基于图神经网络的CF召回" data-toc-modified-id="常见应用场景：基于图神经网络的CF召回-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>常见应用场景：基于图神经网络的CF召回</a></span></li><li><span><a href="#DeepWalk" data-toc-modified-id="DeepWalk-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>DeepWalk</a></span></li><li><span><a href="#GCN" data-toc-modified-id="GCN-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>GCN</a></span><ul class="toc-item"><li><span><a href="#公式中各项的计算方式" data-toc-modified-id="公式中各项的计算方式-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>公式中各项的计算方式</a></span></li><li><span><a href="#公式含义说明" data-toc-modified-id="公式含义说明-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>公式含义说明</a></span></li><li><span><a href="#两层的-GCN-网络示意图" data-toc-modified-id="两层的-GCN-网络示意图-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>两层的 GCN 网络示意图</a></span></li></ul></li><li><span><a href="#阿里EGES" data-toc-modified-id="阿里EGES-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>阿里EGES</a></span><ul class="toc-item"><li><span><a href="#基于用户历史行为构图" data-toc-modified-id="基于用户历史行为构图-5.1"><span class="toc-item-num">5.1&nbsp;&nbsp;</span>基于用户历史行为构图</a></span></li><li><span><a href="#BGE" data-toc-modified-id="BGE-5.2"><span class="toc-item-num">5.2&nbsp;&nbsp;</span>BGE</a></span></li><li><span><a href="#GES" data-toc-modified-id="GES-5.3"><span class="toc-item-num">5.3&nbsp;&nbsp;</span>GES</a></span></li><li><span><a href="#EGES" data-toc-modified-id="EGES-5.4"><span class="toc-item-num">5.4&nbsp;&nbsp;</span>EGES</a></span></li><li><span><a href="#实验数据" data-toc-modified-id="实验数据-5.5"><span class="toc-item-num">5.5&nbsp;&nbsp;</span>实验数据</a></span><ul class="toc-item"><li><span><a href="#数据稀疏度" data-toc-modified-id="数据稀疏度-5.5.1"><span class="toc-item-num">5.5.1&nbsp;&nbsp;</span>数据稀疏度</a></span></li><li><span><a href="#离线AUC评估" data-toc-modified-id="离线AUC评估-5.5.2"><span class="toc-item-num">5.5.2&nbsp;&nbsp;</span>离线AUC评估</a></span></li><li><span><a href="#线上CTR对比" data-toc-modified-id="线上CTR对比-5.5.3"><span class="toc-item-num">5.5.3&nbsp;&nbsp;</span>线上CTR对比</a></span></li></ul></li></ul></li><li><span><a href="#GraphSAGE（Transductive-Learning->Inductive-Learning）" data-toc-modified-id="GraphSAGE（Transductive-Learning->Inductive-Learning）-6"><span class="toc-item-num">6&nbsp;&nbsp;</span>GraphSAGE（Transductive Learning-&gt;Inductive Learning）</a></span><ul class="toc-item"><li><span><a href="#整体流程" data-toc-modified-id="整体流程-6.1"><span class="toc-item-num">6.1&nbsp;&nbsp;</span>整体流程</a></span></li><li><span><a href="#Embedding-generation" data-toc-modified-id="Embedding-generation-6.2"><span class="toc-item-num">6.2&nbsp;&nbsp;</span>Embedding generation</a></span></li><li><span><a href="#采样" data-toc-modified-id="采样-6.3"><span class="toc-item-num">6.3&nbsp;&nbsp;</span>采样</a></span></li><li><span><a href="#聚合函数" data-toc-modified-id="聚合函数-6.4"><span class="toc-item-num">6.4&nbsp;&nbsp;</span>聚合函数</a></span><ul class="toc-item"><li><span><a href="#mean-aggregator" data-toc-modified-id="mean-aggregator-6.4.1"><span class="toc-item-num">6.4.1&nbsp;&nbsp;</span>mean aggregator</a></span></li><li><span><a href="#convolutional-aggergator" data-toc-modified-id="convolutional-aggergator-6.4.2"><span class="toc-item-num">6.4.2&nbsp;&nbsp;</span>convolutional aggergator</a></span></li><li><span><a href="#LSTM-aggregator" data-toc-modified-id="LSTM-aggregator-6.4.3"><span class="toc-item-num">6.4.3&nbsp;&nbsp;</span>LSTM aggregator</a></span></li><li><span><a href="#pooling-aggregator" data-toc-modified-id="pooling-aggregator-6.4.4"><span class="toc-item-num">6.4.4&nbsp;&nbsp;</span>pooling aggregator</a></span></li></ul></li><li><span><a href="#模型训练" data-toc-modified-id="模型训练-6.5"><span class="toc-item-num">6.5&nbsp;&nbsp;</span>模型训练</a></span></li><li><span><a href="#mini-batch-版本" data-toc-modified-id="mini-batch-版本-6.6"><span class="toc-item-num">6.6&nbsp;&nbsp;</span>mini batch 版本</a></span></li><li><span><a href="#实验结论" data-toc-modified-id="实验结论-6.7"><span class="toc-item-num">6.7&nbsp;&nbsp;</span>实验结论</a></span></li></ul></li><li><span><a href="#GAT" data-toc-modified-id="GAT-7"><span class="toc-item-num">7&nbsp;&nbsp;</span>GAT</a></span></li></ul></div><section id="id1">
+<h1>图模型总结<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>图模型适合数据稀疏的场景，图神经网络允许知识信息在图中进行远距离传递，对于用户行为较少的场景，可以形成知识补充和传递；图模型能够提高embedding表达能力，图网络能够将协同信息、用户行为信息、内容属性信息等各种异质信息在一个统一的框架里进行融合，表征为embedding。</p>
+</section>
+<section id="cf">
+<h1>常见应用场景：基于图神经网络的CF召回<a class="headerlink" href="#cf" title="Link to this heading">#</a></h1>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20230219104210088.png" alt="image-20230219104210088" style="zoom:50%; display: block; margin: auto;" />
+<p>step1: 基于user-item关系的游走产生序列</p>
+<p>step2: 用 skip-gram + negative sampling 算法学习每个节点的embedding表示</p>
+<p>step3: 基于 User 向量和 Item 向量分别构建 UCF 召回和 ICF 召回等</p>
+</section>
+<section id="deepwalk">
+<h1>DeepWalk<a class="headerlink" href="#deepwalk" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p>DeepWalk: Online Learning of Social Representations</p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/56380812">【Graph Embedding】DeepWalk：算法原理，实现和应用</a></p></li>
+<li><p><a class="reference external" href="https://easyai.tech/blog/gnn-deepwalk-graphsage/">了解图神经网络GNN和2种高级算法「DeepWalk」+ 「GraphSage」</a></p></li>
+</ol>
+</div></blockquote>
+<p>近年来，<strong>图神经网络 (GNN)</strong> 在各个领域越来越受欢迎，包括社交网络、知识图谱、推荐系统等。</p>
+<p>图是由两个部件组成的一种数据结构：<strong>顶点(vertices)/节点(nodes)</strong> 和<strong>边 (edges)</strong>。一个图 G 可以用它包含的顶点 V 和边 E 的集合来描述。</p>
+<p>图又分为<strong>有向图</strong>和<strong>无向图</strong>，这取决于顶点之间是否存在方向依赖关系。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/be57cd90-b55b-4626-a031-72d6f9938215.png" style="zoom: 33%; display: block; margin: auto;" />
+<p>介绍 DeepWalk 之前简单描述一下<strong>Graph Embedding 技术</strong>，简单点说 Graph Embedding 技术就是得到图中每个节点的向量表示，之后就可以用得到的向量做各种各样的事情。</p>
+<p>DeepWalk 的思想类似 word2vec，使用图中节点与节点的共现关系来学习节点的向量表示。那么关键的问题就是如何来描述节点与节点的共现关系，DeepWalk给出的方法是使用随机游走(RandomWalk)的方式在图中进行节点采样。</p>
+<p>算法包括两个步骤：</p>
+<ul class="simple">
+<li><p>step1: 在图中的节点上执行随机游走生成节点序列</p></li>
+<li><p>step2: 运行skip-gram，根据步骤 1 中生成的节点序列学习每个节点的嵌入</p></li>
+</ul>
+<p>在随机游走过程中，下一个节点是从前一节点的邻居统一采样。然后将每个序列截短为长度为<code class="docutils literal notranslate"><span class="pre">2|w|+1</span></code>的子序列，其中 w 表示 skip-gram 中的窗口大小。</p>
+<p>在论文中，使用分层softmax解决节点数量庞大导致softmax计算成本过高的问题。</p>
+<p>伪代码：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/4682ce0d-5c5f-4a75-8f3a-1e216baf8ee9.png" style="zoom:50%; display: block; margin: auto;" />
+<p>DeepWalk 的主要问题是缺乏泛化能力。<strong>每当一个新节点出现时，它必须重新训练模型以表示这个节点</strong>。因此这种 GNN 不适用于图中节点不断变化的动态图（需要解决 embedding 冷启动问题）。</p>
+</section>
+<section id="gcn">
+<h1>GCN<a class="headerlink" href="#gcn" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1609.02907.pdf">《SEMI-SUPERVISED CLASSIFICATION WITH GRAPH CONVOLUTIONAL NETWORKS》</a></p></li>
+<li><p><a class="reference external" href="https://www.bilibili.com/video/BV1K5411H7EQ?p=9">【图神经网络】GNN从入门到精通</a></p></li>
+</ol>
+</div></blockquote>
+<p>GCN 的主要公式：
+$<span class="math notranslate nohighlight">\(
+H^{(l+1)} = \sigma(\tilde{D} ^ {-\frac{1}{2}} \tilde{A} \tilde{D} ^ {-\frac{1}{2}} H^{(l)} W^{(l)})
+\)</span>$</p>
+<p>如果去掉 <span class="math notranslate nohighlight">\( \tilde{D} ^ {-\frac{1}{2}} \tilde{A} \tilde{D} ^ {-\frac{1}{2}}  \)</span> 部分，GCN 主要公式可以简化为：</p>
+<div class="math notranslate nohighlight">
+\[
+H^{(l+1)} = \sigma(H^{(l)} W^{(l)})
+\]</div>
+<p>可以看成一个简单的全连接神经网络。</p>
+<section id="id2">
+<h2>公式中各项的计算方式<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>假设有一个图：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/2552d9e4-8089-4c4c-82f1-49f3de082a14.png" alt="无权无向图" style="zoom:50%; display: block; margin: auto;" />
+<p>给出公式中每一部分的值，<strong>邻接矩阵 A</strong> 为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \left[
+ \begin{matrix}
+   0 &amp; 1 &amp; 1 &amp; 0 \\
+   1 &amp; 0 &amp; 1 &amp; 0 \\
+   1 &amp; 1 &amp; 0 &amp; 1 \\
+   0 &amp; 0 &amp; 1 &amp; 0
+  \end{matrix}
+  \right]
+\end{split}\]</div>
+<p><strong>单位矩阵</strong><span class="math notranslate nohighlight">\(I_N\)</span>为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+I_N = \left[
+ \begin{matrix}
+   1 &amp; 0 &amp; 0 &amp; 0 \\
+   0 &amp; 1 &amp; 0 &amp; 0 \\
+   0 &amp; 0 &amp; 1 &amp; 0 \\
+   0 &amp; 0 &amp; 0 &amp; 1
+  \end{matrix}
+  \right]
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\tilde{A} = A + I_N\)</span>：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\tilde{A} = \left[
+ \begin{matrix}
+   1 &amp; 1 &amp; 1 &amp; 0 \\
+   1 &amp; 1 &amp; 1 &amp; 0 \\
+   1 &amp; 1 &amp; 1 &amp; 1 \\
+   0 &amp; 0 &amp; 1 &amp; 1
+  \end{matrix}
+  \right]
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\tilde{A}\)</span> 矩阵按行求和得到 <span class="math notranslate nohighlight">\(\tilde{D}\)</span>，即 <span class="math notranslate nohighlight">\(\tilde{D}_{ii} = \sum_{j} \tilde{A}_{ij}\)</span>：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\tilde{D} = \left[
+ \begin{matrix}
+   3 &amp; 0 &amp; 0 &amp; 0 \\
+   0 &amp; 3 &amp; 0 &amp; 0 \\
+   0 &amp; 0 &amp; 4 &amp; 0 \\
+   0 &amp; 0 &amp; 0 &amp; 2
+  \end{matrix}
+  \right]
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\tilde{D}^{-\frac{1}{2}} = \left[
+ \begin{matrix}
+   0.577350 &amp; 0 &amp; 0 &amp; 0 \\
+   0 &amp; 0.577350 &amp; 0 &amp; 0 \\
+   0 &amp; 0 &amp; 0.5 &amp; 0 \\
+   0 &amp; 0 &amp; 0 &amp; 0.707107
+  \end{matrix}
+  \right]
+\end{split}\]</div>
+<p>公式中各项的的计算方式如上，下面用一个更简单的实例介绍公式的实际含义。</p>
+</section>
+<section id="id3">
+<h2>公式含义说明<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>假设有一个图如下，图中每个节点对应一个 embedding 向量。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/fcefb375-9ee6-49f7-8db5-f07e57086917.png" style="zoom:50%; display: block; margin: auto;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20220928163412283.png" alt="image-20220928163412283" style="zoom:33%; display: block; margin: auto;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20220928163433439.png" alt="image-20220928163433439" style="zoom:33%; display: block; margin: auto;" />
+</section>
+<section id="id4">
+<h2>两层的 GCN 网络示意图<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>首先计算好 <span class="math notranslate nohighlight">\(\hat{A} = \tilde{D} ^ {-\frac{1}{2}} \tilde{A} \tilde{D} ^ {-\frac{1}{2}}\)</span></p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/15b780f5-524c-4a4c-804d-d238795bd25b.png" style="zoom: 33%; display: block; margin: auto;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/6236b37b-2b0a-42f8-841e-3666556ef837.png" style="zoom:33%; display: block; margin: auto;" />
+<p>假设 N 为节点数，则 <span class="math notranslate nohighlight">\(\hat{A}\)</span> 维度为 (N, N)。</p>
+<p>假设输入层的维度为 (N, C)，第一个隐藏层维度为 (C, H)，第二个隐藏层的输出维度为 (H, F)：</p>
+<p>第一个隐藏层的输出维度为 (N, H)：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{aligned}
+(N, N)(N, C)(C, H) \\
+= (N, H)
+\end{aligned}
+\end{equation}
+\end{split}\]</div>
+<p>第二个隐藏层的输出维度为 (N, F)：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{aligned}
+(N, N)(N, H)(H, F) \\
+= (N, N)(N, H)(H, F) \\
+= (N, F)
+\end{aligned}
+\end{equation}
+\end{split}\]</div>
+</section>
+</section>
+<section id="eges">
+<h1>阿里EGES<a class="headerlink" href="#eges" title="Link to this heading">#</a></h1>
+<p>在推荐系统中，有三个主要挑战，分别是可扩展性（scalability）、稀疏性（sparsity）、冷启动问题（cold start）。阿里淘宝团队提出了基于图神经网络的EGES算法来应对这三个挑战。</p>
+<p>论文题目是《Billion-scale Commodity Embedding for E-commerce Recommendation in Alibaba》，通常推荐系统都包含召回、排序等几个阶段，这篇文章主要聚焦召回阶段。</p>
+<p>文章共涉及到三个模型：</p>
+<ul class="simple">
+<li><p>Base Graph Embedding（BGE）</p></li>
+<li><p>Graph Embedding with Side Information（GES）</p></li>
+<li><p>Enhanced Graph Embedding with Side Information（EGES）</p></li>
+</ul>
+<section id="id5">
+<h2>基于用户历史行为构图<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>第一步是基于用户历史行为构图，考虑到性能开销，不可能根据用户整个的历史行为构图，其次考虑到用户的兴趣有随着时间迁移的情况，因此在基于用户历史行为构图时，设定了一个时间窗口，只考虑时间窗口内的用户历史行为（session-based users’ behaviors）。</p>
+<p>获取指定时间窗口内的用户历史行为后，例如用户U1的历史行为序列为DAB，对应图中的两条有向边D-&gt;A和A-&gt;B，如图中的(a)、(b)所示。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/124614fd-0f02-48aa-8061-e4a0670b69e5.png" style="zoom:50%; display: block; margin: auto;" />
+<p>实际业务场景中存在大量的脏数据，如果不做数据清洗，很可能影响到到模型效果，所以在构图前也做了一些数据清洗工作：</p>
+<ul class="simple">
+<li><p>用户点击后在相关页面停留时间少于1s，则认为点击行为不置信，构图前需要清洗相关的行为。</p></li>
+<li><p>3个月内用户累计购买超过1000次或点击超过3500次则认为用户是过度活跃的用户，构图前需要清洗此类用户。</p></li>
+<li><p>淘宝上的零售商一直在更新商品的细节，在极端的情况下，同一标识符的商品在淘宝上经过长时间的更新后可能会变成完全不同的商品，构图前需要清洗相关商品的行为。</p></li>
+</ul>
+</section>
+<section id="bge">
+<h2>BGE<a class="headerlink" href="#bge" title="Link to this heading">#</a></h2>
+<p>基于用户历史行为构图，得到一张带权有向图，入上图中的(b)所示，用<span class="math notranslate nohighlight">\(\mathcal{G}=(\mathcal{V}, \mathscr{E})\)</span>。<span class="math notranslate nohighlight">\(M\)</span>为图<span class="math notranslate nohighlight">\(\mathcal{G}\)</span>的邻接矩阵，其中<span class="math notranslate nohighlight">\(M_{ij}\)</span>表示图中节点i到节点j的边的权重。首先使用random walk的产出序列，如上图中的(c)所示。最后基于Skip-Gram算法学习每个节点的embedding表示。其中random walk时的转移概率的计算方式如下：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/4881e024-66ba-4f37-97d1-32d6e19a3f23.png" style="zoom:50%; display: block; margin: auto;" />
+<p>其中<span class="math notranslate nohighlight">\(N_{+}(v_i)\)</span>表示<span class="math notranslate nohighlight">\(v_i\)</span>节点的邻居节点集合。</p>
+</section>
+<section id="ges">
+<h2>GES<a class="headerlink" href="#ges" title="Link to this heading">#</a></h2>
+<p>BGE模型对于交互行为少商品不太友好，会出现对应商品的embedding向量表示学习不够充分的问题，模型存在比较严重的冷启动问题，为了解决冷启问题，在BGE模型的基础上提出了GES模型。与BGE模型，改进模型的基本思路是为图中的每个节点增加额外信息（Side Information），例如Category、Brand、Price等来强化item的向量表示。</p>
+<p>我们定义矩阵<span class="math notranslate nohighlight">\(W\)</span>表示物品及其side information的embedding向量表示，<span class="math notranslate nohighlight">\(W_v^0\)</span>表示物品<span class="math notranslate nohighlight">\(v\)</span>自身的向量表示，<span class="math notranslate nohighlight">\(W_v^s\)</span>表示物品<span class="math notranslate nohighlight">\(v\)</span>第s类side information的向量表示。</p>
+<p>最终物品的向量表示为：</p>
+<div class="math notranslate nohighlight">
+\[
+H_v = \frac{1}{n+1} \sum_{s=0}^n W_v^s
+\]</div>
+</section>
+<section id="id6">
+<h2>EGES<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>考虑到在计算物品的最终向量时，不同类型的side information的贡献应该是不同的，所以在聚合side information时可以添加attention机制。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/fc2afdfc-2359-4354-9225-c8264561d146.png" style="zoom:50%; display: block; margin: auto;" />
+<p>定义一个矩阵 <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{V \times (n+1)} \)</span>，<span class="math notranslate nohighlight">\(V\)</span>表示的是图中所有节点的数量，n表示side information的类型数，<span class="math notranslate nohighlight">\(A_{ij}\)</span>表示第i个item的第j类side information的权重，<span class="math notranslate nohighlight">\(A_{i0}\)</span>表示第i个item自身的权重，依次类推。方便起见使用<span class="math notranslate nohighlight">\(a_v^s\)</span>表示物品<span class="math notranslate nohighlight">\(v\)</span>的第<span class="math notranslate nohighlight">\(s\)</span>类side information的权重。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/06a41077-0dc8-498a-b9a3-e443c0878359.png" style="zoom: 50%; display: block; margin: auto;" />
+<p>在这里我们使用<span class="math notranslate nohighlight">\(e^{a_v^j}\)</span>代替<span class="math notranslate nohighlight">\(a_v^j\)</span>来确保每个side information的权重都大于0，并使用<span class="math notranslate nohighlight">\(\sum_{j=0}^n e^{a_v^j}\)</span>对每个side information的权重做了标准化处理。</p>
+<p>伪代码：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/7de04266-26e0-4821-bb40-d44f4c163053.png" style="zoom:50%; display: block; margin: auto;" />
+<p>涉及到的结构与超参：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathcal{G}=(\mathcal{V}, \mathscr{E})\)</span>：图结构</p></li>
+<li><p>S：side information</p></li>
+<li><p><span class="math notranslate nohighlight">\(w\)</span>：每个节点的游走次数(number of walks per node)</p></li>
+<li><p><span class="math notranslate nohighlight">\(l\)</span>：随机游走的序列长度(walk length)</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span>：Skip-Gram算法窗口大小(Skip-Gram window size k)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\#ns\)</span>：负样本数量(正负样本比，number of negatives samples)</p></li>
+<li><p><span class="math notranslate nohighlight">\(d\)</span>：embedding向量维度(embedding dimension)</p></li>
+</ul>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/99afcba2-03cd-491d-96b6-2f9712ac47a9.png" style="zoom:50%; display: block; margin: auto;" />
+</section>
+<section id="id7">
+<h2>实验数据<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h3>数据稀疏度<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/45c0811d-965f-427f-b520-fd5bb720131e.png" style="zoom: 67%; display: block; margin: auto;" />
+<p>计算方式如下：</p>
+<div class="math notranslate nohighlight">
+\[
+1 - \frac{\#Edges}{\#Nodes \times (\#Nodes - 1)}
+\]</div>
+<p>其中<span class="math notranslate nohighlight">\(\#Edges\)</span>表示图中边的数量，<span class="math notranslate nohighlight">\(\#Nodes\)</span>表示图中节点数。</p>
+</section>
+<section id="auc">
+<h3>离线AUC评估<a class="headerlink" href="#auc" title="Link to this heading">#</a></h3>
+<p>离线评估对比了BGE、LINE、GES和EGES的AUC，其中EGES在亚马逊数据集和淘宝的数据集上的表现都是最好的（关于这个评估指标个人或多或少存在一些疑问，召回阶段的模型评估离线AUC是否有实际的参考价值，比较好理解的是评估准召指标，期待与大佬交流学习~）。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/d0e557dd-801e-45c8-bf67-dfa9266d9146.png" style="zoom:50%; display: block; margin: auto;" />
+</section>
+<section id="ctr">
+<h3>线上CTR对比<a class="headerlink" href="#ctr" title="Link to this heading">#</a></h3>
+<p>基于淘宝真实的数据流量进行了线上的CTR对比，EGES的表现是最好的。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/826af54f-bd66-4034-a565-431eaec09916.png" style="zoom:50%; display: block; margin: auto;" /></section>
+</section>
+</section>
+<section id="graphsage-transductive-learning-inductive-learning">
+<h1>GraphSAGE（Transductive Learning-&gt;Inductive Learning）<a class="headerlink" href="#graphsage-transductive-learning-inductive-learning" title="Link to this heading">#</a></h1>
+<p>在介绍GraphSAGE之前先介绍下直推式学习（Transductive Learning）和归纳学习（Inductive Learning），二者的最大区别在于直推式学习（Transductive Learning）要求在一个确定的图中去学习顶点的embedding，无法直接泛化到在训练过程没有出现过的顶点，而归纳学习（Inductive Learning）则是要求能够利用已知顶点的embedding高效的产生未知顶点的embedding，要求对未知数据有很好的泛化能力。</p>
+<p>GraphSAGE的核心思想是：GraphSAGE不是学习一个图上所有节点的embedding，而是学习一个为每个节点产生embedding的映射（一组aggregator functions，通过对邻居节点进行聚合产生目标节点的embedding）。</p>
+<section id="id9">
+<h2>整体流程<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20220825081235384.png" style="zoom:50%; display: block; margin: auto;" />
+<p>GraphSAGE的整体流程主要包含以上三步：</p>
+<ul class="simple">
+<li><p>Sample neighborhood：对每个节点的邻居节点进行<strong>采样</strong>，为每个节点采样固定数量的邻居</p></li>
+<li><p>Aggregate feature information from neighbors：通过聚合函数<strong>聚合邻居节点包含的信息</strong></p></li>
+<li><p>Predict graph context and label using aggregated information：<strong>得到图中各个顶点的向量表示</strong></p></li>
+</ul>
+</section>
+<section id="embedding-generation">
+<h2>Embedding generation<a class="headerlink" href="#embedding-generation" title="Link to this heading">#</a></h2>
+<p>GraphSAGE的前向传播算法如下，前向传播描述了如何使用聚合函数对节点的邻居信息进行聚合，从而生成节点embedding：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20220825193432068.png" alt="image-20220825193432068" style="zoom:67%; display: block; margin: auto;" />
+<p>其中：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathcal G(\mathcal V, \mathcal E)\)</span>表示一个图</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_v\)</span>表示节点的向量表示</p></li>
+<li><p>depth K表示网络的层数，也代表着每个顶点能够聚合到的邻接节点的跳数</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_u^{k-1}\)</span>表示在k−1层中节点<span class="math notranslate nohighlight">\(v\)</span>的邻居**节点<span class="math notranslate nohighlight">\(u\)</span>**的向量表示，<span class="math notranslate nohighlight">\(\mathcal N(v)\)</span>表示节点<span class="math notranslate nohighlight">\(v\)</span>的所有邻居节点</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_{\mathcal N(v)}^{k}\)</span>表示在第k层节点<span class="math notranslate nohighlight">\(v\)</span>的<strong>所有邻居节点</strong>的向量表示</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_v^{k}\)</span>表示在第k层节点<span class="math notranslate nohighlight">\(v\)</span>的向量表示</p></li>
+</ul>
+<p>假设有一个图如下所示：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/8b906935-bf00-4ba2-95c5-650f858068bf.png" style="zoom:50%; display: block; margin: auto;" />
+<ul class="simple">
+<li><p>计算节点 1 的相邻节点 <span class="math notranslate nohighlight">\(N(1) = \{ 3, 4, 5, 6 \}\)</span></p></li>
+<li><p>伪代码第 4 步：<span class="math notranslate nohighlight">\(h_{N(1)}^1 = AGGREGAGE(\{h_3^0, h_4^0, h_5^0, h_6^0\}\)</span>，假设这里使用的 AGGREGATE 方法为均值函数(mean)，则 <span class="math notranslate nohighlight">\(h_{N(1)}^1 = mean([0.3, 0.4], [0.2, 0.2], [0.7, 0.8], [0.5, 0.6]) = [0.425, 0.5] \)</span></p></li>
+<li><p>伪代码第 5 步：<span class="math notranslate nohighlight">\(h_1^1 = \sigma(W^1 \cdot CONCAT(h_1^0, h_{N(1)}^1)) = \sigma(W^1 \cdot [0.1, 0.2, 0.425, 0.5])\)</span></p></li>
+</ul>
+</section>
+<section id="id10">
+<h2>采样<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>出于对计算效率的考虑，需要对每个节点的邻居节点进行采样，采样时主要包含两个要素：层数K（跳数）和每一层上每个节点要采样的数量，训练时可以认为每个batch的时空复杂度为<span class="math notranslate nohighlight">\(\prod_{i}^{K}S_i\)</span>，实验发现，K不必取很大的值，当K=2时，以及两次扩展的邻居节点总数<span class="math notranslate nohighlight">\(S_1 \cdot S_2\)</span>小于等于500时，效果就很好了。</p>
+<p>由于要对每个顶点采样一定数量的邻居节点，设需要的邻居节点数量为S，若顶点邻居节点数小于S，则采用有放回的抽样方法，直到采样出S个顶点，若顶点邻居数大于S，则采用无放回的抽样。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/c3b99238-867a-4dd3-a4a5-6bc31344cad0.png" style="zoom:50%; display: block; margin: auto;" />
+</section>
+<section id="id11">
+<h2>聚合函数<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>这里主要对应红框部分。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20220825193825253.png" alt="image-20220825193432068" style="zoom:67%; display: block; margin: auto;" />
+<section id="mean-aggregator">
+<h3>mean aggregator<a class="headerlink" href="#mean-aggregator" title="Link to this heading">#</a></h3>
+<p>先对邻居节点向量表示取平均，再与目标节点向量表示拼接。</p>
+<div class="math notranslate nohighlight">
+\[
+h_{\mathcal N(v)}^{k} \leftarrow mean(\{h_u^{k-1}, u \in N(v)\})
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+h_v^k \leftarrow \sigma (W^k \cdot CONCAT(h_v^{k-1}, h_{\mathcal N(v)}^{k})
+\]</div>
+</section>
+<section id="convolutional-aggergator">
+<h3>convolutional aggergator<a class="headerlink" href="#convolutional-aggergator" title="Link to this heading">#</a></h3>
+<p>直接对目标节点和邻居节点的向量表示取平均。</p>
+<div class="math notranslate nohighlight">
+\[
+h_v^k \leftarrow \sigma (W^k \cdot mean( \{h_v^{k-1}\} \cup \{h_u^{k-1}, u \in N(v)\}))
+\]</div>
+</section>
+<section id="lstm-aggregator">
+<h3>LSTM aggregator<a class="headerlink" href="#lstm-aggregator" title="Link to this heading">#</a></h3>
+<p>需要先获得邻居节点的顺序，再将邻居节点的向量表示序列作为LSTM网络的输入。</p>
+</section>
+<section id="pooling-aggregator">
+<h3>pooling aggregator<a class="headerlink" href="#pooling-aggregator" title="Link to this heading">#</a></h3>
+<p>其中max表示element-wise最大值操作，即取对应维度的最大值</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20220825200051643.png" alt="image-20220825200051643" style="zoom: 33%; display: block; margin: auto;" />
+</section>
+</section>
+<section id="id12">
+<h2>模型训练<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>损失函数倾向于使得相邻节点的向量表示相似度高，互相远离的节点相似度低。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20220825200421157.png" alt="image-20220825200421157" style="zoom:33%; display: block; margin: auto;" />
+<p>其中：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(z_u\)</span>表示节点<span class="math notranslate nohighlight">\(u\)</span>的向量表示</p></li>
+<li><p>节点<span class="math notranslate nohighlight">\(v\)</span>是节点<span class="math notranslate nohighlight">\(u\)</span>随机游走到达的邻居</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_n(v)\)</span>表示负采样概率分布</p></li>
+<li><p><span class="math notranslate nohighlight">\(Q\)</span>是负样本的数目</p></li>
+</ul>
+</section>
+<section id="mini-batch">
+<h2>mini batch 版本<a class="headerlink" href="#mini-batch" title="Link to this heading">#</a></h2>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/8950626a-f856-41af-ae7d-5bdd6442b3a5.png" style="zoom: 50%; display: block; margin: auto;" />
+<p>假设节点 a 是当前 batch 内的一个节点，可以计算出，a 节点参与训练依赖的的节点集合为：{a, c, f, j, d, e, i, h, k, l}，训练时只需要存储 a 以及训练 a 时依赖的节点，batch 内的其他节点依此类推。GraphSAGE 部分即正常的训练部分。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20221007230600284.png" alt="image-20221007230600284" style="zoom:50%; display: block; margin: auto;" />
+</section>
+<section id="id13">
+<h2>实验结论<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p>GraphSAGE相对于其他模型指标有较大幅度提升，LSTM aggregator与pooling aggregator效果较好，LSTM aggregator耗时最严重。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20220825201156385.png" alt="image-20220825201156385" style="zoom:30%; display: block; margin: auto;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20220825201258061.png" alt="image-20220825201258061" style="zoom:30%; display: block; margin: auto;" /></section>
+</section>
+<section id="gat">
+<h1>GAT<a class="headerlink" href="#gat" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p>原文：《GRAPH ATTENTION NETWORKS》</p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/81350196">向往的GAT(图注意力网络的原理、实现及计算复杂度)</a></p></li>
+</ol>
+</div></blockquote>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20230219135055379.png" alt="image-20230219135055379" style="zoom:50%; display: block; margin: auto;" />
+<p>对邻居节点利用Attention机制来学习贡献度。</p>
+<p>和所有的attention mechanism一样，GAT的计算也分为两步走：</p>
+<p>（1）计算注意力系数：<span class="math notranslate nohighlight">\(e_{ij} = a([Wh_i||Wh_j]),j\in \mathcal N_i\)</span>，首先一个共享参数W的线性映射对于顶点的特征进行了增维，当然这是一种常见的特征增强方法。<span class="math notranslate nohighlight">\(||\)</span>对于顶点<span class="math notranslate nohighlight">\(i,j\)</span>的变换后的特征进行了拼接（concatenate），最后<span class="math notranslate nohighlight">\(a(\cdot)\)</span>把拼接后的高维特征映射到一个实数上，论文中是通过single-layer feedforward neural network实现的。最后通过softmax做归一化得到注意力系数。</p>
+<p>（2）加权求和：</p>
+<ul class="simple">
+<li><p>根据计算好的注意力系数，把特征加权求和（aggregate）一下：<span class="math notranslate nohighlight">\(h_{i}^{'}=\sigma(\sum_{j\in\mathcal N_i} \alpha_{ij}Wh_j)\)</span>，<span class="math notranslate nohighlight">\(h_{i}^{'}\)</span>就是GTA输出的对于每个顶点<span class="math notranslate nohighlight">\(i\)</span>的新特征（融合了邻域信息），<span class="math notranslate nohighlight">\(\sigma(\cdot)\)</span>是激活函数。</p></li>
+<li><p>进一步使用multi-head的方式：<span class="math notranslate nohighlight">\(h_{i}^{'}(K)=||_{k=1}^K \sigma(\sum_{j \in\mathcal N{i}} \alpha_{ij}^k W^{k} h_j) \)</span></p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./02-推荐系统"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F06-%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">特征交叉</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../03-%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/%E5%88%B7%E9%A2%98.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">刷题</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">图模型总结</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cf">常见应用场景：基于图神经网络的CF召回</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deepwalk">DeepWalk</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gcn">GCN</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">公式中各项的计算方式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">公式含义说明</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">两层的 GCN 网络示意图</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eges">阿里EGES</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">基于用户历史行为构图</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bge">BGE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ges">GES</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">EGES</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">实验数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">数据稀疏度</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auc">离线AUC评估</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ctr">线上CTR对比</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphsage-transductive-learning-inductive-learning">GraphSAGE（Transductive Learning-&gt;Inductive Learning）</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">整体流程</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-generation">Embedding generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">采样</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">聚合函数</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-aggregator">mean aggregator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-aggergator">convolutional aggergator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lstm-aggregator">LSTM aggregator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pooling-aggregator">pooling aggregator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">模型训练</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-batch">mini batch 版本</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">实验结论</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gat">GAT</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yi Longhao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,745 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>多场景&amp;多目标建模 &#8212; JoyCode</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02-推荐系统/推荐系统05-多目标与多场景建模';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="特征交叉" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F06-%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html" />
+    <link rel="prev" title="序列特征优化方案" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F04-%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">JoyCode</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    欢迎访问JoyCode
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A001-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95.html">算法简介</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A002-K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95.html">K近邻算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">算法简介</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A004-K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">K-Means++聚类算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A005-%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95.html">数据prepare</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F01-%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐&amp;广告领域常见的业务指标</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F02-%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">技术基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F03-%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html">双塔模型优化思路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F04-%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">序列特征优化方案</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">多场景&amp;多目标建模</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F06-%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">特征交叉</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F08-%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">图模型总结</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../03-%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/%E5%88%B7%E9%A2%98.html">刷题</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/yilonghao/joycode-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/yilonghao/joycode-book/issues/new?title=Issue%20on%20page%20%2F02-推荐系统/推荐系统05-多目标与多场景建模.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/02-推荐系统/推荐系统05-多目标与多场景建模.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>多场景&多目标建模</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">多场景&amp;多目标建模简介</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">多场景和多目标（任务）的区别？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">多场景建模的核心？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">什么情况适用多场景建模？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">多场景建模的形式化定义？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">多目标与多场景建模的示意图</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">多场景建模的思路</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">场景相关特征作为输入</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias">将场景看作bias，构建辅助子网络</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ppnet">动态权重（经典代表：PPNET）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">拆塔</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">多场景建模实践</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">PPNet（快手）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">模型拆塔（好看视频）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">多场景建模-快手实践（需要进一步研究下）</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-transform-layer-slot-gating-layer">特征统一 &amp; embedding transform layer &amp; slot-gating-layer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">transformer短期行为建模</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">transformer长期行为建模</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">多目标建模实践</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmoe">多目标建模-MMOE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esmm-ctr-cvr">多目标建模-ESMM（ctr &amp; cvr）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ple">多目标建模-PLE</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#多场景&amp;多目标建模" data-toc-modified-id="多场景&amp;多目标建模-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>多场景&amp;多目标建模</a></span><ul class="toc-item"><li><span><a href="#多场景&amp;多目标建模简介" data-toc-modified-id="多场景&amp;多目标建模简介-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>多场景&amp;多目标建模简介</a></span><ul class="toc-item"><li><span><a href="#多场景和多目标（任务）的区别？" data-toc-modified-id="多场景和多目标（任务）的区别？-1.1.1"><span class="toc-item-num">1.1.1&nbsp;&nbsp;</span>多场景和多目标（任务）的区别？</a></span></li><li><span><a href="#多场景建模的核心？" data-toc-modified-id="多场景建模的核心？-1.1.2"><span class="toc-item-num">1.1.2&nbsp;&nbsp;</span>多场景建模的核心？</a></span></li><li><span><a href="#什么情况适用多场景建模？" data-toc-modified-id="什么情况适用多场景建模？-1.1.3"><span class="toc-item-num">1.1.3&nbsp;&nbsp;</span>什么情况适用多场景建模？</a></span></li><li><span><a href="#多场景建模的形式化定义？" data-toc-modified-id="多场景建模的形式化定义？-1.1.4"><span class="toc-item-num">1.1.4&nbsp;&nbsp;</span>多场景建模的形式化定义？</a></span></li><li><span><a href="#多目标与多场景建模的示意图" data-toc-modified-id="多目标与多场景建模的示意图-1.1.5"><span class="toc-item-num">1.1.5&nbsp;&nbsp;</span>多目标与多场景建模的示意图</a></span></li></ul></li><li><span><a href="#多场景建模的思路" data-toc-modified-id="多场景建模的思路-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>多场景建模的思路</a></span><ul class="toc-item"><li><span><a href="#场景相关特征作为输入" data-toc-modified-id="场景相关特征作为输入-1.2.1"><span class="toc-item-num">1.2.1&nbsp;&nbsp;</span>场景相关特征作为输入</a></span></li><li><span><a href="#将场景看作bias，构建辅助子网络" data-toc-modified-id="将场景看作bias，构建辅助子网络-1.2.2"><span class="toc-item-num">1.2.2&nbsp;&nbsp;</span>将场景看作bias，构建辅助子网络</a></span></li><li><span><a href="#动态权重（经典代表：PPNET）" data-toc-modified-id="动态权重（经典代表：PPNET）-1.2.3"><span class="toc-item-num">1.2.3&nbsp;&nbsp;</span>动态权重（经典代表：PPNET）</a></span></li><li><span><a href="#拆塔" data-toc-modified-id="拆塔-1.2.4"><span class="toc-item-num">1.2.4&nbsp;&nbsp;</span>拆塔</a></span></li></ul></li><li><span><a href="#多场景建模实践" data-toc-modified-id="多场景建模实践-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>多场景建模实践</a></span><ul class="toc-item"><li><span><a href="#PPNet（快手）" data-toc-modified-id="PPNet（快手）-1.3.1"><span class="toc-item-num">1.3.1&nbsp;&nbsp;</span>PPNet（快手）</a></span></li><li><span><a href="#模型拆塔（好看视频）" data-toc-modified-id="模型拆塔（好看视频）-1.3.2"><span class="toc-item-num">1.3.2&nbsp;&nbsp;</span>模型拆塔（好看视频）</a></span></li><li><span><a href="#多场景建模-快手实践（需要进一步研究下）" data-toc-modified-id="多场景建模-快手实践（需要进一步研究下）-1.3.3"><span class="toc-item-num">1.3.3&nbsp;&nbsp;</span>多场景建模-快手实践（需要进一步研究下）</a></span><ul class="toc-item"><li><span><a href="#特征统一-&amp;-embedding-transform-layer-&amp;-slot-gating-layer" data-toc-modified-id="特征统一-&amp;-embedding-transform-layer-&amp;-slot-gating-layer-1.3.3.1"><span class="toc-item-num">1.3.3.1&nbsp;&nbsp;</span>特征统一 &amp; embedding transform layer &amp; slot-gating-layer</a></span></li><li><span><a href="#transformer短期行为建模" data-toc-modified-id="transformer短期行为建模-1.3.3.2"><span class="toc-item-num">1.3.3.2&nbsp;&nbsp;</span>transformer短期行为建模</a></span></li><li><span><a href="#transformer长期行为建模" data-toc-modified-id="transformer长期行为建模-1.3.3.3"><span class="toc-item-num">1.3.3.3&nbsp;&nbsp;</span>transformer长期行为建模</a></span></li></ul></li></ul></li><li><span><a href="#多目标建模实践" data-toc-modified-id="多目标建模实践-1.4"><span class="toc-item-num">1.4&nbsp;&nbsp;</span>多目标建模实践</a></span><ul class="toc-item"><li><span><a href="#多目标建模-MMOE" data-toc-modified-id="多目标建模-MMOE-1.4.1"><span class="toc-item-num">1.4.1&nbsp;&nbsp;</span>多目标建模-MMOE</a></span></li><li><span><a href="#多目标建模-ESMM（ctr-&amp;-cvr）" data-toc-modified-id="多目标建模-ESMM（ctr-&amp;-cvr）-1.4.2"><span class="toc-item-num">1.4.2&nbsp;&nbsp;</span>多目标建模-ESMM（ctr &amp; cvr）</a></span></li><li><span><a href="#多目标建模-PLE" data-toc-modified-id="多目标建模-PLE-1.4.3"><span class="toc-item-num">1.4.3&nbsp;&nbsp;</span>多目标建模-PLE</a></span></li></ul></li></ul></li></ul></div><section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>多场景&amp;多目标建模<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>多场景&amp;多目标建模简介<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>多场景和多目标（任务）的区别？<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p><strong>多目标学习</strong>：解决相同场景/分布下的不同任务，如推荐场景下的多任务学习通常是单个样本对于 CTR，CVR 等目标同时预估。</p>
+<p><strong>多场景建模</strong>：解决不同场景/分布下的相同任务，如对不同场景样本预估相同的 CTR 目标。</p>
+</section>
+<section id="id4">
+<h3>多场景建模的核心？<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>如果每个场景独立建模，那每个场景都要维护一个模型，成本高，同时小场景样本少，也难以学好。如果将所有样本混在一起学习一个适用所有场景的共享模型，那每个场景间的差异就体现不出来，容易出现大场景主导小场景的问题（总结：场景数多且存在长尾问题、不同场景样本分布差异大、人力和资源的限制）。</p>
+</section>
+<section id="id5">
+<h3>什么情况适用多场景建模？<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>不同用户群体（新老用户/按用户画像拆分）、同一APP的不同频道、不同客户端、不同厂商等，都可以看作不同场景。不同场景的用户分布存在差异，同一用户在不同场景下的行为也存在差异。</p>
+</section>
+<section id="id6">
+<h3>多场景建模的形式化定义？<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>传统单场景 CTR 模型是对于样本 x 进行预估，数据从单个场景中采样得到，这背后的假设是样本独立同分布。但在多场景建模中，模型对于样本 x, p 进行预估，其中 p 是 domain indicator。在多场景建模中，数据是从多个相关但分布不同的场景中采样得到，样本只在场景内独立同分布。</p>
+</section>
+<section id="id7">
+<h3>多目标与多场景建模的示意图<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240314090349130.png" alt="多任务建模" style="zoom: 33%; display: block; margin: auto;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240314090419249.png" alt="image-20240314090419249" style="zoom:33%; display: block; margin: auto;" />
+</section>
+</section>
+<section id="id8">
+<h2>多场景建模的思路<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<section id="id9">
+<h3>场景相关特征作为输入<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>最简单的方法是<strong>把场景相关特征作为输入</strong>，场景特征维度一般较少，随着网络深度的增加，场景特征对最终预测结果影响有限。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240315083407857.png" alt="image-20240315083407857" style="zoom:33%; display: block; margin: auto;" />
+</section>
+<section id="bias">
+<h3>将场景看作bias，构建辅助子网络<a class="headerlink" href="#bias" title="Link to this heading">#</a></h3>
+<p><strong>将场景看作bias，构建辅助子网络</strong>，在输出层直接与主网络结果相加或相乘，这种方式能让场景特征直接影响到最终结果，但对主网络中间层影响有限。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240315083338180.png" alt="image-20240315083338180" style="zoom: 33%; display: block; margin: auto;" />
+</section>
+<section id="ppnet">
+<h3>动态权重（经典代表：PPNET）<a class="headerlink" href="#ppnet" title="Link to this heading">#</a></h3>
+<p>动态权重可以看作一种门控机制，<strong>以场景特征作为输入，通过多层DNN（左图）或者多组DNN（右图），生成与主网络每层维度相同的向量，然后与主网络中间层特征向量相乘，把场景信息融入主网络中间层</strong>。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240315083549703.png" alt="image-20240315083549703" style="zoom: 50%; display: block; margin: auto;" />
+</section>
+<section id="id10">
+<h3>拆塔<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p><strong>每个场景对应一个塔，有各自独立的子空间，进一步提升了各场景个性化程度</strong>。如下图，相比原始的MMOE网络，可以增加共享塔，用于学习各场景之间的共性信息，缓解小场景学不好问题，通过权重子网络，学习 得到共享塔和特定场景塔融合权重，对场景间共性信息和特定场景信息融合。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/v2-5afa13903830c0860d5bce2dfdc8f880_1440w-20221230174355883.webp" alt="img" style="zoom: 67%; display: block; margin: auto;" /></section>
+</section>
+<section id="id11">
+<h2>多场景建模实践<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<section id="id12">
+<h3>PPNet（快手）<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/635364011">PPNET 详解与应用</a></p></li>
+</ol>
+</div></blockquote>
+<p>引入门控机制，根据用户人群特征，学习门控参数，提高网络参数个性化和人群化。</p>
+<p>PPNet（Parameter Personalized Net），增加 DNN 网络参数个性化。uid，pid，aid 分别表示 user id，photo id，author id。左侧的所有特征的 embedding 会同这 3 个 id 特征的 embedding 拼接到一起作为所有 Gate NN 的输入，左侧所有特征的 embedding 并不接受 Gate NN 的反传梯度，这样操作的目的是减少 Gate NN 对现有特征 embedding 收敛产生的影响。</p>
+<p>GateNN的数量同左侧神经网络的层数一致，GateNN的输出与DNN每一层的输入做element-wise product，GateNN是一个两层的神经网络，其中第二层的激活函数是2 * sigmoid，默认值是1，左侧所有特征的embedding不接受GateNN的反传梯度。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240310180038447.png" alt="image-20240310180038447" style="zoom:50%; display: block; margin: auto;" /></section>
+<section id="id13">
+<h3>模型拆塔（好看视频）<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>推荐系统精排模型经常存在训练样本不均衡现象，eg：尾部5%用户仅提供了2%样本，而头部3%用户贡献了系统60%的样本，模型权重被少量高频重度用户主导，不利于低活用户推荐效果。可以通过用户分群多塔训练方式优化模型预估精度，并结合精排排序机制迭代，整体改善各活跃度用户的推荐体验。</p>
+<p>以下模型为三塔模型，预估用户单次播放短点率、完成率与完播率。本次迭代将完成率目标训练方式升级为finetune network，进而区分不同活跃度用户群体，提升预估精度。</p>
+<p>其中，finetune network结构借鉴迁移学习的方式，使用一个主塔训练全量样本，4个分塔训练不同活跃度的用户样本，并用于线上预估对应活跃度分群用户的完成率。主塔天级别同步小模型参数至各个分塔，保证各个分塔学习到全量用户的信号。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240307123820236.png" alt="image-20240307123820236" style="zoom: 33%; display: block; margin: auto;" /></section>
+<section id="id14">
+<h3>多场景建模-快手实践（需要进一步研究下）<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2650808254&amp;amp;idx=4&amp;amp;sn=6c295c8306b7339858f8ecfadfc9d698&amp;amp;scene=21#wechat_redirect">1.9万亿参数量，快手落地业界首个万亿参数推荐精排模型</a></p></li>
+<li><p><a class="reference external" href="https://mp.weixin.qq.com/s?__biz=MzU1NTMyOTI4Mw==&amp;amp;mid=2247577501&amp;amp;idx=1&amp;amp;sn=0abd962b316235700f4050fcc8968a3b&amp;amp;scene=21#wechat_redirect">快手牛亚男：基于多Domain多任务学习框架和Transformer，搭建快手精排模型</a></p></li>
+</ol>
+</div></blockquote>
+<p>MMoE 是 Google 提出的一种经典多任务学习算法，其核心思想是把 shared-bottom 网络替换为 Expert 层，通过多个门控网络在多个专家网络上上分别针对每个目标学习不同专家网络权重进行融合表征，在此融合表征的基础上通过 task 网络学习每个任务。</p>
+<section id="embedding-transform-layer-slot-gating-layer">
+<h4>特征统一 &amp; embedding transform layer &amp; slot-gating-layer<a class="headerlink" href="#embedding-transform-layer-slot-gating-layer" title="Link to this heading">#</a></h4>
+<p>推荐团队改造了 MMoE 算法并设计了一套新的多任务学习算法框架。具体体现在：</p>
+<p>（1）在特征层⾯，进⾏了语义统⼀，修正在单双列业务中语义不⼀致特征；</p>
+<p>（2）在 Embedding 层⾯，进⾏了空间重新映射，设计了 embedding transform layer，直接学习单双列 embedding 映射关系，帮助单双列 embedding 映射到统⼀空间分布</p>
+<p>（3）在特征重要性层⾯，设计了 slot-gating layer，为不同业务做特征重要性选择</p>
+<p>通过以上 3 点的改动，模型将输入层的 embedding 表示从特征语义，embedding 在不同业务分布，特征在不同业务重要性三个层面做了归一化和正则化，重新映射到统一的特征表征空间，使得 MMoE 网络在此空间上更好的捕捉多个任务之间后验概率分布关系。</p>
+</section>
+<section id="transformer">
+<h4>transformer短期行为建模<a class="headerlink" href="#transformer" title="Link to this heading">#</a></h4>
+<p>（1）快手推荐团队<strong>使用用户的视频播放历史作为行为序列</strong>。候选的序列有：⽤⼾⻓播历史序列、短播历史序列、用户点击历史序列等，此类列表详尽地记录了用户观看视频 id、作者 id、视频时长、视频 tag、视频观看时长、视频观看时间等内容，完整描述用户的观看历史。</p>
+<p>（2）其次，<strong>对视频观看距今时间做 log 变换代替 position embedding</strong>。在快手的推荐场景下，用户短期的观看行为跟当次预估更相关，长时间观看行为更多体现用户的多兴趣分布，使用 log 变换更能体现这种相关性。</p>
+<p>（3）<strong>替换 multi-head self-attention 为 multi-head target attention，并且使用当前 embedding 层的 输入作为 query</strong>。这样设计的目的有两点，首先当前用户特征，预估视频特征和 context 特征比单独的用户 行为序列提供更多信息。其次可以简化计算量，从 O(d*n*n*h)变换为 O(d*n*h + e*d)，其中 d 为 attention 的维度，n 为 list 长度，h 为 head 个数，e*d 表征的是 embedding 层维度变换为 attention 维 度所需的复杂度。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240315085206887.png" alt="image-20240315085206887" style="zoom: 50%; display: block; margin: auto;" />
+</section>
+<section id="id15">
+<h4>transformer长期行为建模<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<p><strong>短期建模的问题</strong>：长期以来，快手的精排模型都比较偏向于使用用户最近的行为。上面已经说到，通过采用 transformer 和 MMoE 模型，快手的精排模型对用户的短期兴趣进行了精确的建模，取得了非常大的收益。之前的模型里，采用了用户最近几十个历史行为进行建模。由于短视频行业的特点，最近几十个历史行为通常只能表示用户很短一段时间内的兴趣。这就造成了模型过度依赖用户的短期行为，而导致了对用户中长期兴趣建模的缺失。</p>
+<p><strong>长期建模的收益</strong>：针对快手的业务特点，快手推荐团队对于用户长期兴趣也进行了建模，使得模型能对于用户长期的历史记录 都有感知能力。快手推荐团队发现，将用户的交互历史序列（播放、点赞、关注、转发等）扩长之后，模型 能够更好的捕捉到一些潜在的用户兴趣，即使此类行为相对稀疏。针对该特点，推荐团队在之前的模型基础 上设计并改进了用户超长期兴趣建模模块，能够对用户几个月到一年的行为进行全面的建模，用户行为序列 长度能达到万级。此模型已经在全量业务推全并且取得了巨大的线上收益。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240315090035745.png" alt="image-20240315090035745" style="zoom:50%; display: block; margin: auto;" /></section>
+</section>
+</section>
+<section id="id16">
+<h2>多目标建模实践<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<section id="mmoe">
+<h3>多目标建模-MMOE<a class="headerlink" href="#mmoe" title="Link to this heading">#</a></h3>
+<p><strong>MMOE</strong>是<strong>MOE</strong>的改进，相对于 <strong>MOE</strong>的结构中所有任务共享一个门控网络，<strong>MMOE</strong>的结构优化为每个任务都单独使用一个门控网络。这样的改进可以针对不同任务得到不同的 Experts 权重，从而实现对 Experts 的选择性利用，不同任务对应的门控网络可以学习到不同的Experts 组合模式，因此模型更容易捕捉到子任务间的相关性和差异性。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240316001744204.png" alt="image-20240316001744204" style="zoom: 50%; display: block; margin: auto;" /></section>
+<section id="esmm-ctr-cvr">
+<h3>多目标建模-ESMM（ctr &amp; cvr）<a class="headerlink" href="#esmm-ctr-cvr" title="Link to this heading">#</a></h3>
+<p>ESMM(Entire Space Multi-Task Model)是针对<strong>任务依赖</strong>而提出，比如电商推荐中的多目标预估经常是ctr和cvr，其中转换这个行为只有在点击发生后才会发生。cvr任务在训练时只能利用点击后的样本，而预测时，是在整个样本空间，这样导致训练和预测样本分布不一致，即<strong>样本选择性偏差</strong>。同时点击样本只占整个样本空间的很小比例，比如在新闻推荐中，点击率通常只有不到10%，即<strong>样本稀疏性问题</strong>。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240316003513943.png" alt="image-20240316003513943" style="zoom: 33%; display: block; margin: auto;" />
+<p>为了解决这个问题，<strong>ESMM</strong>提出了转化公式：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+pcvr = \frac{pctcvr}{pctr} \\
+p(z=1|y=1,x) = \frac{p(y=1,z=1|x)}{p(y=1|x)}
+\end{split}\]</div>
+<p>ESMM引入了pctr和pctcvr两个辅助任务，训练时，loss为两者相加：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240316004434014.png" alt="image-20240316004434014" style="zoom: 38%; display: block; margin: auto;" />
+<p>网络结构为：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240316003746188.png" alt="image-20240316003746188" style="zoom: 33%; display: block; margin: auto;" /></section>
+<section id="ple">
+<h3>多目标建模-PLE<a class="headerlink" href="#ple" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/datawhalechina/fun-rec/blob/master/docs/ch02/ch2.2/ch2.2.5/PLE.md">PLE</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/291406172">多目标学习在推荐系统的应用(MMOE/ESMM/PLE)</a></p></li>
+</ol>
+</div></blockquote>
+<p>腾讯的<strong>PLE</strong>(Progressive Layered Extraction)模型，PLE相对于前面的MMOE和ESMM，主要解决以下问题：多任务学习中往往存在<strong>跷跷板现象</strong>，也就是说，多任务学习相对于多个单任务学习的模型，往往能够<strong>提升一部分任务的效果，同时牺牲另外部分任务的效果</strong>。即使通过MMoE这种方式减轻负迁移现象，跷跷板现象仍然是广泛存在的。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240316010039413.png" alt="image-20240316010039413" style="zoom:50%; display: block; margin: auto;" />
+<p><strong>前面的MMOE模型存在以下两方面的缺点</strong>：</p>
+<p>（1）MMOE中所有的Expert是被所有任务所共享的，这可能无法捕捉到任务之间更复杂的关系，从而给部分任务带来一定的噪声</p>
+<p>（2）不同的Expert之间没有交互，联合优化的效果有所折扣</p>
+<p><strong>PLE针对上面第一个问题</strong>，每个任务有独立的Expert，同时保留了共享的Expert。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/68747470733a2f2f706963332e7a68696d672e636f6d2f38302f76322d63393239373566376332316363353638613133636439343437616463373537615f31343430772e6a7067.png" alt="img" style="zoom: 33%; display: block; margin: auto;" />
+<p><strong>针对上面的第二个问题</strong>，通过堆叠的方式考虑不同Expert之间的交互。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240316005856167.png" alt="image-20240316005856167" style="zoom: 33%; display: block; margin: auto;" />
+<p>具体实例：</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240312170529947.png" alt="image-20240312170529947" style="zoom:67%; display: block; margin: auto;" /></section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./02-推荐系统"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F04-%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">序列特征优化方案</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F06-%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">特征交叉</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">多场景&amp;多目标建模简介</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">多场景和多目标（任务）的区别？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">多场景建模的核心？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">什么情况适用多场景建模？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">多场景建模的形式化定义？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">多目标与多场景建模的示意图</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">多场景建模的思路</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">场景相关特征作为输入</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias">将场景看作bias，构建辅助子网络</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ppnet">动态权重（经典代表：PPNET）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">拆塔</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">多场景建模实践</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">PPNet（快手）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">模型拆塔（好看视频）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">多场景建模-快手实践（需要进一步研究下）</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-transform-layer-slot-gating-layer">特征统一 &amp; embedding transform layer &amp; slot-gating-layer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">transformer短期行为建模</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">transformer长期行为建模</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">多目标建模实践</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmoe">多目标建模-MMOE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esmm-ctr-cvr">多目标建模-ESMM（ctr &amp; cvr）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ple">多目标建模-PLE</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yi Longhao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

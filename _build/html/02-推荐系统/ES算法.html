@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ES算法 &#8212; JoyCode</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02-推荐系统/ES算法';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">JoyCode</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    欢迎访问JoyCode
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A001-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95.html">算法简介</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A002-K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95.html">K近邻算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">算法简介</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A004-K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">K-Means++聚类算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A005-%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95.html">数据prepare</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F01-%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐&amp;广告领域常见的业务指标</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F02-%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">技术基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F03-%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html">双塔模型优化思路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F04-%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">序列特征优化方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F05-%E5%A4%9A%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%A4%9A%E5%9C%BA%E6%99%AF%E5%BB%BA%E6%A8%A1.html">多场景&amp;多目标建模</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F06-%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">特征交叉</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F08-%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">图模型总结</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../03-%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/%E5%88%B7%E9%A2%98.html">刷题</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/yilonghao/joycode-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/yilonghao/joycode-book/issues/new?title=Issue%20on%20page%20%2F02-推荐系统/ES算法.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/02-推荐系统/ES算法.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ES算法</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esgr">ES算法在GR系统上的应用</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">非场景化ES</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">场景化ES</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#ES算法" data-toc-modified-id="ES算法-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>ES算法</a></span><ul class="toc-item"><li><span><a href="#ES算法在GR系统上的应用" data-toc-modified-id="ES算法在GR系统上的应用-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>ES算法在GR系统上的应用</a></span></li><li><span><a href="#非场景化ES" data-toc-modified-id="非场景化ES-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>非场景化ES</a></span></li><li><span><a href="#场景化ES" data-toc-modified-id="场景化ES-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>场景化ES</a></span></li></ul></li><li><span><a href="#ES算法在GR系统上的应用" data-toc-modified-id="ES算法在GR系统上的应用-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>ES算法在GR系统上的应用</a></span></li><li><span><a href="#非场景化ES" data-toc-modified-id="非场景化ES-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>非场景化ES</a></span></li><li><span><a href="#场景化ES" data-toc-modified-id="场景化ES-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>场景化ES</a></span></li><li><span><a href="#推荐阅读" data-toc-modified-id="推荐阅读-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>推荐阅读</a></span></li></ul></div><section id="es">
+<h1>ES算法<a class="headerlink" href="#es" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>推荐阅读</strong>⭐️⭐️⭐️⭐️⭐️</p>
+<ol class="arabic simple">
+<li><p>Evolution Strategies as a Scalable Alternative to Reinforcement Learning</p></li>
+<li><p>The CMA Evolution Strategy: A Tutorial</p></li>
+<li><p>Guided evolutionary strategies: Augmenting random search with surrogate gradients</p></li>
+</ol>
+</div></blockquote>
+<p>ES算法是一种进化策略，通过不断的前向进化，可以达到和强化学习相似的效果。ES算法通过扰动神经网络中的参数,不同的参数带来不同的reward,通过reward大小对应的参数来按一定方向和比例更新原始的参数。ES算法有以下几个特点：</p>
+<ol class="arabic simple">
+<li><p>ES算法计算简单高效，可高度并行，资源消耗小，使用较少代价的训练达到和DQN等RL模型相似的效果</p></li>
+<li><p>ES算法还可以推广到其他模块、其他模型的优化，不受参数作用方式、模块位置以及作用长度的限制，比如通过gr获得的reward，来进行粗排、GRC等阶段的参数优化等</p></li>
+<li><p>不依赖于误差反向传播，ES只依赖最终的反馈，适用于长流程复杂目标优化</p></li>
+</ol>
+<p>ES进化示意图如下，白点代表当前模型内部参数， 周围的黑点是由白点抖动得到的噪声参数，对所有的噪声参数根据奖励值（红色=高、蓝色=低）计算一个回报向量，根据这些回报向量（白色箭头为梯度）。通过不断的参数进化，可以收敛到最优值。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240624234005101.png" alt="image-20240624234005101" style="zoom:50%; display: block; margin: auto;" />
+<p>伪代码如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. 设置初始参数向量w
+2. 设置es算法轮数n（更新n轮后结束，后续会修改收敛条件）
+3. for t = 0, 1, 2, ..., n
+  (1) 计算当前基线 reward: rbase
+  (2) step_list = []
+  (3) 生成 m 组扰动向量 e1, e2, ..., em，对每一个 e 生成 wi = w + ei
+  (4) 对每一个 wi，计算 reward(ri) 和 deta_ri = ri - rbase
+  (5) step_list.append(ei * deta_ri)
+  (6) 移动步长 step = sum(step_list) / len(step_list) * learning_rate
+  (7) 更新 w: w = w + step
+  (8) 计算新的 w 下的 reward_new，更新  reward = reward_new
+</pre></div>
+</div>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240624234218407.png" alt="image-20240624234218407" style="zoom:33%; display: block; margin: auto;" />
+<section id="esgr">
+<h2>ES算法在GR系统上的应用<a class="headerlink" href="#esgr" title="Link to this heading">#</a></h2>
+<p>GR线上系统较为复杂，同时存在较多超参数，而这些超参数难以以某一目标有效进行离线监督学习，非常符合作用流程长、策略系统复杂等特点。因此尝试利用ES对GR线上超参数进行一次性寻优。这种方法有以下几个特征：</p>
+<ol class="arabic simple">
+<li><p>不过度依赖经验调优：所有超参同时寻优，避免了需要针对不同参数、不同作用方式需要不同调节经验的问题。</p></li>
+<li><p>全局最优：众多参数同时调优有利于超参数整体达到最优，更易找到比单独寻优更全局最优的可能。</p></li>
+<li><p>在线进化、快速自适应：在线进化有利于系统能够根据变化快速自适应，避免系统变化以后很多参数过时的问题。</p></li>
+<li><p>可扩展性强：能够推广到其他模块、其他模型的参数及超参数优化，不受参数作用方式、模块位置和作用长度的限制。</p></li>
+</ol>
+</section>
+<section id="id1">
+<h2>非场景化ES<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>现有 feed 推荐策略，在 GR 序列生成阶段会根据点展比(ctr)和预估时长(dur)进行点击时长融合排序。现有的排序公式为 ctr * dur + xgb_dur，本策略使用 ctr、dur 的多项式形式来进行融合排序，扩展了搜索空间，同时在多项式系数的寻优中，使用ES(Evolution Strategies)算法进行迭代进化，以期获取更优的融合效果。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240625002054845.png" alt="image-20240625002054845" style="zoom:66%; display: block; margin: auto;" />
+<p>上图为新融合公式，采用(ctr,dur)的多项式二次展开形式，原有的融合公式为新融合公式的子集，新公式扩展了参数的搜索空间，有利于搜到更优的结果。</p>
+<p>先圈定1%的小流量用户，对参数进行初始化，通过在参数上添加随机扰动的噪声，在线得到该参数下用户的reward，离线收集样本，利用ES算法进行迭代参数。</p>
+</section>
+<section id="id2">
+<h2>场景化ES<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>建立一个基于场景化特征的线性融合模型，通过ES进化学习不同用户在各场景下的个性化与场景化融合参数，优化不同场景下的点击融合效果，进而提升推荐效果。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240625002314531.png" alt="image-20240625002314531" style="zoom:50%; display: block; margin: auto;" />
+<p>使用刷新类型、是否是低活用户、refresh_state、refresh_typr、net(网络状态)  五维场景化特征，通过一个线性模型来得到二项展开式的参数，使用ES算法对模型参数(vector_w及bias)进行寻优。</p>
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240625002458037.png" alt="image-20240625002458037" style="zoom:50%; display: block; margin: auto;" />
+<img src="https://yilonghao-picgo.oss-cn-hangzhou.aliyuncs.com/image-20240625002549877.png" alt="image-20240625002549877" style="zoom:50%; display: block; margin: auto;" /></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./02-推荐系统"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esgr">ES算法在GR系统上的应用</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">非场景化ES</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">场景化ES</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yi Longhao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
