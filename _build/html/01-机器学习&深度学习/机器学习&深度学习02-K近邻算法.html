@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>K近邻算法 &#8212; JoyCode</title>
+    <title>机器学习&amp;深度学习02-K近邻算法 &#8212; JoyCode</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '01-机器学习&深度学习/机器学习&深度学习02-K近邻算法';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="算法简介" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html" />
-    <link rel="prev" title="算法简介" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A001-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95.html" />
+    <link rel="next" title="机器学习&amp;深度学习03-K-Means聚类算法" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html" />
+    <link rel="prev" title="机器学习&amp;深度学习01-逻辑回归算法" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A001-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -173,42 +173,18 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A001-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95.html">算法简介</a></li>
-
-
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">K近邻算法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">算法简介</a></li>
-
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A004-K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">K-Means++聚类算法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A005-%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95.html">数据prepare</a></li>
-
-
-
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F01-%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐&amp;广告领域常见的业务指标</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F02-%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">技术基础</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F03-%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html">双塔模型优化思路</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F04-%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">序列特征优化方案</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F05-%E5%A4%9A%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%A4%9A%E5%9C%BA%E6%99%AF%E5%BB%BA%E6%A8%A1.html">多场景&amp;多目标建模</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F06-%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">特征交叉</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F08-%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">图模型总结</a></li>
-
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../03-%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/%E5%88%B7%E9%A2%98.html">刷题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A001-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习01-逻辑回归算法</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">机器学习&amp;深度学习02-K近邻算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习03-K-Means聚类算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A004-K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习04-K-Means++聚类算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A005-%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95.html">机器学习&amp;深度学习05-分类模型评估方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F01-%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐系统01-推荐&amp;广告领域常见的业务指标</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F02-%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">推荐系统02-技术基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F03-%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html">推荐系统03-双塔模型优化思路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F04-%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">推荐系统04-序列特征优化方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F05-%E5%A4%9A%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%A4%9A%E5%9C%BA%E6%99%AF%E5%BB%BA%E6%A8%A1.html">推荐系统05-多目标与多场景建模</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F06-%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">推荐系统06-特征交叉</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F08-%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">推荐系统08-图神经网络</a></li>
 </ul>
 
     </div>
@@ -394,7 +370,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>K近邻算法</h1>
+    <h1>机器学习&深度学习02-K近邻算法</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -439,7 +415,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="k">
-<h1>K近邻算法<a class="headerlink" href="#k" title="Link to this heading">#</a></h1>
+<h1>机器学习&amp;深度学习02-K近邻算法<a class="headerlink" href="#k" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>算法简介<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>K 近邻法并不具有显式的学习过程，K 近邻法实际上是利用训练集数据对特征空间进行划分，并作为其分类的模型。给定一个训练集，对于新的输入实例，首先在训练集中找到与该实例最近的 K 个实例，然后统计这 K 个实例的多数属于哪个类，就把该实例划分为哪个类。<strong>K近邻算法的3要素</strong>：</p>
@@ -552,7 +528,7 @@ labels:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x11645b7c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x117fdb7c0&gt;
 </pre></div>
 </div>
 <img alt="../_images/27bf01b3b55a67c862fb4a1b265c3ef367cd366e98c5e9c62c019a24e6ce1ccc.png" src="../_images/27bf01b3b55a67c862fb4a1b265c3ef367cd366e98c5e9c62c019a24e6ce1ccc.png" />
@@ -628,11 +604,11 @@ d_{(x_i, x_j)} = \sqrt{\sum_{l=1}^n ( x_i^{l} - x_j^{l} ) ^ 2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x: [0.47931084 0.64741556 0.81346609 0.41402813 0.14970978 0.84708855
- 0.20569863 0.33882165 0.64472195 0.10652328]
-y: [0.91659132 0.08730942 0.25376602 0.41564117 0.65344281 0.55144453
- 0.21424415 0.26025793 0.07262688 0.03447864]
-1.2239610750663905
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x: [0.30376546 0.40449441 0.72414035 0.75451228 0.74058424 0.72391612
+ 0.3714805  0.34352285 0.89885394 0.15783351]
+y: [0.91697773 0.57546309 0.22297156 0.01667107 0.48808893 0.82244124
+ 0.88587718 0.34414439 0.02702516 0.11632769]
+1.5168101220898789
 </pre></div>
 </div>
 </div>
@@ -745,7 +721,7 @@ y: [0.91659132 0.08730942 0.25376602 0.41564117 0.65344281 0.55144453
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x103af31c0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x12217a7f0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/cf16d038b72222003fecf2960ebdf58845b715d3c0ad85fca09b91d186637954.png" src="../_images/cf16d038b72222003fecf2960ebdf58845b715d3c0ad85fca09b91d186637954.png" />
@@ -922,7 +898,7 @@ y: [0.91659132 0.08730942 0.25376602 0.41564117 0.65344281 0.55144453
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x120f5be20&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x127cb09a0&gt;
 </pre></div>
 </div>
 <img alt="../_images/d5f495ad35f902f4f63d1cc4a96ff6f518c0327da8ec3c2db371f1e4dfeec130.png" src="../_images/d5f495ad35f902f4f63d1cc4a96ff6f518c0327da8ec3c2db371f1e4dfeec130.png" />
@@ -1424,7 +1400,7 @@ y: [0.91659132 0.08730942 0.25376602 0.41564117 0.65344281 0.55144453
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">算法简介</p>
+        <p class="prev-next-title">机器学习&amp;深度学习01-逻辑回归算法</p>
       </div>
     </a>
     <a class="right-next"
@@ -1432,7 +1408,7 @@ y: [0.91659132 0.08730942 0.25376602 0.41564117 0.65344281 0.55144453
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">算法简介</p>
+        <p class="prev-next-title">机器学习&amp;深度学习03-K-Means聚类算法</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

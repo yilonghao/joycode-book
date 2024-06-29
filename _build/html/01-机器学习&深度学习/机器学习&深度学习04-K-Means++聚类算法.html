@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>K-Means++聚类算法 &#8212; JoyCode</title>
+    <title>机器学习&amp;深度学习04-K-Means++聚类算法 &#8212; JoyCode</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '01-机器学习&深度学习/机器学习&深度学习04-K-Means++聚类算法';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="数据prepare" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A005-%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95.html" />
-    <link rel="prev" title="算法简介" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html" />
+    <link rel="next" title="机器学习&amp;深度学习05-分类模型评估方法" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A005-%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95.html" />
+    <link rel="prev" title="机器学习&amp;深度学习03-K-Means聚类算法" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -173,42 +173,18 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A001-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95.html">算法简介</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A002-K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95.html">K近邻算法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">算法简介</a></li>
-
-
-
-
-
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">K-Means++聚类算法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A005-%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95.html">数据prepare</a></li>
-
-
-
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F01-%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐&amp;广告领域常见的业务指标</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F02-%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">技术基础</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F03-%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html">双塔模型优化思路</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F04-%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">序列特征优化方案</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F05-%E5%A4%9A%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%A4%9A%E5%9C%BA%E6%99%AF%E5%BB%BA%E6%A8%A1.html">多场景&amp;多目标建模</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F06-%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">特征交叉</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F08-%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">图模型总结</a></li>
-
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../03-%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/%E5%88%B7%E9%A2%98.html">刷题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A001-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习01-逻辑回归算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A002-K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习02-K近邻算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习03-K-Means聚类算法</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">机器学习&amp;深度学习04-K-Means++聚类算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A005-%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95.html">机器学习&amp;深度学习05-分类模型评估方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F01-%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐系统01-推荐&amp;广告领域常见的业务指标</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F02-%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">推荐系统02-技术基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F03-%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html">推荐系统03-双塔模型优化思路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F04-%E5%BA%8F%E5%88%97%E7%89%B9%E5%BE%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88.html">推荐系统04-序列特征优化方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F05-%E5%A4%9A%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%A4%9A%E5%9C%BA%E6%99%AF%E5%BB%BA%E6%A8%A1.html">推荐系统05-多目标与多场景建模</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F06-%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">推荐系统06-特征交叉</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F08-%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">推荐系统08-图神经网络</a></li>
 </ul>
 
     </div>
@@ -394,7 +370,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>K-Means++聚类算法</h1>
+    <h1>机器学习&深度学习04-K-Means++聚类算法</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -425,8 +401,8 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Table of Contents<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#K-Means++聚类算法" data-toc-modified-id="K-Means++聚类算法-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>K-Means++聚类算法</a></span><ul class="toc-item"><li><span><a href="#数据prepare" data-toc-modified-id="数据prepare-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>数据prepare</a></span></li><li><span><a href="#K-means算法存在的问题" data-toc-modified-id="K-means算法存在的问题-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>K-means算法存在的问题</a></span><ul class="toc-item"><li><span><a href="#随机初始化中心点" data-toc-modified-id="随机初始化中心点-1.2.1"><span class="toc-item-num">1.2.1&nbsp;&nbsp;</span>随机初始化中心点</a></span></li><li><span><a href="#K-Means算法实现" data-toc-modified-id="K-Means算法实现-1.2.2"><span class="toc-item-num">1.2.2&nbsp;&nbsp;</span>K-Means算法实现</a></span></li></ul></li><li><span><a href="#K-Means++-算法流程" data-toc-modified-id="K-Means++-算法流程-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>K-Means++ 算法流程</a></span></li><li><span><a href="#K-Means++算法实现" data-toc-modified-id="K-Means++算法实现-1.4"><span class="toc-item-num">1.4&nbsp;&nbsp;</span>K-Means++算法实现</a></span></li><li><span><a href="#Mini-Batch-K-Means-聚类算法" data-toc-modified-id="Mini-Batch-K-Means-聚类算法-1.5"><span class="toc-item-num">1.5&nbsp;&nbsp;</span>Mini-Batch K-Means 聚类算法</a></span></li></ul></li></ul></div><section class="tex2jax_ignore mathjax_ignore" id="k-means">
-<h1>K-Means++聚类算法<a class="headerlink" href="#k-means" title="Link to this heading">#</a></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#机器学习&amp;深度学习04-K-Means++聚类算法" data-toc-modified-id="机器学习&amp;深度学习04-K-Means++聚类算法-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>机器学习&amp;深度学习04-K-Means++聚类算法</a></span><ul class="toc-item"><li><span><a href="#数据prepare" data-toc-modified-id="数据prepare-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>数据prepare</a></span></li><li><span><a href="#K-means算法存在的问题" data-toc-modified-id="K-means算法存在的问题-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>K-means算法存在的问题</a></span><ul class="toc-item"><li><span><a href="#随机初始化中心点" data-toc-modified-id="随机初始化中心点-1.2.1"><span class="toc-item-num">1.2.1&nbsp;&nbsp;</span>随机初始化中心点</a></span></li><li><span><a href="#K-Means算法实现" data-toc-modified-id="K-Means算法实现-1.2.2"><span class="toc-item-num">1.2.2&nbsp;&nbsp;</span>K-Means算法实现</a></span></li></ul></li><li><span><a href="#K-Means++-算法流程" data-toc-modified-id="K-Means++-算法流程-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>K-Means++ 算法流程</a></span></li><li><span><a href="#K-Means++算法实现" data-toc-modified-id="K-Means++算法实现-1.4"><span class="toc-item-num">1.4&nbsp;&nbsp;</span>K-Means++算法实现</a></span></li><li><span><a href="#Mini-Batch-K-Means-聚类算法" data-toc-modified-id="Mini-Batch-K-Means-聚类算法-1.5"><span class="toc-item-num">1.5&nbsp;&nbsp;</span>Mini-Batch K-Means 聚类算法</a></span></li></ul></li></ul></div><section class="tex2jax_ignore mathjax_ignore" id="k-means">
+<h1>机器学习&amp;深度学习04-K-Means++聚类算法<a class="headerlink" href="#k-means" title="Link to this heading">#</a></h1>
 <section id="prepare">
 <h2>数据prepare<a class="headerlink" href="#prepare" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -442,7 +418,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1527bf490&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x13a6c0490&gt;
 </pre></div>
 </div>
 <img alt="../_images/9f0b1c0f0568247cdfe5a65bc704a86fbede9df7f57bf481ea81222f1622652c.png" src="../_images/9f0b1c0f0568247cdfe5a65bc704a86fbede9df7f57bf481ea81222f1622652c.png" />
@@ -479,7 +455,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1529239a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x13a8ea940&gt;
 </pre></div>
 </div>
 <img alt="../_images/371be1402986e850a2f1a1bd3c84a72e036f3bdea27ae3da644c3ba84d255692.png" src="../_images/371be1402986e850a2f1a1bd3c84a72e036f3bdea27ae3da644c3ba84d255692.png" />
@@ -600,7 +576,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1529d66a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x13a9976a0&gt;
 </pre></div>
 </div>
 <img alt="../_images/45cc4cd9575768d2ae5c2d9fc4c06b923a0fdfdbc595013b491fb636424e0bb3.png" src="../_images/45cc4cd9575768d2ae5c2d9fc4c06b923a0fdfdbc595013b491fb636424e0bb3.png" />
@@ -614,7 +590,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x152996bb0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x13a93eb50&gt;
 </pre></div>
 </div>
 <img alt="../_images/b1fd656a04bd94137f1f107b984b2c6726b4871eb4824a9d341f42047420865a.png" src="../_images/b1fd656a04bd94137f1f107b984b2c6726b4871eb4824a9d341f42047420865a.png" />
@@ -705,10 +681,10 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 4.1661903 ,  0.81807492],
-       [ 4.40583637, 10.94760067],
-       [ 3.6909499 ,  9.07344284],
-       [-4.64568223, -9.55180857],
-       [ 7.23739161, -7.9854938 ]])
+       [-5.63982093, -9.86198957],
+       [ 3.50193621,  9.06553783],
+       [ 7.58963381,  3.72584922],
+       [ 5.0745317 , -0.18125664]])
 </pre></div>
 </div>
 </div>
@@ -740,7 +716,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;final center&#39;)
 </pre></div>
 </div>
-<img alt="../_images/56547a2d9e7f76835bfc62e9cf9c5c77dc36f8da22b3436b7850a40cbac17e27.png" src="../_images/56547a2d9e7f76835bfc62e9cf9c5c77dc36f8da22b3436b7850a40cbac17e27.png" />
+<img alt="../_images/4c66478ad2ce4e01cb2b945aafb31bb5dcbb87cf5aebb87230aada2178c029ff.png" src="../_images/4c66478ad2ce4e01cb2b945aafb31bb5dcbb87cf5aebb87230aada2178c029ff.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -756,10 +732,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x152cf83d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x13acb63d0&gt;
 </pre></div>
 </div>
-<img alt="../_images/120383bb3766a5e31605fe682b2682dd39229c471cc831a0ba228954a63b5ae3.png" src="../_images/120383bb3766a5e31605fe682b2682dd39229c471cc831a0ba228954a63b5ae3.png" />
+<img alt="../_images/9f7bd445d52b210879ba1416dece71e6d448269b687c876be93d290dd7ed9545.png" src="../_images/9f7bd445d52b210879ba1416dece71e6d448269b687c876be93d290dd7ed9545.png" />
 </div>
 </div>
 </section>
@@ -802,7 +778,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Mini Batch K-Means&#39;)
 </pre></div>
 </div>
-<img alt="../_images/1889e7a7c0bfb670ce5e9a54c38e02ca63f24b7e4c279cfdff941f5846536e99.png" src="../_images/1889e7a7c0bfb670ce5e9a54c38e02ca63f24b7e4c279cfdff941f5846536e99.png" />
+<img alt="../_images/ed6dbf48c6ddf29bf2ff96c3f5023b7322c3a1f72b6ef1b2d02591ffcaa00536.png" src="../_images/ed6dbf48c6ddf29bf2ff96c3f5023b7322c3a1f72b6ef1b2d02591ffcaa00536.png" />
 </div>
 </div>
 </section>
@@ -844,7 +820,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">算法简介</p>
+        <p class="prev-next-title">机器学习&amp;深度学习03-K-Means聚类算法</p>
       </div>
     </a>
     <a class="right-next"
@@ -852,7 +828,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">数据prepare</p>
+        <p class="prev-next-title">机器学习&amp;深度学习05-分类模型评估方法</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>序列特征优化方案 &#8212; JoyCode</title>
+    <title>推荐系统04-序列特征优化方案 &#8212; JoyCode</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '02-推荐系统/推荐系统04-序列特征优化方案';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="多场景&amp;多目标建模" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F05-%E5%A4%9A%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%A4%9A%E5%9C%BA%E6%99%AF%E5%BB%BA%E6%A8%A1.html" />
-    <link rel="prev" title="双塔模型优化思路" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F03-%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html" />
+    <link rel="next" title="推荐系统05-多目标与多场景建模" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F05-%E5%A4%9A%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%A4%9A%E5%9C%BA%E6%99%AF%E5%BB%BA%E6%A8%A1.html" />
+    <link rel="prev" title="推荐系统03-双塔模型优化思路" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F03-%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -173,42 +173,18 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A001-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95.html">算法简介</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A002-K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95.html">K近邻算法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">算法简介</a></li>
-
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A004-K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">K-Means++聚类算法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A005-%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95.html">数据prepare</a></li>
-
-
-
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F01-%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐&amp;广告领域常见的业务指标</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F02-%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">技术基础</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F03-%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html">双塔模型优化思路</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">序列特征优化方案</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F05-%E5%A4%9A%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%A4%9A%E5%9C%BA%E6%99%AF%E5%BB%BA%E6%A8%A1.html">多场景&amp;多目标建模</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F06-%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">特征交叉</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F08-%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">图模型总结</a></li>
-
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../03-%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/%E5%88%B7%E9%A2%98.html">刷题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A001-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习01-逻辑回归算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A002-K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习02-K近邻算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A003-K-Means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习03-K-Means聚类算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A004-K-Means%2B%2B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95.html">机器学习&amp;深度学习04-K-Means++聚类算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%26%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A005-%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95.html">机器学习&amp;深度学习05-分类模型评估方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F01-%E6%8E%A8%E8%8D%90%26%E5%B9%BF%E5%91%8A%E9%A2%86%E5%9F%9F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87.html">推荐系统01-推荐&amp;广告领域常见的业务指标</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F02-%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">推荐系统02-技术基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F03-%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF.html">推荐系统03-双塔模型优化思路</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">推荐系统04-序列特征优化方案</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F05-%E5%A4%9A%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%A4%9A%E5%9C%BA%E6%99%AF%E5%BB%BA%E6%A8%A1.html">推荐系统05-多目标与多场景建模</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F06-%E7%89%B9%E5%BE%81%E4%BA%A4%E5%8F%89.html">推荐系统06-特征交叉</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F08-%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">推荐系统08-图神经网络</a></li>
 </ul>
 
     </div>
@@ -394,7 +370,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>序列特征优化方案</h1>
+    <h1>推荐系统04-序列特征优化方案</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -496,7 +472,7 @@ document.write(`
                   
   <h1>Table of Contents<span class="tocSkip"></span></h1>
 <div class="toc"><ul class="toc-item"><li><span><a href="#序列特征优化方案" data-toc-modified-id="序列特征优化方案-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>序列特征优化方案</a></span><ul class="toc-item"><li><span><a href="#Base-Model" data-toc-modified-id="Base-Model-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>Base Model</a></span></li><li><span><a href="#DIN(Deep-Interest-Network)" data-toc-modified-id="DIN(Deep-Interest-Network)-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>DIN(Deep Interest Network)</a></span><ul class="toc-item"><li><span><a href="#DIN核心思想" data-toc-modified-id="DIN核心思想-1.2.1"><span class="toc-item-num">1.2.1&nbsp;&nbsp;</span>DIN核心思想</a></span></li><li><span><a href="#mini-batch-aware-regularization(MBAR)" data-toc-modified-id="mini-batch-aware-regularization(MBAR)-1.2.2"><span class="toc-item-num">1.2.2&nbsp;&nbsp;</span>mini-batch aware regularization(MBAR)</a></span></li><li><span><a href="#自适应激活函数Dice" data-toc-modified-id="自适应激活函数Dice-1.2.3"><span class="toc-item-num">1.2.3&nbsp;&nbsp;</span>自适应激活函数Dice</a></span></li></ul></li><li><span><a href="#DIEN（target-attention-+-GRU）" data-toc-modified-id="DIEN（target-attention-+-GRU）-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>DIEN（target attention + GRU）</a></span><ul class="toc-item"><li><span><a href="#模型结构" data-toc-modified-id="模型结构-1.3.1"><span class="toc-item-num">1.3.1&nbsp;&nbsp;</span>模型结构</a></span></li><li><span><a href="#Interest-Extractor-Layer" data-toc-modified-id="Interest-Extractor-Layer-1.3.2"><span class="toc-item-num">1.3.2&nbsp;&nbsp;</span>Interest Extractor Layer</a></span></li><li><span><a href="#辅助损失函数" data-toc-modified-id="辅助损失函数-1.3.3"><span class="toc-item-num">1.3.3&nbsp;&nbsp;</span>辅助损失函数</a></span></li><li><span><a href="#Interest-Evolving-Layer" data-toc-modified-id="Interest-Evolving-Layer-1.3.4"><span class="toc-item-num">1.3.4&nbsp;&nbsp;</span>Interest Evolving Layer</a></span></li><li><span><a href="#将attention机制融入GRU结构中(AUGRU)" data-toc-modified-id="将attention机制融入GRU结构中(AUGRU)-1.3.5"><span class="toc-item-num">1.3.5&nbsp;&nbsp;</span>将attention机制融入GRU结构中(AUGRU)</a></span></li></ul></li><li><span><a href="#DSIN" data-toc-modified-id="DSIN-1.4"><span class="toc-item-num">1.4&nbsp;&nbsp;</span>DSIN</a></span><ul class="toc-item"><li><span><a href="#模型结构（整体）" data-toc-modified-id="模型结构（整体）-1.4.1"><span class="toc-item-num">1.4.1&nbsp;&nbsp;</span>模型结构（整体）</a></span></li><li><span><a href="#embedding" data-toc-modified-id="embedding-1.4.2"><span class="toc-item-num">1.4.2&nbsp;&nbsp;</span>embedding</a></span></li><li><span><a href="#建模用户序列" data-toc-modified-id="建模用户序列-1.4.3"><span class="toc-item-num">1.4.3&nbsp;&nbsp;</span>建模用户序列</a></span><ul class="toc-item"><li><span><a href="#session-division-layer" data-toc-modified-id="session-division-layer-1.4.3.1"><span class="toc-item-num">1.4.3.1&nbsp;&nbsp;</span>session division layer</a></span></li><li><span><a href="#session-interest-extractor-layer" data-toc-modified-id="session-interest-extractor-layer-1.4.3.2"><span class="toc-item-num">1.4.3.2&nbsp;&nbsp;</span>session interest extractor layer</a></span></li><li><span><a href="#Session-Interest-Interacting-Layer" data-toc-modified-id="Session-Interest-Interacting-Layer-1.4.3.3"><span class="toc-item-num">1.4.3.3&nbsp;&nbsp;</span>Session Interest Interacting Layer</a></span></li><li><span><a href="#session-interest-activating-layer" data-toc-modified-id="session-interest-activating-layer-1.4.3.4"><span class="toc-item-num">1.4.3.4&nbsp;&nbsp;</span>session interest activating layer</a></span></li><li><span><a href="#session-interest-extractor-layer-相关-activation-unit" data-toc-modified-id="session-interest-extractor-layer-相关-activation-unit-1.4.3.5"><span class="toc-item-num">1.4.3.5&nbsp;&nbsp;</span>session interest extractor layer 相关 activation unit</a></span></li><li><span><a href="#session-interest-interacting-layer-相关-activation-unit" data-toc-modified-id="session-interest-interacting-layer-相关-activation-unit-1.4.3.6"><span class="toc-item-num">1.4.3.6&nbsp;&nbsp;</span>session interest interacting layer 相关 activation unit</a></span></li></ul></li><li><span><a href="#MLP" data-toc-modified-id="MLP-1.4.4"><span class="toc-item-num">1.4.4&nbsp;&nbsp;</span>MLP</a></span></li><li><span><a href="#实验数据" data-toc-modified-id="实验数据-1.4.5"><span class="toc-item-num">1.4.5&nbsp;&nbsp;</span>实验数据</a></span></li></ul></li><li><span><a href="#京东-|-Deep-Multifaceted-Transformers-for-Multi-objective-Ranking-in-Large-Scale-E-commerce-Recommender" data-toc-modified-id="京东-|-Deep-Multifaceted-Transformers-for-Multi-objective-Ranking-in-Large-Scale-E-commerce-Recommender-1.5"><span class="toc-item-num">1.5&nbsp;&nbsp;</span>京东 | Deep Multifaceted Transformers for Multi-objective Ranking in Large-Scale E-commerce Recommender</a></span><ul class="toc-item"><li><span><a href="#简介" data-toc-modified-id="简介-1.5.1"><span class="toc-item-num">1.5.1&nbsp;&nbsp;</span>简介</a></span></li><li><span><a href="#Deep-Multifaceted-Transformers-Layer" data-toc-modified-id="Deep-Multifaceted-Transformers-Layer-1.5.2"><span class="toc-item-num">1.5.2&nbsp;&nbsp;</span>Deep Multifaceted Transformers Layer</a></span></li><li><span><a href="#Bias-Deep-Neural-Network" data-toc-modified-id="Bias-Deep-Neural-Network-1.5.3"><span class="toc-item-num">1.5.3&nbsp;&nbsp;</span>Bias Deep Neural Network</a></span></li><li><span><a href="#Multi-gate-Mixture-of-Experts-Layers" data-toc-modified-id="Multi-gate-Mixture-of-Experts-Layers-1.5.4"><span class="toc-item-num">1.5.4&nbsp;&nbsp;</span>Multi-gate Mixture-of-Experts Layers</a></span></li></ul></li><li><span><a href="#阿里|Search-based-User-Interest-Modeling-with-Lifelong-Sequential-Behavior-Data-for-Click-Through-Rate-Prediction" data-toc-modified-id="阿里|Search-based-User-Interest-Modeling-with-Lifelong-Sequential-Behavior-Data-for-Click-Through-Rate-Prediction-1.6"><span class="toc-item-num">1.6&nbsp;&nbsp;</span>阿里|Search-based User Interest Modeling with Lifelong Sequential Behavior Data for Click-Through Rate Prediction</a></span><ul class="toc-item"><li><span><a href="#General-Search-Unit" data-toc-modified-id="General-Search-Unit-1.6.1"><span class="toc-item-num">1.6.1&nbsp;&nbsp;</span>General Search Unit</a></span></li><li><span><a href="#Exact-Search-Unit" data-toc-modified-id="Exact-Search-Unit-1.6.2"><span class="toc-item-num">1.6.2&nbsp;&nbsp;</span>Exact Search Unit</a></span></li></ul></li><li><span><a href="#阿里BST（Transformer处理序列特征）" data-toc-modified-id="阿里BST（Transformer处理序列特征）-1.7"><span class="toc-item-num">1.7&nbsp;&nbsp;</span>阿里BST（Transformer处理序列特征）</a></span><ul class="toc-item"><li><span><a href="#模型结构" data-toc-modified-id="模型结构-1.7.1"><span class="toc-item-num">1.7.1&nbsp;&nbsp;</span>模型结构</a></span><ul class="toc-item"><li><span><a href="#Embedding-Layer" data-toc-modified-id="Embedding-Layer-1.7.1.1"><span class="toc-item-num">1.7.1.1&nbsp;&nbsp;</span>Embedding Layer</a></span></li><li><span><a href="#Transformer-Layer" data-toc-modified-id="Transformer-Layer-1.7.1.2"><span class="toc-item-num">1.7.1.2&nbsp;&nbsp;</span>Transformer Layer</a></span></li><li><span><a href="#MLP-layers-and-Loss-function" data-toc-modified-id="MLP-layers-and-Loss-function-1.7.1.3"><span class="toc-item-num">1.7.1.3&nbsp;&nbsp;</span>MLP layers and Loss function</a></span></li></ul></li><li><span><a href="#实验数据" data-toc-modified-id="实验数据-1.7.2"><span class="toc-item-num">1.7.2&nbsp;&nbsp;</span>实验数据</a></span></li></ul></li><li><span><a href="#阿里DMR（attention）" data-toc-modified-id="阿里DMR（attention）-1.8"><span class="toc-item-num">1.8&nbsp;&nbsp;</span>阿里DMR（attention）</a></span><ul class="toc-item"><li><span><a href="#Item-to-Item-Network" data-toc-modified-id="Item-to-Item-Network-1.8.1"><span class="toc-item-num">1.8.1&nbsp;&nbsp;</span>Item-to-Item Network</a></span></li><li><span><a href="#User-to-Item-Network" data-toc-modified-id="User-to-Item-Network-1.8.2"><span class="toc-item-num">1.8.2&nbsp;&nbsp;</span>User-to-Item Network</a></span></li></ul></li><li><span><a href="#阿里MIND" data-toc-modified-id="阿里MIND-1.9"><span class="toc-item-num">1.9&nbsp;&nbsp;</span>阿里MIND</a></span><ul class="toc-item"><li><span><a href="#模型介绍" data-toc-modified-id="模型介绍-1.9.1"><span class="toc-item-num">1.9.1&nbsp;&nbsp;</span>模型介绍</a></span><ul class="toc-item"><li><span><a href="#模型整体结构图" data-toc-modified-id="模型整体结构图-1.9.1.1"><span class="toc-item-num">1.9.1.1&nbsp;&nbsp;</span>模型整体结构图</a></span></li><li><span><a href="#模型定义" data-toc-modified-id="模型定义-1.9.1.2"><span class="toc-item-num">1.9.1.2&nbsp;&nbsp;</span>模型定义</a></span></li><li><span><a href="#模型结构" data-toc-modified-id="模型结构-1.9.1.3"><span class="toc-item-num">1.9.1.3&nbsp;&nbsp;</span>模型结构</a></span></li><li><span><a href="#Training-&amp;-Serving" data-toc-modified-id="Training-&amp;-Serving-1.9.1.4"><span class="toc-item-num">1.9.1.4&nbsp;&nbsp;</span>Training &amp; Serving</a></span></li></ul></li></ul></li></ul></li></ul></div><section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>序列特征优化方案<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>推荐系统04-序列特征优化方案<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="base-model">
 <h2>Base Model<a class="headerlink" href="#base-model" title="Link to this heading">#</a></h2>
 <p>传统基于用户行为序列描述用户兴趣的方法是把序列中各个item的embedding通过pooling的方式转化成一个固定维的embedding。如下图所示，其中红色节点表示商品ID，蓝色节点表示店铺iD，粉色节点表示类目ID，白色节点表示用户特征和上下文特征，Goods 1 ~ Goods N 用来描述用户的历史行为，候选广告（Candidate Ad）本身也是商品。</p>
@@ -1037,7 +1013,7 @@ V_u = f_{user}(I_u, P_u)
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">双塔模型优化思路</p>
+        <p class="prev-next-title">推荐系统03-双塔模型优化思路</p>
       </div>
     </a>
     <a class="right-next"
@@ -1045,7 +1021,7 @@ V_u = f_{user}(I_u, P_u)
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">多场景&amp;多目标建模</p>
+        <p class="prev-next-title">推荐系统05-多目标与多场景建模</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
